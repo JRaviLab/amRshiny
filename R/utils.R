@@ -2,7 +2,9 @@ library(shinydashboard)
 library(magrittr)
 library(dplyr)
 library(ggplot2)
-library(sankeyD3)
+if (requireNamespace("sankeyD3", quietly = TRUE)) {
+  library(sankeyD3)
+}
 library(here)
 library(DBI)
 library(duckdb)

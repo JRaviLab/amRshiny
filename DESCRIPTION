@@ -4,9 +4,11 @@ Version: 0.99.0
 Authors@R: c(
     person("Janani", "Ravi", , "janani.ravi@cuanschutz.edu", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-7443-925X")),
-    person("Emily", "Boyer", , "[email]", role = "aut"),
-    person("Raymond", "Lesiyon", , "[email]", role = "ctb"),
-    person("David", "Mayer", , "[email]", role = "ctb")
+    person("Emily", "Boyer", , "emily.boyer@cuanschutz.edu", role = "ctb"),
+    person("David", "Mayer", , "david.mayer@cuanschutz.edu", role = "ctb"),
+    person("Raymond", "Lesiyon", , "raymond.lesiyon@cuanschutz.edu", role = "ctb"),
+    person("Abhirupa", "Ghosh", , "abhirupa.ghosh@cuanschutz.edu", role = "ctb"),
+    person("Charmie", "Vang", , "charmie.vang@cuanschutz.edu", role = "ctb")
   )
 Description: Interactive Shiny dashboard for exploring antimicrobial resistance
     (AMR) data and machine learning model results from the AMR package suite.
@@ -19,7 +21,7 @@ License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
+RoxygenNote: 7.3.3
 Depends:
     R (>= 4.1.0)
 Imports:
@@ -42,9 +44,11 @@ Imports:
     tidyr
 Suggests:
     arrow,
+    ComplexHeatmap,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
+    sankeyD3
 VignetteBuilder: knitr
 biocViews:
     GUI,
