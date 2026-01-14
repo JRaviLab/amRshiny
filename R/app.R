@@ -96,9 +96,8 @@ ui <- tagList(
                         border-radius: 5px;
                         text-align: center;
                       }
-                    ")
-               )
-    ),
+                    "))
+  ),
   navbarPage(
     id = "tabselected",
     selected = "home",
@@ -147,16 +146,16 @@ ui <- tagList(
       " | ",
       tags$a(href = "https://twitter.com/jravilab", "@jravilab"),
       " | janani.ravi@cuanschutz.edu |",
-      tags$a(href = "https://docs.google.com/forms/d/e/1FAIpQLSdwFo5Wwt_t4WGthDGgc1EYhvvKagUEb3RiNLdsbnpDlYTk7Q/viewform?usp=dialog",
-             icon("question-circle"),
-             " Help Doc")
+      tags$a(
+        href = "https://docs.google.com/forms/d/e/1FAIpQLSdwFo5Wwt_t4WGthDGgc1EYhvvKagUEb3RiNLdsbnpDlYTk7Q/viewform?usp=dialog",
+        icon("question-circle"),
+        " Help Doc"
+      )
     )
   ),
 )
 ## Server
 server <- function(input, output, session) {
-
-
   # Initialize reactive values
   genome_data <- reactiveVal(NULL)
   drug_class_map <- reactiveVal(NULL)
@@ -166,14 +165,14 @@ server <- function(input, output, session) {
 
   # reactive reader
   feature_import_table_reactive <- reactiveFileReader(
-    intervalMillis = 1000,  # check every 1 second
+    intervalMillis = 1000, # check every 1 second
     session = session,
     filePath = here::here("shinyapp", "data", "top_features", "current_top_features.tsv"),
     readFunc = readr::read_tsv
   )
 
   cross_model_import_feature_table_reactive <- reactiveFileReader(
-    intervalMillis = 1000,  # check every 1 second
+    intervalMillis = 1000, # check every 1 second
     session = session,
     filePath = here::here("shinyapp", "data", "top_features", "cross_model_top_features.tsv"),
     readFunc = readr::read_tsv
@@ -187,7 +186,7 @@ server <- function(input, output, session) {
 
   # reactive normalized UI selection for bug_search_amr_across_bug
   bug_norm_input <- reactive({
-    req(input$bug_search_amr_across_bug) #ensure value exists
+    req(input$bug_search_amr_across_bug) # ensure value exists
     normalize_species(input$bug_search_amr_across_bug)
   })
 
@@ -195,13 +194,13 @@ server <- function(input, output, session) {
   output$ml_drug_toggle_ui <- renderUI({
     # For example: only allow selection among the *other two* categories
     choices <- switch(input$ml_drug_toggle_top,
-                      "bug" = c("Drug Class" = "class", "Drug" = "drug"),
-                      "class" = c("Bug" = "bug", "Drug" = "drug"),
-                      "drug" = c("Bug" = "bug", "Drug Class" = "class")
+      "bug" = c("Drug Class" = "class", "Drug" = "drug"),
+      "class" = c("Bug" = "bug", "Drug" = "drug"),
+      "drug" = c("Bug" = "bug", "Drug Class" = "class")
     )
 
     radioButtons(
-      inputId = 'ml_drug_toggle',
+      inputId = "ml_drug_toggle",
       label = tags$label("Select by", style = "font-size: 15px;"),
       choices = choices,
       selected = names(choices)[1],
@@ -220,7 +219,7 @@ server <- function(input, output, session) {
       session,
       inputId = "bug_search_amr_across_bug",
       choices = bug_choices,
-      selected = unname(bug_choices)  # Default to ESKAPE bugs
+      selected = unname(bug_choices) # Default to ESKAPE bugs
     )
   })
 
@@ -262,7 +261,7 @@ server <- function(input, output, session) {
     bn <- normalize_species(input$bug_search_amr_across_drug)
 
     drug_or_class_name_vec <- arrow::read_parquet("data/top_features/top_features.parquet") |>
-      dplyr::filter(normalize_species(species) %in% bn) |>     # <-- was _across_bug
+      dplyr::filter(normalize_species(species) %in% bn) |> # <-- was _across_bug
       dplyr::filter(feature_type %in% input$bug_drug_comp_model_scale) |>
       dplyr::filter(data_type %in% input$data_type) |>
       dplyr::pull(drug_or_class_name) |>
@@ -308,31 +307,33 @@ server <- function(input, output, session) {
       session,
       inputId = "drug_class_ml_perf_id",
       choices = c("all", drug_class_vec),
-      selected = "aminoglycosides" #ifelse(length(drug_class_vec) > 0, "all", NULL)
+      selected = "aminoglycosides" # ifelse(length(drug_class_vec) > 0, "all", NULL)
     )
-
   })
   # model holdouts filtering
 
-  observeEvent(input$bug_holdouts_id, {
-    req(input$bug_holdouts_id)
+  observeEvent(input$bug_holdouts_id,
+    {
+      req(input$bug_holdouts_id)
 
-    # Build choices filtered to the selected 3-letter species code
-    choices <- getHoldoutsDrugChoices(bug = input$bug_holdouts_id)
+      # Build choices filtered to the selected 3-letter species code
+      choices <- getHoldoutsDrugChoices(bug = input$bug_holdouts_id)
 
-    # Keep the user’s current selection if still valid; otherwise pick first
-    prev <- isolate(input$holdouts_drug)
-    sel  <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
+      # Keep the user’s current selection if still valid; otherwise pick first
+      prev <- isolate(input$holdouts_drug)
+      sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
 
-    # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
-    updateSelectizeInput(
-      session,
-      inputId  = "holdouts_drug",
-      choices  = choices,
-      selected = sel,
-      server   = TRUE
-    )
-  }, ignoreInit = FALSE)  # run once on app load so it populates immediately
+      # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
+      updateSelectizeInput(
+        session,
+        inputId  = "holdouts_drug",
+        choices  = choices,
+        selected = sel,
+        server   = TRUE
+      )
+    },
+    ignoreInit = FALSE
+  ) # run once on app load so it populates immediately
 
 
   observeEvent(input$drug_class_ml_perf_id, {
@@ -342,7 +343,7 @@ server <- function(input, output, session) {
     drug_vec <- pull(dplyr::filter(data, drug_level == "drug"), drug_or_drug_class) %>%
       unique() %>%
       sort()
-    if(input$drug_class_ml_perf_id != "all"){
+    if (input$drug_class_ml_perf_id != "all") {
       # load drug maps
       drug_within_class_vec <- readr::read_csv(here::here("shinyapp", "data", "drug_cleanup.csv")) %>%
         dplyr::select(predicted_drug, drug_classes) %>%
@@ -366,15 +367,13 @@ server <- function(input, output, session) {
         inputId = "drug_ml_perf_id",
         choices = drug_vec,
         selected = "gentamicin"
-        #ifelse(length(drug_vec) > 0, drug_vec[1], NULL)
+        # ifelse(length(drug_vec) > 0, drug_vec[1], NULL)
       )
-
     }
   })
 
 
-
- ## plot UI
+  ## plot UI
   output$geo_isolate_plot_ui <- renderUI({
     fluidRow(
       div(
@@ -390,7 +389,7 @@ server <- function(input, output, session) {
   output$r_s_across_time_ui <- renderUI({
     fluidRow(
       box(
-        title = "", #"Resistance vs Susceptible across time",
+        title = "", # "Resistance vs Susceptible across time",
         width = 12,
         plotOutput("r_s_across_time_plot")
       )
@@ -400,7 +399,7 @@ server <- function(input, output, session) {
   output$host_isolate_plot_ui <- renderUI({
     fluidRow(
       box(
-        title = "", #"Host",
+        title = "", # "Host",
         width = 12,
         plotOutput("host_isolate_plot")
       )
@@ -410,7 +409,7 @@ server <- function(input, output, session) {
   output$isolation_source_ui <- renderUI({
     fluidRow(
       box(
-        title = "", #"Isolation source",
+        title = "", # "Isolation source",
         width = 12,
         plotOutput("isolation_source_plot")
       )
@@ -420,7 +419,7 @@ server <- function(input, output, session) {
   output$resistance_vs_susceptible_ui <- renderUI({
     fluidRow(
       box(
-        title = "", #"Data availability",
+        title = "", # "Data availability",
         width = 12,
         plotOutput("resistance_vs_susceptible_plot")
       )
@@ -432,26 +431,26 @@ server <- function(input, output, session) {
     output$quick_metadata_stats <- renderUI({
       metadata <- purrr::map_dfr(
         .x = input$bug_metadata_id,
-        .f = function(x){
+        .f = function(x) {
           fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
-          if(file.exists(fp)){
+          if (file.exists(fp)) {
             arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
           } else {
             return(tibble())
           }
         }
       )
-     makeQuickStats(metadata)
+      makeQuickStats(metadata)
     })
   })
 
   ## rendering plots
   observe({
-    if(
+    if (
       is.null(input$bug_search) &&
-      is.null(input$amr_drug_search) &&
-      is.null(input$amr_drug_class_search)
-     ) {
+        is.null(input$amr_drug_search) &&
+        is.null(input$amr_drug_class_search)
+    ) {
       return(
         shiny::wellPanel(
           h4("Please select a bug and drug/drug class to display the Sankey plot.")
@@ -463,7 +462,7 @@ server <- function(input, output, session) {
       data <- genome_data()
       amr_drugs <- amrDrugsRec()
 
-      if(!is.null(amr_drugs) && length(amr_drugs) > 0) {
+      if (!is.null(amr_drugs) && length(amr_drugs) > 0) {
         data <- data %>%
           dplyr::filter(genome_drug.antibiotic %in% amr_drugs)
       }
@@ -478,9 +477,9 @@ server <- function(input, output, session) {
     output$resistance_vs_susceptible_plot <- renderPlot({
       metadata <- purrr::map_dfr(
         .x = input$bug_metadata_id,
-        .f = function(x){
+        .f = function(x) {
           fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
-          if(file.exists(fp)){
+          if (file.exists(fp)) {
             arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
           } else {
             return(tibble())
@@ -492,13 +491,12 @@ server <- function(input, output, session) {
   })
 
   output$geo_isolate_plot <- plotly::renderPlotly({
-
     data <- purrr::map_dfr(
       .x = input$bug_metadata_id,
-      .f = function(x){
+      .f = function(x) {
         fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
         print(fp)
-        if(file.exists(fp)){
+        if (file.exists(fp)) {
           arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
         } else {
           return(tibble())
@@ -519,10 +517,11 @@ server <- function(input, output, session) {
             ) ~ "Laboratory Method",
           genome_drug.laboratory_typing_method ==
             "Computational Prediction" ~ "Computational Method",
-          TRUE ~ genome_drug.laboratory_typing_method)
+          TRUE ~ genome_drug.laboratory_typing_method
+        )
       ) %>%
       group_by(genome.isolation_country, genome_drug.antibiotic) %>%
-      summarize(count= n(), .groups = "drop") %>%
+      summarize(count = n(), .groups = "drop") %>%
       dplyr::group_by(genome.isolation_country) %>%
       dplyr::summarise(count = sum(count), .groups = "drop") %>%
       dplyr::collect()
@@ -533,9 +532,9 @@ server <- function(input, output, session) {
   output$r_s_across_time_plot <- renderPlot({
     data <- purrr::map_dfr(
       .x = input$bug_metadata_id,
-      .f = function(x){
+      .f = function(x) {
         fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
-        if(file.exists(fp)){
+        if (file.exists(fp)) {
           arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
         } else {
           return(tibble())
@@ -545,37 +544,38 @@ server <- function(input, output, session) {
 
     data <- data %>%
       dplyr::mutate(
-          genome_drug.evidence = case_when(
-            genome_drug.laboratory_typing_method %in%
-              c(
-                "Disk diffusion",
-                "MIC",
-                "Broth dilution",
-                "Agar dilution"
-              ) ~ "Laboratory Method",
-            genome_drug.laboratory_typing_method ==
-              "Computational Prediction" ~ "Computational Method",
-            TRUE ~ genome_drug.laboratory_typing_method)
-        ) %>%
-        dplyr::filter(!is.na(genome.collection_year)) %>%
-        group_by(
-          genome_drug.antibiotic,
-          genome_drug.resistant_phenotype,
-          genome.isolation_country,
-          genome.collection_year
-        ) %>%
-        summarize(n = n()) %>%
-        dplyr::collect()
-    #print(data)
+        genome_drug.evidence = case_when(
+          genome_drug.laboratory_typing_method %in%
+            c(
+              "Disk diffusion",
+              "MIC",
+              "Broth dilution",
+              "Agar dilution"
+            ) ~ "Laboratory Method",
+          genome_drug.laboratory_typing_method ==
+            "Computational Prediction" ~ "Computational Method",
+          TRUE ~ genome_drug.laboratory_typing_method
+        )
+      ) %>%
+      dplyr::filter(!is.na(genome.collection_year)) %>%
+      group_by(
+        genome_drug.antibiotic,
+        genome_drug.resistant_phenotype,
+        genome.isolation_country,
+        genome.collection_year
+      ) %>%
+      summarize(n = n()) %>%
+      dplyr::collect()
+    # print(data)
     makeTimeSeriesAMRPlot(data, input$amr_drug_search)
   })
 
   output$host_isolate_plot <- renderPlot({
     data <- purrr::map_dfr(
       .x = input$bug_metadata_id,
-      .f = function(x){
+      .f = function(x) {
         fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
-        if(file.exists(fp)){
+        if (file.exists(fp)) {
           arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
         } else {
           return(tibble())
@@ -607,9 +607,9 @@ server <- function(input, output, session) {
   output$isolation_source_plot <- renderPlot({
     data <- purrr::map_dfr(
       .x = input$bug_metadata_id,
-      .f = function(x){
+      .f = function(x) {
         fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
-        if(file.exists(fp)){
+        if (file.exists(fp)) {
           arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
         } else {
           return(tibble())
@@ -653,11 +653,11 @@ server <- function(input, output, session) {
 
   observe({
     output$across_bug_feature_importance_plot <- renderPlot({
-        #print("Feature importance across bug: drugs")
-      if(is.null(input$across_bug_id)){
+      # print("Feature importance across bug: drugs")
+      if (is.null(input$across_bug_id)) {
         return(NULL)
       }
-      if(input$across_bug_id == "drug"){
+      if (input$across_bug_id == "drug") {
         ht <- makeFeatureImportancePlot(
           input$bug_search_amr_across_bug,
           input$amr_drug_ml_across_bug,
@@ -674,7 +674,7 @@ server <- function(input, output, session) {
         )
       }
 
-      if(input$across_bug_id == "drug_class"){
+      if (input$across_bug_id == "drug_class") {
         ht <- makeFeatureImportancePlot(
           input$bug_search_amr_across_bug,
           input$amr_drug_class_ml_across_bug,
@@ -695,10 +695,10 @@ server <- function(input, output, session) {
 
   observe({
     output$across_drug_feature_importance_plot <- renderPlot({
-      if(is.null(input$across_drug_id)){
+      if (is.null(input$across_drug_id)) {
         return(NULL)
       }
-      if(input$across_drug_id == "drug"){
+      if (input$across_drug_id == "drug") {
         ht <- makeFeatureImportancePlot(
           input$bug_search_amr_across_drug,
           input$amr_drug_ml_across_drug,
@@ -715,7 +715,7 @@ server <- function(input, output, session) {
         )
       }
 
-      if(input$across_drug_id == "drug_class"){
+      if (input$across_drug_id == "drug_class") {
         ht <- makeFeatureImportancePlot(
           input$bug_search_amr_across_drug,
           input$amr_drug_class_ml_across_drug,
@@ -731,7 +731,6 @@ server <- function(input, output, session) {
           )
         )
       }
-
     })
   })
 
@@ -744,7 +743,7 @@ server <- function(input, output, session) {
   # })
   observe({
     output$feature_importance_plot <- renderPlot({
-      #req(input$bug_search_amr, input$amr_drug_ml_across_bug)
+      # req(input$bug_search_amr, input$amr_drug_ml_across_bug)
       ht <- makeFeatureImportancePlot(
         input$bug_ml_perf_id,
         input$amr_drug_ml_across_bug,
@@ -761,9 +760,9 @@ server <- function(input, output, session) {
       )
     })
     output$feature_importance_table <- DT::renderDataTable({
-      #req(input$bug_search_amr, input$amr_drug_ml_across_bug)
+      # req(input$bug_search_amr, input$amr_drug_ml_across_bug)
       feature_import_table <- feature_import_table_reactive()
-      if(is.null(feature_import_table)){
+      if (is.null(feature_import_table)) {
         return(NULL)
       }
       makeFeatureImportTable(feature_import_table)
@@ -774,7 +773,7 @@ server <- function(input, output, session) {
   output$across_bug_feature_importance_table <- DT::renderDataTable({
     req(feature_import_table_reactive())
     feature_import_table <- feature_import_table_reactive()
-    if(is.null(feature_import_table)){
+    if (is.null(feature_import_table)) {
       return(NULL)
     }
     makeFeatureImportTable(feature_import_table)
@@ -783,7 +782,7 @@ server <- function(input, output, session) {
   output$across_drug_feature_importance_table <- DT::renderDataTable({
     req(feature_import_table_reactive())
     feature_import_table <- feature_import_table_reactive()
-    if(is.null(feature_import_table)){
+    if (is.null(feature_import_table)) {
       return(NULL)
     }
     makeFeatureImportTable(feature_import_table)
@@ -794,33 +793,36 @@ server <- function(input, output, session) {
     req(cross_model_import_feature_table_reactive())
     feature_import_table <- cross_model_import_feature_table_reactive()
     # delete the file;
-    if(is.null(feature_import_table)){
+    if (is.null(feature_import_table)) {
       return(NULL)
     }
     makeFeatureImportTable(feature_import_table)
   })
 
   # model comparisons;
-  observeEvent(input$bug_cross_model_comparison_id, {
-    bug <- input$bug_cross_model_comparison_id
+  observeEvent(input$bug_cross_model_comparison_id,
+    {
+      bug <- input$bug_cross_model_comparison_id
 
-    # Gather all Drug/Drug class options across holdout sources for this bug
-    drugs_vec <- getHoldoutsDrugChoices(bug)
+      # Gather all Drug/Drug class options across holdout sources for this bug
+      drugs_vec <- getHoldoutsDrugChoices(bug)
 
-    # Initial default = "lincosamides" if present, else first option (users can still change it)
-    sel <- if ("lincosamides" %in% drugs_vec) "lincosamides" else if (length(drugs_vec)) drugs_vec[1] else NULL
+      # Initial default = "lincosamides" if present, else first option (users can still change it)
+      sel <- if ("lincosamides" %in% drugs_vec) "lincosamides" else if (length(drugs_vec)) drugs_vec[1] else NULL
 
-    updateSelectInput(
-      session,
-      inputId = "drug_cross_model_comparison_id",
-      choices = drugs_vec,
-      selected = sel
-    )
-  }, ignoreInit = FALSE)
+      updateSelectInput(
+        session,
+        inputId = "drug_cross_model_comparison_id",
+        choices = drugs_vec,
+        selected = sel
+      )
+    },
+    ignoreInit = FALSE
+  )
 
   observe({
     output$cross_model_perf_plot <- renderPlot({
-      #req(input$bug_cross_model_comparision_id, input$drug_cross_model_comparision_id)
+      # req(input$bug_cross_model_comparision_id, input$drug_cross_model_comparision_id)
       ht <- makeCrossModelPerformancePlot(
         input$bug_cross_model_comparison_id,
         input$drug_cross_model_comparison_id,
@@ -848,28 +850,28 @@ server <- function(input, output, session) {
       )
     })
 
-    ##Query Data Tab logic
+    ## Query Data Tab logic
     # Load performance metrics data
     queryData <- reactiveVal(loadMLResults())
 
     observe({
-      data <- queryData()  # Get data
+      data <- queryData() # Get data
 
-      #Exclude columns
+      # Exclude columns
       valid_columns <- setdiff(names(data), c("model_shapes", "model_colors"))
 
-      #Update dropdown options
+      # Update dropdown options
       updateSelectizeInput(
         session,
         "query_data_columns",
-        choices = valid_columns,  # Get column names
-        selected = valid_columns  # Default selection: all columns
+        choices = valid_columns, # Get column names
+        selected = valid_columns # Default selection: all columns
       )
     })
 
     # Render the data table
     output$queryDataTable <- DT::renderDataTable({
-      data <- queryData()  # Get data
+      data <- queryData() # Get data
 
       # Exclude unwanted columns
       valid_columns <- setdiff(names(data), c("model_shapes", "model_colors"))
@@ -877,9 +879,9 @@ server <- function(input, output, session) {
       selected_cols <- input$query_data_columns
 
       if (is.null(selected_cols)) {
-        data[, valid_columns, drop=FALSE]  # Return data
+        data[, valid_columns, drop = FALSE] # Return data
       } else {
-        data[, intersect(valid_columns, selected_cols), drop = FALSE]  # Return filtered data
+        data[, intersect(valid_columns, selected_cols), drop = FALSE] # Return filtered data
       }
     })
 
@@ -889,43 +891,43 @@ server <- function(input, output, session) {
         paste("query_data_", Sys.Date(), ".csv", sep = "")
       },
       content = function(file) {
-        data <- queryData()  # Get data
+        data <- queryData() # Get data
         # Exclude unwanted columns
-        valid_columns <- setdiff(names(data), c("model_shapes", "model_colors"))  # Filter columns
+        valid_columns <- setdiff(names(data), c("model_shapes", "model_colors")) # Filter columns
 
-        selected_cols <- input$query_data_columns  # Get user-selected columns
+        selected_cols <- input$query_data_columns # Get user-selected columns
 
         if (is.null(selected_cols)) {
-          write.csv(data[, valid_columns, drop = FALSE], file, row.names = FALSE)  # Download only valid columns
+          write.csv(data[, valid_columns, drop = FALSE], file, row.names = FALSE) # Download only valid columns
         } else {
-          write.csv(data[, intersect(valid_columns, selected_cols), drop = FALSE], file, row.names = FALSE)  # Download user selection intersected with valid columns
+          write.csv(data[, intersect(valid_columns, selected_cols), drop = FALSE], file, row.names = FALSE) # Download user selection intersected with valid columns
         }
       }
     )
     # Top Features Table Logic
-    topFeatures <- reactiveVal(loadTopFeat())  # Use the loadTopFeat() function to load data
+    topFeatures <- reactiveVal(loadTopFeat()) # Use the loadTopFeat() function to load data
 
     observe({
-      data <- topFeatures()  # Fetch data
+      data <- topFeatures() # Fetch data
 
       # Dynamically update dropdown with column names
       updateSelectizeInput(
         session,
         "top_features_columns",
-        choices = names(data),  # Populate dropdown with column names
-        selected = names(data)  # Default: all columns selected
+        choices = names(data), # Populate dropdown with column names
+        selected = names(data) # Default: all columns selected
       )
     })
 
     output$topFeaturesTable <- DT::renderDataTable({
-      data <- topFeatures()  # Get the data
+      data <- topFeatures() # Get the data
 
-      selected_columns <- input$top_features_columns  # Get user-selected columns
+      selected_columns <- input$top_features_columns # Get user-selected columns
 
       if (is.null(selected_columns)) {
-        data  # Show full data
+        data # Show full data
       } else {
-        data[, selected_columns, drop = FALSE]  # Filter columns
+        data[, selected_columns, drop = FALSE] # Filter columns
       }
     })
 
@@ -934,20 +936,18 @@ server <- function(input, output, session) {
         paste("top_features_", Sys.Date(), ".csv", sep = "")
       },
       content = function(file) {
-        data <- topFeatures()  # Fetch data
+        data <- topFeatures() # Fetch data
 
-        selected_columns <- input$top_features_columns  # Get user-selected columns
+        selected_columns <- input$top_features_columns # Get user-selected columns
 
         if (is.null(selected_columns)) {
-          write.csv(data, file, row.names = FALSE)  # Write complete data
+          write.csv(data, file, row.names = FALSE) # Write complete data
         } else {
-          write.csv(data[, selected_columns, drop = FALSE], file, row.names = FALSE)  # Filter columns in downloaded file
+          write.csv(data[, selected_columns, drop = FALSE], file, row.names = FALSE) # Filter columns in downloaded file
         }
       }
     )
-})
+  })
 }
 ## Run the application
 shinyApp(ui = ui, server = server)
-
-

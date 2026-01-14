@@ -18,13 +18,13 @@ tabPanel(
             selectizeInput(
               inputId = "query_data_columns",
               label = "Add/Remove Column(s)",
-              choices = NULL,   # Dynamically updated in the server
-              selected = NULL,  # Default: None selected
+              choices = NULL, # Dynamically updated in the server
+              selected = NULL, # Default: None selected
               multiple = TRUE,
               options = list(
                 placeholder = "Select columns...",
                 maxOptions = 40,
-                plugins = list("remove_button"),  # Allow remove buttons
+                plugins = list("remove_button"), # Allow remove buttons
                 dropdownParent = "body"
               )
             )
@@ -45,7 +45,7 @@ tabPanel(
           column(
             shinycssloaders::withSpinner(DT::dataTableOutput(outputId = "queryDataTable")),
             width = 12,
-            style = "overflow-x: auto; border: 1px solid lightgray;"  # Add styling
+            style = "overflow-x: auto; border: 1px solid lightgray;" # Add styling
           )
         )
       ),
@@ -60,13 +60,13 @@ tabPanel(
             selectizeInput(
               inputId = "top_features_columns",
               label = "Add/Remove Column(s)",
-              choices = NULL,   # Dynamically updated in the server
-              selected = NULL,  # Default: None selected
+              choices = NULL, # Dynamically updated in the server
+              selected = NULL, # Default: None selected
               multiple = TRUE,
               options = list(
                 placeholder = "Select columns...",
                 maxOptions = 40,
-                plugins = list("remove_button"),  # Allow remove buttons
+                plugins = list("remove_button"), # Allow remove buttons
                 dropdownParent = "body"
               )
             )
@@ -87,7 +87,7 @@ tabPanel(
           column(
             shinycssloaders::withSpinner(DT::dataTableOutput(outputId = "topFeaturesTable")),
             width = 12,
-            style = "overflow-x: auto; border: 1px solid lightgray;"  # Add styling
+            style = "overflow-x: auto; border: 1px solid lightgray;" # Add styling
           )
         )
       )
