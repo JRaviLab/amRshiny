@@ -1,0 +1,108 @@
+misspelled_drug,predicted_drug,drug_classes
+mupirocin,mupirocin,aminoacyl-trna synthetase inhibitor
+spectinomycin,spectinomycin,aminocyclitols
+amikacin,amikacin,aminoglycosides
+gentamicin,gentamicin,aminoglycosides
+kanamycin,kanamycin,aminoglycosides
+neomycin,neomycin,aminoglycosides
+netilmicin,netilmicin,aminoglycosides
+streptomycin,streptomycin,aminoglycosides
+tobramycin,tobramycin,aminoglycosides
+chloramphenicol,chloramphenicol,amphenicols
+florfenicol,florfenicol,amphenicols
+doripenem,doripenem,carbapenems
+ertapenem,ertapenem,carbapenems
+imipenem,imipenem,carbapenems
+meropenem,meropenem,carbapenems
+cefazolin,cefazolin,cephalosporins
+cefepime,cefepime,cephalosporins
+cefotetan,cefotetan,cephalosporins
+cefoxitin,cefoxitin,cephalosporins
+ceftiofur,ceftiofur,cephalosporins
+ceftriaxone,ceftriaxone,cephalosporins
+cefuroxime,cefuroxime,cephalosporins
+cephalothin,cephalothin,cephalosporins
+cefotaxime/clavulanic acid,cefotaxime_clavulanic acid,cephalosporins_beta-lactamase-inhibitor
+cefpodoxime_clavulanic_acid,cefotaxime_clavulanic acid,cephalosporins_beta-lactamase-inhibitor
+ceftazidime/clavulanic acid,ceftazidime_clavulanic acid,cephalosporins_beta-lactamase-inhibitor
+ciprofloxacin,ciprofloxacin,fluoroquinolones
+levofloxacin,levofloxacin,fluoroquinolones
+moxifloxacin,moxifloxacin,fluoroquinolones
+ofloxacin,ofloxacin,fluoroquinolones
+fusidic_acid,fusidic_acid,fusidane
+teicoplanin,teicoplanin,glycopeptides
+vancomycin,vancomycin,glycopeptides
+clindamycin,clindamycin,lincosamides
+daptomycin,daptomycin,lipopeptides
+azithromycin,azithromycin,macrolides
+clarithromycin,clarithromycin,macrolides
+erythromycin,erythromycin,macrolides
+synercid,synercid,macrolides
+aztreonam,aztreonam,monobactams
+nitrofurantoin,nitrofurantoin,nitrofuran-derivatives
+linezolid,linezolid,oxazolidinones
+amoxicillin,amoxicillin,penicillins
+ampicillin,ampicillin,penicillins
+methicillin,methicillin,penicillins
+oxacillin,oxacillin,penicillins
+penicillin,penicillin,penicillins
+piperacillin,piperacillin,penicillins
+ticarcillin,ticarcillin,penicillins
+timentin,timentin,penicillins
+amoxicillin-clavulanic acid,amoxicillin_clavulanic acid,penicillins_beta-lactamase-inhibitor
+amoxicillin/clavulanic acid,amoxicillin_clavulanic acid,penicillins_beta-lactamase-inhibitor
+ampicillin-sulbactam,ampicillin_sulbactam,penicillins_beta-lactamase-inhibitor
+ampicillin/sulbactam,ampicillin_sulbactam,penicillins_beta-lactamase-inhibitor
+piperacillin-tazobactam,piperacillin_tazobactam,penicillins_beta-lactamase-inhibitor
+piperacillin/tazobactam,piperacillin_tazobactam,penicillins_beta-lactamase-inhibitor
+fosfomycin,fosfomycin,phosphonic acid antibacterial
+phosphomycin,fosfomycin,phosphonic acid antibacterial
+tiamulin,tiamulin,pleuromutilin
+colistin,colistin,polymyxin
+polymyxin b,polymyxin b,polymyxin
+nalidixic_acid,nalidixic_acid,quinolones
+rifampin,rifampin,rifamycins
+quinupristin/dalfopristin,quinupristin_dalfopristin,streptogramins
+sulfisoxazole,sulfisoxazole,sulfonamides
+doxycycline,doxycycline,tetracyclines
+minocycline,minocycline,tetracyclines
+oxytetracycline,oxytetracycline,tetracyclines
+tetracycline,tetracycline,tetracyclines
+tigecycline,tigecycline,tetracyclines
+trimethoprim,trimethoprim,trimethoprim-derivatives
+trimotheprim,trimethoprim,trimethoprim-derivatives
+sulfamethoxazole/trimethoprim,trimethoprim_sulfamethoxazole,trimethoprim_sulfonamides
+trimethoprim_sulfamethoxazole,trimethoprim_sulfamethoxazole,trimethoprim_sulfonamides
+trimethoprim-sulfamethoxazole,trimethoprim_sulfamethoxazole,trimethoprim_sulfonamides
+trimethoprim/sulfamethoxazole,trimethoprim_sulfamethoxazole,trimethoprim_sulfonamides
+aminogycosides,,aminoglycosides
+azidothymidine,,antiretroviral
+beta-lactam,,beta-lactam
+carbapenem,,carbapenems
+carbenicillin,carbenicillin,penicillins
+cefalexin,cephalexin,cephalosporins
+cefalotin,cefalotin,cephalosporins
+cefamandole,cefamandole,cephalosporins
+cefiderocol,cefiderocol,cephalosporins
+cefotaxime,cefotaxime,cephalosporins
+cefpodoxime,cefpodoxime,cephalosporins
+ceftarolin,ceftaroline,cephalosporins
+ceftaroline,ceftaroline,cephalosporins
+ceftazidime,ceftazidime,cephalosporins
+ceftazidime/avibactam,ceftazidime_avibactam,cephalosporins_beta-lactamase-inhibitor
+ceftolozane/tazobactam,ceftolozane_tazobactam,cephalosporins_beta-lactamase-inhibitor
+ceftriaxone/cefpodoxime,ceftriaxone_cefpodoxime,cephalosporins
+cephalexin,cephalexin,cephalosporins
+dalbavancin,dalbavancin,lipoglycopeptide
+extended spectrum beta lactamase,,extended spectrum beta lactamase
+fluoroquinolones,,fluoroquinolones
+imipenem/relebactam,imipenem_relebactam,carbapenems_beta-lactamase-inhibitor
+lincomycin,lincomycin,lincosamides
+norfloxacin,norfloxacin,fluoroquinolones
+quinupristin,quinupristin,streptogramins
+sulbactam,sulbactam,beta-lactamase inhibitor
+sulfamethoxazole,sulfamethoxazole,sulfonamides
+sulfonamides,,sulfonamides
+tedizolid,tedizolid,oxazolidinones
+ticarcillin/clavulanic acid,ticarcillin_clavulanic acid,penicillins_beta-lactamase-inhibitor
+trimethoprim/sulfobactam,trimethoprim_sulfobactam,trimethoprim_beta-lactamase-inhibitor

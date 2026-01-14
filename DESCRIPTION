@@ -1,24 +1,55 @@
-Package: NewShinyPackage
-Title: What the Package Does (One Line, Title Case)
-Version: 0.0.0.9000
-Authors@R: 
-    person("David", "Mayer", , "david.mayer@cuanschutz.edu", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
-License: MIT + file LICENSE
-Imports: 
-    config,
-    golem,
-    shiny
-Suggests: 
-    knitr,
-    rmarkdown,
-    spelling,
-    testthat (>= 3.0.0)
-Config/testthat/edition: 3
+Package: amR_shiny
+Title: Interactive Dashboard for AMR Data and Model Visualization
+Version: 0.99.0
+Authors@R: c(
+    person("Janani", "Ravi", , "janani.ravi@cuanschutz.edu", role = c("aut", "cre"),
+           comment = c(ORCID = "0000-0001-7443-925X")),
+    person("Emily", "Boyer", , "[email]", role = "aut"),
+    person("Raymond", "Lesiyon", , "[email]", role = "ctb"),
+    person("David", "Mayer", , "[email]", role = "ctb")
+  )
+Description: Interactive Shiny dashboard for exploring antimicrobial resistance
+    (AMR) data and machine learning model results from the AMR package suite.
+    Provides intuitive visualization of metadata (e.g., geographic, temporal, host),
+    model performance comparisons across species, drugs, and molecular scales,
+    important features, and cross-model analyses. Includes modular UI
+    components and publication-quality plot export. Can operate independently
+    with pre-computed data files or integrate with amR_data and amR_ml packages.
+License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
+LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
-URL: https://github.com/JRaviLab/NewShinyPackage
-BugReports: https://github.com/JRaviLab/NewShinyPackage/issues
+Depends:
+    R (>= 4.1.0)
+Imports:
+    bslib,
+    ComplexHeatmap,
+    DBI,
+    dplyr,
+    DT,
+    duckdb,
+    ggplot2,
+    ggridges,
+    here,
+    magrittr,
+    plotly,
+    shiny,
+    shinydashboard,
+    shinydashboardPlus,
+    shinyjs,
+    tibble,
+    tidyr
+Suggests:
+    arrow,
+    knitr,
+    rmarkdown,
+    testthat (>= 3.0.0)
 VignetteBuilder: knitr
-Language: en-US
+biocViews:
+    GUI,
+    MicrobialGenomics,
+    Pathogen,
+    Visualization
+URL: https://github.com/jravilab/amRdash
+BugReports: https://github.com/jravilab/amR_shiny/issues

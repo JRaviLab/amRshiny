@@ -1,0 +1,401 @@
+genome.isolation_source,lower_cased_isolation_source,group
+"human blood at the National Naval Medical Center,  Bethesda, MD, USA","human blood at the national naval medical center,  bethesda, md, usa",blood
+BLOOD,blood,blood
+Blood,blood,blood
+blood,blood,blood
+Neonatal Blood,neonatal blood,blood
+"Blood, Peripheral","blood, peripheral",blood
+"Blood, Central line","blood, central line",blood
+*Blood-Isolator Tube,*blood-isolator tube,blood
+blood culture,blood culture,blood
+Blood culture,blood culture,blood
+BLOOD CULTURE,blood culture,blood
+Blood_whole,blood_whole,blood
+Bodily fluid; blood,bodily fluid; blood,blood
+Bodily fluid; Blood,bodily fluid; blood,blood
+Abdominal fluid,abdominal fluid,bodily fluid
+FLUID,fluid,bodily fluid
+Fluid,fluid,bodily fluid
+STERILE BODY FLUID,sterile body fluid,bodily fluid
+sterile body fluid,sterile body fluid,bodily fluid
+Cerebrospinal Fluid,cerebrospinal fluid,bodily fluid
+cerebrospinal fluid,cerebrospinal fluid,bodily fluid
+Cerebrospinal fluid,cerebrospinal fluid,bodily fluid
+Sterile Body Site,sterile body site,bodily fluid
+STERILE BODY SITE,sterile body site,bodily fluid
+CSF,csf,bodily fluid
+Sterile Fluid,sterile fluid,bodily fluid
+body fluid,body fluid,bodily fluid
+Peritoneal,peritoneal,bodily fluid
+Cerebrospinal fluid hospital sample,cerebrospinal fluid hospital sample,bodily fluid
+Puncture Fluids,puncture fluids,bodily fluid
+Other (drainage),other (drainage),bodily fluid
+Other (percutaneous abscess drainage),other (percutaneous abscess drainage),bodily fluid
+Pleural fluid,pleural fluid,bodily fluid
+fliud aspirate,fliud aspirate,bodily fluid
+Bodily fluid; sputum,bodily fluid; sputum,bodily fluid
+Ascites,ascites,bodily fluid
+Fluid_Synovial,fluid_synovial,bodily fluid
+Peritoneal fluid,peritoneal fluid,bodily fluid
+PERITONEAL FLUID,peritoneal fluid,bodily fluid
+Peritoneal Fluid,peritoneal fluid,bodily fluid
+Culture Sterile Body Site,culture sterile body site,bodily fluid
+Excreted bodily substance; catheter,excreted bodily substance; catheter,bodily fluid
+Fluid_Ascitic,fluid_ascitic,bodily fluid
+Bodily fluid; pancreatic fluid,bodily fluid; pancreatic fluid,bodily fluid
+Other (liquid abdomen),other (liquid abdomen),bodily fluid
+Plueral fluid,plueral fluid,bodily fluid
+other (fluid),other (fluid),bodily fluid
+Other (fluid),other (fluid),bodily fluid
+cerebral spinal fluid,cerebral spinal fluid,bodily fluid
+Pleural Cavity,pleural cavity,bodily fluid
+Bodily fluid,bodily fluid,bodily fluid
+Bodily fluid; Joint (arthritis),bodily fluid; joint (arthritis),bodily fluid
+Bodily fluid; Perineum,bodily fluid; perineum,bodily fluid
+Excreted bodily substance; Milk (masitis),excreted bodily substance; milk (masitis),bodily fluid
+Bodily fluid; Fascia,bodily fluid; fascia,bodily fluid
+Bodily fluid; Ear,bodily fluid; ear,bodily fluid
+Bodily fluid; Abscess,bodily fluid; abscess,bodily fluid
+breast milk,breast milk,bodily fluid
+Bodily fluid; Skin,bodily fluid; skin,bodily fluid
+Bodily fluid; nasal,bodily fluid; nasal,bodily fluid
+Other (endodfluid),other (endodfluid),bodily fluid
+Sacral bone,sacral bone,bone
+sacral bone,sacral bone,bone
+Bone infection,bone infection,bone
+bone,bone,bone
+BONE,bone,bone
+Bone,bone,bone
+"bone tissue, toe","bone tissue, toe",bone
+Joint,joint,bone
+bone biopsy,bone biopsy,bone
+sacrum,sacrum,bone
+Right ear,right ear,ear/nose/throat
+ear discharge,ear discharge,ear/nose/throat
+Farm,farm,environment
+Enviromental,enviromental,environment
+Food,food,environment
+food,food,environment
+pig manure,pig manure,environment
+Other (liquid drain),other (liquid drain),environment
+Environmental isolate,environmental isolate,environment
+Environmental sample,environmental sample,environment
+environmental,environmental,environment
+Dust  (ENVO:00002008); Pig farm,dust  (envo:00002008); pig farm,environment
+household surface,household surface,environment
+"the pork production chain, operation workers, the environment and surrounding community residents","the pork production chain, operation workers, the environment and surrounding community residents",environment
+DRAIN,drain,environment
+throat swab,throat swab,eye/nose/throat
+Eye swab,eye swab,eye/nose/throat
+Other (tonsil swab),other (tonsil swab),eye/nose/throat
+Other (throat swab),other (throat swab),eye/nose/throat
+Swab from Pharynx,swab from pharynx,eye/nose/throat
+Corneal Scaping,corneal scaping,eye/nose/throat
+Eye,eye,eye/nose/throat
+General Eye,general eye,eye/nose/throat
+sinus,sinus,eye/nose/throat
+eye drainage,eye drainage,eye/nose/throat
+Conjunctiva,conjunctiva,eye/nose/throat
+Ear,ear,eye/nose/throat
+ear,ear,eye/nose/throat
+Vitreous Fluid,vitreous fluid,eye/nose/throat
+Left cornea scraping,left cornea scraping,eye/nose/throat
+Corneal Scraping,corneal scraping,eye/nose/throat
+Cornea/ocular infection,cornea/ocular infection,eye/nose/throat
+Bodily fluid; Throat,bodily fluid; throat,eye/nose/throat
+Bodily fluid; throat,bodily fluid; throat,eye/nose/throat
+anterior nares,anterior nares,eye/nose/throat
+Bodily fluid; Nose,bodily fluid; nose,eye/nose/throat
+Bodily fluid; nose,bodily fluid; nose,eye/nose/throat
+nasal,nasal,eye/nose/throat
+Nasal Colonization,nasal colonization,eye/nose/throat
+nose,nose,eye/nose/throat
+nasopharynx sample,nasopharynx sample,eye/nose/throat
+Food Product (ENVO:00002002); Cheese (mozzarella),food product (envo:00002002); cheese (mozzarella),food
+Rectum,rectum,gastrointestinal
+Perirectal,perirectal,gastrointestinal
+rectal,rectal,gastrointestinal
+Rectal,rectal,gastrointestinal
+Bile,bile,gastrointestinal
+bile,bile,gastrointestinal
+BILE,bile,gastrointestinal
+gall bladder,gall bladder,gastrointestinal
+rectoanal junction mucosa,rectoanal junction mucosa,gastrointestinal
+Other (intraabdominal abscess),other (intraabdominal abscess),gastrointestinal
+abdominal,abdominal,gastrointestinal
+Other (bile),other (bile),gastrointestinal
+Other (abdominal),other (abdominal),gastrointestinal
+itra-abdominal tract infection,itra-abdominal tract infection,gastrointestinal
+alcohol foam dispenser in hospital intensive care unit,alcohol foam dispenser in hospital intensive care unit,hospital/clinical surfaces
+bedside rail in hospital intensive care unit,bedside rail in hospital intensive care unit,hospital/clinical surfaces
+nursing call button in hospital intensive care unit,nursing call button in hospital intensive care unit,hospital/clinical surfaces
+nosocomial spread of war-related MDR-ABC in a Canadian civilian hospital with origin from soldier evacuated via Landstuhl Regional Medical Center,nosocomial spread of war-related mdr-abc in a canadian civilian hospital with origin from soldier evacuated via landstuhl regional medical center,hospital/clinical surfaces
+washroom sink in hospital intensive care unit,washroom sink in hospital intensive care unit,hospital/clinical surfaces
+bedside light switch in hospital intensive care unit,bedside light switch in hospital intensive care unit,hospital/clinical surfaces
+"tertiary hospital, kitchen","tertiary hospital, kitchen",hospital/clinical surfaces
+Hospital Surface,hospital surface,hospital/clinical surfaces
+Hospital,hospital,hospital/clinical surfaces
+ANAEROBIC CULTURE,anaerobic culture,human
+Anaerobic Culture,anaerobic culture,human
+Patient,patient,human
+patient,patient,human
+"human clinical isolate at Walter Reed Army Medical Center, Washington, DC, USA","human clinical isolate at walter reed army medical center, washington, dc, usa",human
+"the ampicillin resistant, Tn916-containing strain D344R","the ampicillin resistant, tn916-containing strain d344r",human
+human,human,human
+Healthy person,healthy person,human
+"Human, Homo sapiens","human, homo sapiens",human
+infant,infant,human
+Healthcare worker,healthcare worker,human
+mother,mother,human
+Clinical isolate,clinical isolate,human
+clinical isolate,clinical isolate,human
+homo,homo,human
+Other (vascular prosthesis),other (vascular prosthesis),implants
+Other (membrane bone implants),other (membrane bone implants),implants
+Catheter tip,catheter tip,medical device
+catheter tip,catheter tip,medical device
+"catheter tip at Walter Reed Army Medical Center, Washington, DC, USA","catheter tip at walter reed army medical center, washington, dc, usa",medical device
+CATHETER,catheter,medical device
+catheter,catheter,medical device
+intravenous catheter,intravenous catheter,medical device
+Other (catheter),other (catheter),medical device
+Peritoneal dialysis catheter,peritoneal dialysis catheter,medical device
+Other (Tdrain),other (tdrain),medical device
+Other (catheter tip),other (catheter tip),medical device
+Blood (catheter tip),blood (catheter tip),medical device
+Central venous catheter tip,central venous catheter tip,medical device
+Other (CVP),other (cvp),medical device
+Central venous catheter,central venous catheter,medical device
+Other (CVC),other (cvc),medical device
+No data,no data,NA
+Underlob,underlob,NA
+MISC,misc,NA
+No datase,no datase,NA
+Liquor,liquor,NA
+Infection,infection,NA
+Other (BS),other (bs),NA
+not available,not available,NA
+feedlot,feedlot,NA
+Asidic,asidic,NA
+Other (unknown),other (unknown),NA
+Other (OTH),other (oth),NA
+HWARE,hware,NA
+infection control,infection control,NA
+cell culture,cell culture,NA
+QC org:ATCC 27853,qc org:atcc 27853,NA
+NVE,nve,NA
+Genomic DNA,genomic dna,NA
+partner,partner,NA
+Swine,swine,pig
+Blood/Urine,blood/urine,urine
+not_blood,not_blood,NA
+ABSC,absc,NA
+lab strain,lab strain,lab strain
+SITE,site,NA
+vegetables,vegetables,plant
+tomato plant,tomato plant,plant
+Poultry,poultry,poultry
+laying Chicken,laying chicken,poultry
+Food Product (ENVO:00002002); Turkey meat,food product (envo:00002002); turkey meat,poultry
+Food Product (ENVO:00002002); Chicken broiler meat,food product (envo:00002002); chicken broiler meat,poultry
+abscess,abscess,pus
+Abscess,abscess,pus
+ABSCESS,abscess,pus
+Other (abscess),other (abscess),pus
+Abdominal pus,abdominal pus,pus
+Labia major,labia major,reproductive
+rectal swab of pregnant women,rectal swab of pregnant women,reproductive
+Other (vaginal swab),other (vaginal swab),swab
+genital,genital,reproductive
+"tertiary hospital, gynecology","tertiary hospital, gynecology",reproductive
+Bodily fluid; Vagina,bodily fluid; vagina,reproductive
+Tracheal aspirate,tracheal aspirate,respiratory
+tracheal aspirate,tracheal aspirate,respiratory
+Tracheal Aspirate,tracheal aspirate,respiratory
+Nasobronchial lavage,nasobronchial lavage,respiratory
+Tracheal Secretions,tracheal secretions,respiratory
+Respiratory Specimen?,respiratory specimen?,respiratory
+NT Tube/Respiratory,nt tube/respiratory,respiratory
+trach tube,trach tube,respiratory
+bronchoalveolar lavage fluid,bronchoalveolar lavage fluid,respiratory
+tracheal mucosa,tracheal mucosa,respiratory
+Endotracheal Aspirate,endotracheal aspirate,respiratory
+bronchial washings,bronchial washings,respiratory
+BRONCH,bronch,respiratory
+Bronchial Washing,bronchial washing,respiratory
+Bronchalveolar Lavage (BAL),bronchalveolar lavage (bal),respiratory
+Bronchial secretion,bronchial secretion,respiratory
+Thorax,thorax,respiratory
+trachael aspirate,trachael aspirate,respiratory
+Bronchial secretions,bronchial secretions,respiratory
+bronchial wash,bronchial wash,respiratory
+Tracheal secretion,tracheal secretion,respiratory
+Endotracheal aspiration,endotracheal aspiration,respiratory
+Tracheal aspiration,tracheal aspiration,respiratory
+respiratory tract,respiratory tract,respiratory
+bronchial alveolar lavage,bronchial alveolar lavage,respiratory
+Bronchial alveolar lavage,bronchial alveolar lavage,respiratory
+bronchoalveolar lavage,bronchoalveolar lavage,respiratory
+Other (aspirated tracheal),other (aspirated tracheal),respiratory
+Lower Respiratory Tract Secrection (aspirate),lower respiratory tract secrection (aspirate),respiratory
+Swab from tracheostomic tube,swab from tracheostomic tube,swab
+Endotracheal tube,endotracheal tube,respiratory
+Lower Respiratory Tract Secrection,lower respiratory tract secrection,respiratory
+Tracheal discharge,tracheal discharge,respiratory
+swab from tracheostomy tube,swab from tracheostomy tube,respiratory
+induced sputum,induced sputum,respiratory
+sputum (ETT),sputum (ett),respiratory
+respiratory tract infection,respiratory tract infection,respiratory
+BAL (mucoid strain),bal (mucoid strain),respiratory
+cystic fibrosis isolate,cystic fibrosis isolate,respiratory
+Cystic fibrosis,cystic fibrosis,respiratory
+Bodily fluid; Tracheal aspirate,bodily fluid; tracheal aspirate,respiratory
+TRACH,trach,respiratory
+Trach,trach,respiratory
+Respiratory,respiratory,respiratory
+respiratory,respiratory,respiratory
+RESPIRATORY,respiratory,respiratory
+EB,eb,respiratory
+E.T Tube aspirate,e.t tube aspirate,respiratory
+BAL,bal,respiratory
+et tube,et tube,respiratory
+ASPIRATE,aspirate,respiratory
+leg,leg,skin
+groin,groin,skin
+Groin,groin,skin
+intact skin surface,intact skin surface,skin
+perineum,perineum,skin
+Right buttock,right buttock,skin
+"intact human skin surface at Camp Delta, Iraq","intact human skin surface at camp delta, iraq",skin
+skin,skin,skin
+Other (swab skin catheter),other (swab skin catheter),swab
+Other (skin swab),other (skin swab),skin
+foot culture,foot culture,lab strain
+"toenail, subungal debris","toenail, subungal debris",skin
+Nail bed,nail bed,skin
+G-tube site,g-tube site,skin
+skin and soft tissue,skin and soft tissue,skin
+Skin lesions,skin lesions,skin
+soil,soil,soil
+Environmental (soil),environmental (soil),soil
+SPUTUM,sputum,sputum
+Sputum,sputum,sputum
+sputum,sputum,sputum
+sputum sample,sputum sample,sputum
+Excreted bodily substance; sputum,excreted bodily substance; sputum,sputum
+sputum (not confirmed as pneumonia),sputum (not confirmed as pneumonia),sputum
+Stool,stool,stool
+STOOL,stool,stool
+stool,stool,stool
+Feces,feces,stool
+feces,feces,stool
+human feces,human feces,stool
+Excreted bodily substance; stool,excreted bodily substance; stool,stool
+Rectal swab 4,rectal swab 4,stool
+Rectal swab 1,rectal swab 1,stool
+Excreted bodily substance; Feces,excreted bodily substance; feces,stool
+"tertiary hospital, surgery","tertiary hospital, surgery",surgical
+Surveillance,surveillance,surveillance
+SURVEILLANCE,surveillance,surveillance
+Groin swab,groin swab,swab
+swab,swab,swab
+Rectal Swab,rectal swab,swab
+rectal swab,rectal swab,swab
+Rectal swab,rectal swab,swab
+Other (fistula swab),other (fistula swab),swab
+Ear swab,ear swab,swab
+Other (foreskin swab),other (foreskin swab),swab
+Rectal swab 5,rectal swab 5,swab
+Surveillance swab,surveillance swab,swab
+Rectal swab 2,rectal swab 2,swab
+Rectal swab 3,rectal swab 3,swab
+Swab from ear,swab from ear,swab
+Tissue/wound/sacral,tissue/wound/sacral,tissue
+Leg - LEFT ANTERIOR TIBIAL,leg - left anterior tibial,tissue
+Tissue from burn site,tissue from burn site,tissue
+TISSUE,tissue,tissue
+Tissue,tissue,tissue
+tissue,tissue,tissue
+Tissue - left hip hematoma,tissue - left hip hematoma,tissue
+sterile tissue,sterile tissue,tissue
+biopsy,biopsy,tissue
+BIOPSY,biopsy,tissue
+Biopsy,biopsy,tissue
+sterile tissue of foot,sterile tissue of foot,tissue
+abdomen,abdomen,tissue
+Tissue_Liver,tissue_liver,tissue
+Liver cyst,liver cyst,tissue
+Diaphragm tissue,diaphragm tissue,tissue
+Other (biopsy material),other (biopsy material),tissue
+intraabdominal abscess,intraabdominal abscess,tissue
+Tissue Swab,tissue swab,tissue
+other (tissue),other (tissue),tissue
+Tissues,tissues,tissue
+tissue middle turbinate,tissue middle turbinate,tissue
+Lung biopsy,lung biopsy,tissue
+soft tissue,soft tissue,tissue
+Other Sterile Site,other sterile site,tissue
+Urine,urine,urine
+urine,urine,urine
+URINE,urine,urine
+Midstream Urine,midstream urine,urine
+urie,urie,urine
+uirne,uirne,urine
+Patient urine,patient urine,urine
+Urine (venous catheter),urine (venous catheter),urine
+Excreted bodily substance; urine,excreted bodily substance; urine,urine
+urinary tract infection,urinary tract infection,urine
+UTI,uti,urine
+Urine from DJ Stent,urine from dj stent,urine
+Bodily fluid; Urine,bodily fluid; urine,urine
+river water,river water,water
+waste water,waste water,water
+Canal,canal,water
+Environmental (water),environmental (water),water
+river sediment,river sediment,water
+Wound swab,wound swab,wound
+wound swab,wound swab,wound
+Wound Swab,wound swab,wound
+Warwound,warwound,wound
+Left foot wound,left foot wound,wound
+ulcer,ulcer,wound
+ULCER,ulcer,wound
+"human wound at Walter Reed Army Medical Center, Washington, DC","human wound at walter reed army medical center, washington, dc",wound
+pus aspirate,pus aspirate,wound
+Decubitus,decubitus,wound
+Wound,wound,wound
+wound,wound,wound
+WOUND,wound,wound
+Pus,pus,wound
+pus,pus,wound
+PUS,pus,wound
+ABDOMINAL WOUND,abdominal wound,wound
+wound swab sample,wound swab sample,wound
+"human wound at the National Naval Medical Center,  Bethesda, MD, USA","human wound at the national naval medical center,  bethesda, md, usa",wound
+Left hip wound swab,left hip wound swab,wound
+Wound; WND,wound; wnd,wound
+Wound Secretion,wound secretion,wound
+Wound Secretion (wound),wound secretion (wound),wound
+EXUDATE,exudate,wound
+Wound Secretion (genital discharge),wound secretion (genital discharge),wound
+Wound Secretion (stomach tissue),wound secretion (stomach tissue),wound
+Pus swab,pus swab,wound
+Wound Secretion (swab),wound secretion (swab),wound
+penrose upper abdomen,penrose upper abdomen,wound
+purulent-necrotic detritus,purulent-necrotic detritus,wound
+Groin Wnd,groin wnd,wound
+"SWAB, PERITONEAL ABSCESS","swab, peritoneal abscess",wound
+Wound Secretion (abscess),wound secretion (abscess),wound
+wound sample,wound sample,wound
+fasciotomy fluid,fasciotomy fluid,wound
+shin wound,shin wound,wound
+left mass drainage,left mass drainage,wound
+Swab from Wound,swab from wound,wound
+Foot wound,foot wound,wound
+Abd. Wound,abd. wound,wound
+swab from purulent wound,swab from purulent wound,wound
+vulvar abscess,vulvar abscess,wound
+Abscess (abdominal),abscess (abdominal),wound
+Groin abscess,groin abscess,wound
+Wound/Abscess,wound/abscess,wound
+Bodily fluid; Wound,bodily fluid; wound,wound
