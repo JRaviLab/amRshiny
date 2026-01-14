@@ -17,7 +17,7 @@ library(shinyjs)
 
 ## source functions
 setwd(here())
-source(system.file("app/utils.R", package = "amRdash"))
+source(system.file("app/utils.R", package = "amR_shiny"))
 
 # Bug choices
 bug_choices <- c(
@@ -42,7 +42,7 @@ eskape_bugs <- c(
 # UI
 ui <- tagList(
   shinyjs::useShinyjs(),
-  tags$head(includeCSS(system.file("app/www/style.css", package = "amRdash"))),
+  tags$head(includeCSS(system.file("app/www/style.css", package = "amR_shiny"))),
   tags$head(
     tags$style(HTML("
                       .innerbox {
@@ -132,11 +132,11 @@ ui <- tagList(
       )
     ),
     # other tabs
-    source(system.file("app/modules/metadataUI.R", package = "amRdash"))$value,
-    source(system.file("app/modules/modelPerfUI.R", package = "amRdash"))$value,
-    source(system.file("app/modules/featureImportanceUI.R", package = "amRdash"))$value,
-    source(system.file("app/modules/crossModelComparisonUI.R", package = "amRdash"))$value,
-    source(system.file("app/modules/queryDataUI.R", package = "amRdash"))$value
+    source(system.file("app/modules/metadataUI.R", package = "amR_shiny"))$value,
+    source(system.file("app/modules/modelPerfUI.R", package = "amR_shiny"))$value,
+    source(system.file("app/modules/featureImportanceUI.R", package = "amR_shiny"))$value,
+    source(system.file("app/modules/crossModelComparisonUI.R", package = "amR_shiny"))$value,
+    source(system.file("app/modules/queryDataUI.R", package = "amR_shiny"))$value
   ),
   tags$footer(
     class = "footer",

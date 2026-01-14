@@ -55,5 +55,5 @@ biocViews:
     MicrobialGenomics,
     Pathogen,
     Visualization
-URL: https://github.com/jravilab/amRdash
+URL: https://github.com/jravilab/amR_shiny
 BugReports: https://github.com/jravilab/amR_shiny/issues
