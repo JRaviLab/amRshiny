@@ -17,7 +17,7 @@ library(shinyjs)
 
 ## source functions
 setwd(here())
-source(system.file("app/utils.R", package = "amR_shiny"))
+source(system.file("R/utils.R", package = "amR_shiny"))
 
 # Bug choices
 bug_choices <- c(
@@ -132,11 +132,11 @@ ui <- tagList(
       )
     ),
     # other tabs
-    source(system.file("app/modules/metadataUI.R", package = "amR_shiny"))$value,
-    source(system.file("app/modules/modelPerfUI.R", package = "amR_shiny"))$value,
-    source(system.file("app/modules/featureImportanceUI.R", package = "amR_shiny"))$value,
-    source(system.file("app/modules/crossModelComparisonUI.R", package = "amR_shiny"))$value,
-    source(system.file("app/modules/queryDataUI.R", package = "amR_shiny"))$value
+    source(system.file("R/modules/metadataUI.R", package = "amR_shiny"))$value,
+    source(system.file("R/modules/modelPerfUI.R", package = "amR_shiny"))$value,
+    source(system.file("R/modules/featureImportanceUI.R", package = "amR_shiny"))$value,
+    source(system.file("R/modules/crossModelComparisonUI.R", package = "amR_shiny"))$value,
+    source(system.file("R/modules/queryDataUI.R", package = "amR_shiny"))$value
   ),
   tags$footer(
     class = "footer",
