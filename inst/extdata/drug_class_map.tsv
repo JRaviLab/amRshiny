@@ -1,0 +1,98 @@
+drug.antibiotic_name	drug.pubchem_cid	WHO_class	AB_class	AB_subclass	drug_class
+mupirocin	446596	NA	aminoacyl-trna synthetase inhibitor	isoleucyl-trna synthetase [ile-rs] inhibitor	aminoacyl-trna synthetase inhibitor
+spectinomycin	15541	aminocyclitols	aminoglycoside	NA	aminocyclitols
+gentamicin	3467	aminoglycosides	aminoglycoside	NA	aminoglycosides
+tobramycin	36294	aminoglycosides	aminoglycoside	NA	aminoglycosides
+amikacin	37768	aminoglycosides	aminoglycoside	NA	aminoglycosides
+netilmicin	441306	aminoglycosides	aminoglycoside	NA	aminoglycosides
+streptomycin	19649	NA	aminoglycoside	NA	aminoglycosides
+kanamycin	6032	NA	aminoglycoside	NA	aminoglycosides
+neomycin	8378	NA	aminoglycoside	NA	aminoglycosides
+chloramphenicol	5959	amphenicols	phenicol	NA	amphenicols
+florfenicol	114811	NA	phenicol	NA	amphenicols
+doripenem	73303	carbapenems	beta-lactam	carbapenem	carbapenems
+ertapenem	150610	carbapenems	beta-lactam	carbapenem	carbapenems
+meropenem	441130	carbapenems	beta-lactam	carbapenem	carbapenems
+imipenem	104838	NA	beta-lactam	carbapenem	carbapenems
+isoniazid	3767	NA	cell-wall synthesis inhibitor	NA	cell-wall synthesis inhibitor
+cefazolin	33255	first-generation-cephalosporins	beta-lactam	"cephalosporin, first generation"	cephalosporins
+cefepime	5479537	fourth-generation-cephalosporins	beta-lactam	"cephalosporin, fourth generation"	cephalosporins
+ceftiofur	6328657	NA	beta-lactam	cephalosporin	cephalosporins
+cefoxitin	441199	second-generation-cephalosporins	beta-lactam	"cephalosporin, second generation"	cephalosporins
+cefaclor	51039	second-generation-cephalosporins	beta-lactam	"cephalosporin, second generation"	cephalosporins
+cefotetan	53025	second-generation-cephalosporins	beta-lactam	"cephalosporin, second generation"	cephalosporins
+cefuroxime	5361202	second-generation-cephalosporins	beta-lactam	"cephalosporin, second generation"	cephalosporins
+cefixime	5362065	third-generation-cephalosporins	beta-lactam	"cephalosporin, third generation"	cephalosporins
+ceftriaxone	5479530	third-generation-cephalosporins	beta-lactam	"cephalosporin, third generation"	cephalosporins
+cefpodoxime proxetil	6526396	NA	NA	NA	cephalosporins
+ethambutol	14052	NA	ethylenediamine	NA	ethylenediamine
+levofloxacin	149096	fluoroquinolones	fluoroquinolone	NA	fluoroquinolones
+moxifloxacin	152946	fluoroquinolones	fluoroquinolone	NA	fluoroquinolones
+ciprofloxacin	2764	fluoroquinolones	fluoroquinolone	NA	fluoroquinolones
+ofloxacin	4583	fluoroquinolones	fluoroquinolone	NA	fluoroquinolones
+gatifloxacin	5379	fluoroquinolones	fluoroquinolone	NA	fluoroquinolones
+sparfloxacin	60464	fluoroquinolones	fluoroquinolone	NA	fluoroquinolones
+trovafloxacin	62959	fluoroquinolones	fluoroquinolone	NA	fluoroquinolones
+enrofloxacin	71188	NA	fluoroquinolone	NA	fluoroquinolones
+danofloxacin	71335	NA	fluoroquinolone	NA	fluoroquinolones
+fusidic_acid	3000226	NA	fusidane	NA	fusidane
+teicoplanin	16131923	glycopeptides	glycopeptide	NA	glycopeptides
+vancomycin	14969	NA	glycopeptide	NA	glycopeptides
+cycloserine	6234	NA	isoxazoline	NA	isoxazoline
+clindamycin	446598	lincosamides	lincosamide	NA	lincosamides
+tilmicosin	16667713	NA	macrolide	NA	lincosamides
+daptomycin	21585658	lipopeptides	NA	NA	lipopeptides
+erythromycin	12560	macrolides	macrolide	14-membered macrolide	macrolides
+azithromycin	447043	macrolides	macrolide	azalide	macrolides
+telithromycin	5462516	macrolides	macrolide	"14-membered macrolide, ketolide"	macrolides
+clarithromycin	84029	macrolides	macrolide	NA	macrolides
+tylosin	5280440	NA	macrolide	NA	macrolides
+tulathromycin	9832301	NA	macrolide	NA	macrolides
+synercid	11979418	NA	NA	NA	macrolides
+aztreonam	5742832	monobactams	beta-lactam	monobactam	monobactams
+ethionamide	2761171	NA	mycolic acid synthesis inhibitor	NA	mycolic acid synthesis inhibitor
+furazolidone	5323714	NA	nitrofuran	NA	nitrofuran-derivatives
+nitrofurantoin	6604200	nitrofuran-derivatives	nitrofuran	NA	nitrofuran-derivatives
+linezolid	441401	oxazolidinones	oxazolidinone	NA	oxazolidinones
+methicillin	6087	NA	beta-lactam	penicillin	penicillins
+dicloxacillin	18381	penicillins	beta-lactam	isoxazolylpenicillin	penicillins
+amoxicillin	33613	penicillins	beta-lactam	aminopenicillin	penicillins
+ticarcillin	36921	penicillins	beta-lactam	carboxypenicillin	penicillins
+piperacillin	43672	penicillins	beta-lactam	ureidopenicillin	penicillins
+oxacillin	6196	penicillins	beta-lactam	isoxazolylpenicillin	penicillins
+ampicillin	6249	penicillins	beta-lactam	aminopenicillin	penicillins
+penicillin	5904	NA	NA	NA	penicillins
+ampicillin/sulbactam	119561	beta-lactam/beta-lactamase-inhibitor	NA	NA	penicillins/beta-lactamase-inhibitor
+piperacillin/tazobactam	23724843	beta-lactam/beta-lactamase-inhibitor_anti-pseudomonal	NA	NA	penicillins/beta-lactamase-inhibitor
+amoxicillin/clavulanic acid	23665637	NA	NA	NA	penicillins/beta-lactamase-inhibitor
+fosfomycin	446987	NA	phosphonic acid antibacterial	NA	phosphonic acid antibacterial
+tiamulin	656958	NA	pleuromutilin	NA	pleuromutilin
+polymyxin B	49800004	NA	NA	NA	polymyxin
+colistin	5311054	NA	polymyxin	NA	polymyxin
+bacitracin	10909430	NA	polypeptide	NA	polypeptides
+pyrazinamide	1046	NA	prodrug	NA	prodrug
+nalidixic_acid	4421	NA	quinolone	NA	quinolones
+rifabutin	6323490	rifamycins	rifamycin	NA	rifamycins
+rifampin	NA	NA	NA	NA	rifamycins
+clofazimine	2794	NA	riminophenazine	NA	riminophenazine
+sulfisoxazole	5344	NA	antibacterial sulfonamide	sulfa drug	sulfonamides
+sulfadimethoxine	5323	sulfonamides	antibacterial sulfonamide	sulfa drug	sulfonamides
+oxytetracycline	54675779	tetracyclines	NA	NA	tetracyclines
+chlortetracycline	54675777	tetracyclines	NA	NA	tetracyclines
+tigecycline	54686904	glycylcyclines	tetracycline	NA	tetracyclines
+minocycline	54675783	NA	tetracycline	NA	tetracyclines
+doxycycline	54671203	tetracyclines	tetracycline	NA	tetracyclines
+tetracycline	54675776	tetracyclines	tetracycline	NA	tetracyclines
+trimethoprim	5578	trimethoprim-derivatives	diaminopyrimidine	NA	trimethoprim-derivatives
+capreomycin	3000502	NA	tuberactinomycin	cyclic peptide often grouped with aminoglycoside	tuberactinomycin
+quinupristin/dalfopristin	23724510	NA	NA	NA	streptogramins
+trimethoprim/sulfamethoxazole	358641	NA	NA	NA	trimethoprim/sulfonamides
+cefoperazone/sulbactam	44187	NA	NA	NA	cephalosporins/sulfonamides
+para-aminosalicylic acid	4649	NA	NA	NA	antitubercular
+sulphonamides	5333	NA	NA	NA	sulfonamides
+ceftazidime/clavulanic acid	5481173	NA	NA	NA	cephalosporins/beta-lactamase-inhibitor
+cefotaxime/clavulanic acid	5742673	NA	NA	NA	cephalosporins/beta-lactamase-inhibitor
+cephalothin	6024	NA	NA	NA	cephalosporins
+timentin	6437075	NA	NA	NA	penicillins
+prothionamide	666418	NA	NA	NA	thioamide
+nicotinamide	936	NA	NA	NA	niacinamide

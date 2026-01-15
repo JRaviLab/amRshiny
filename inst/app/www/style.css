@@ -1,0 +1,90 @@
+
+
+.inline_float_p>h4>p{
+	float: left;
+	display:inline-block;
+}
+
+.inline_float_p>h4>p>sup {
+
+	margin-left:-3px;
+}
+
+.zoom {
+  transition: transform 0.2s;
+  display: inline-block;
+}
+.zoom:hover {
+  transform: scale(1.15);
+}
+
+.plot-container {
+  padding: 10px;
+  margin-bottom: 20px;
+}
+
+.plot-header {
+  text-align: center;
+  font-family: 'Helvetica Neue', sans-serif;
+  font-size: 14px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.quick-stats-container {
+  padding: 10px;
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+
+.footer {
+  font-family: Arial, sans-serif;
+  font-size: 14px;
+  text-align: center;
+  padding: 10px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+.footer a {
+  color: #fff; /* Makes clickable links white */
+  text-decoration: none; /* Optional: Removes underline */
+}
+
+.footer a:hover {
+  color: #ddd; /* Optional: Slightly darker on hover */
+}
+
+.selectize-control.multi .selectize-input {
+    height: auto; /* Ensure all options fit properly */
+    border: 1px solid #dcdcdc; /* Lighter border for dropdown */
+    border-radius: 5px; /* Rounded border for smoother appearance */
+    box-shadow: none; /* Remove default shadow effect */
+    padding: 3px 5px; /* Add padding for better spacing */
+    background-color: #f7f7f7; /* Light background color */
+    color: #333; /* Dark text color for readability */
+}
+
+.selectize-dropdown.multi .dropdown-content {
+    border: 1px solid #dcdcdc; /* Style dropdown border */
+    border-radius: 5px; /* Match dropdown border to wrapper */
+    background-color: #fff; /* Ensure dropdown background is white */
+}
+
+.selectize-input .item {
+    background-color: #ffffff; /* White background for individual items */
+    border: 1px solid #dcdcdc; /* Light border */
+    border-radius: 3px; /* Slight rounding */
+    margin: 2px; /* Space between items */
+}
+
+.selectize-input .item:hover {
+    background-color: #e9e9e9; /* Light hover effect */
+}
+
+.selectize-control.multi {
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1); /* Light shadow for dropdown stability */
+}
