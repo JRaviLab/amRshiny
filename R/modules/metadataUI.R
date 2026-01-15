@@ -1,3 +1,7 @@
+#' Metadata UI Tab
+#' @return A tabPanel for metadata visualization
+#' @keywords internal
+metadataUI <- function() {
 tabPanel(
   title = "Metadata",
   icon = icon("globe"),
@@ -103,3 +107,4 @@ tabPanel(
     )
   )
 )
+}

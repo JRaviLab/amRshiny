@@ -26,26 +26,31 @@ RoxygenNote: 7.3.3
 Depends:
     R (>= 4.1.0)
 Imports:
-    bslib,
+    arrow,
+    circlize,
     ComplexHeatmap,
+    countrycode,
     DBI,
     dplyr,
     DT,
     duckdb,
     ggplot2,
-    ggridges,
+    glue,
+    grid,
     here,
-    magrittr,
+    networkD3,
     plotly,
+    purrr,
+    readr,
+    rlang,
     shiny,
+    shinycssloaders,
     shinydashboard,
-    shinydashboardPlus,
     shinyjs,
+    stringr,
     tibble,
     tidyr
 Suggests:
-    arrow,
-    ComplexHeatmap,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)

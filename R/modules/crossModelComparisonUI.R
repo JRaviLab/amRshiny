@@ -1,3 +1,7 @@
+#' Cross Model Comparison UI Tab
+#' @return A tabPanel for cross model comparison visualization
+#' @keywords internal
+crossModelComparisonUI <- function() {
 tabPanel(
   title = "Model holdouts",
   icon = icon("clock"),
@@ -90,3 +94,4 @@ tabPanel(
     )
   )
 )
+}

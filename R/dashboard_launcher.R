@@ -1,6 +1,6 @@
-#' Launch the AMR Dashboard
+#' Launch the AMR Shiny dashboard
 #'
-#' This function launches the AMR Shiny Dashboard from the 'inst/app/' directory
+#' This function launches the AMR Shiny dashboard from the 'inst/app/' directory
 #' of the installed package.
 #'
 #' @export

@@ -1,3 +1,7 @@
+#' Feature Importance UI Tab
+#' @return A tabPanel for feature importance visualization
+#' @keywords internal
+featureImportanceUI <- function() {
 tabPanel(
   title = "Bug/Drug feature comparison",
   icon = icon("bug"),
@@ -164,3 +168,4 @@ tabPanel(
     )
   )
 )
+}

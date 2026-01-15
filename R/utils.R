@@ -1,13 +1,32 @@
-library(shinydashboard)
-library(magrittr)
-library(dplyr)
-library(ggplot2)
-if (requireNamespace("sankeyD3", quietly = TRUE)) {
-  library(sankeyD3)
-}
-library(here)
-library(DBI)
-library(duckdb)
+#' @importFrom shinydashboard box tabBox
+#' @importFrom dplyr filter mutate select group_by summarize ungroup arrange
+#' @importFrom dplyr pull distinct left_join bind_rows slice_max slice_head
+#' @importFrom dplyr collect desc n c_across all_of rowwise
+#' @importFrom ggplot2 ggplot aes geom_col geom_line geom_point geom_boxplot
+#' @importFrom ggplot2 theme_bw theme_minimal theme element_text labs
+#' @importFrom ggplot2 scale_fill_brewer scale_color_brewer coord_cartesian
+#' @importFrom ggplot2 position_jitterdodge ggtitle
+#' @importFrom here here
+#' @importFrom DBI dbConnect dbGetQuery dbWriteTable
+#' @importFrom duckdb duckdb
+#' @importFrom tibble tibble column_to_rownames
+#' @importFrom tidyr pivot_wider separate
+#' @importFrom purrr map_dfr
+#' @importFrom stringr str_glue str_extract str_split_i str_replace_all
+#' @importFrom stringr str_to_lower str_trunc str_flatten str_match str_detect
+#' @importFrom stringr str_remove str_to_sentence str_extract_all
+#' @importFrom readr read_tsv read_csv
+#' @importFrom rlang sym .data
+#' @importFrom arrow read_parquet write_parquet
+#' @importFrom plotly plot_ly layout colorbar renderPlotly plotlyOutput
+#' @importFrom ComplexHeatmap Heatmap draw
+#' @importFrom circlize colorRamp2
+#' @importFrom grid gpar unit
+#' @importFrom DT datatable dataTableOutput renderDataTable
+#' @importFrom glue glue
+#' @importFrom stats setNames
+#' @importFrom utils packageVersion
+NULL
 
 # Species code regex (note: Esp. includes escaped period)
 SPECIES_PATTERN <- "(Efa|Sau|Kpn|Aba|Pae|Esp\\.?)"
@@ -585,7 +604,7 @@ makeSankeyPlot <- function(data) {
 
   # links_df <- as.data.frame(links)
   # nodes_df <- as.data.frame(nodes)
-  sankeyD3::sankeyNetwork(
+  networkD3::sankeyNetwork(
     Links = links_df,
     Nodes = nodes_df,
     Source = "source", # column name in `links`

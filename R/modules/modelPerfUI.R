@@ -1,3 +1,7 @@
+#' Model Performance UI Tab
+#' @return A tabPanel for model performance visualization
+#' @keywords internal
+modelPerfUI <- function() {
 tabPanel(
   title = "Model performance",
   value = "model_perf_tab",
@@ -88,3 +92,4 @@ tabPanel(
     )
   )
 )
+}

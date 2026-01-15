@@ -7,6 +7,6 @@
 # * https://testthat.r-lib.org/articles/special-files.html
 
 library(testthat)
-library(NewShinyPackage)
+library(amRshiny)
 
-test_check("NewShinyPackage")
+test_check("amRshiny")

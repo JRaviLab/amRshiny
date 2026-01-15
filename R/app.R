@@ -1,3 +1,25 @@
+#' AMR Shiny dashboard application
+#'
+#' Creates and returns a Shiny application for exploring antimicrobial
+#' resistance data and machine learning model results.
+#'
+#' @return A Shiny application object
+#' @export
+#' @importFrom shiny shinyApp tagList tags navbarPage tabPanel fluidPage
+#' @importFrom shiny fluidRow column icon h2 h3 h4 br uiOutput plotOutput
+#' @importFrom shiny reactiveVal reactive observe observeEvent req
+#' @importFrom shiny renderUI renderPlot updateSelectInput isolate
+#' @importFrom shiny selectInput radioButtons downloadHandler
+#' @importFrom shiny conditionalPanel mainPanel tabsetPanel sliderInput
+#' @importFrom shiny updateSelectizeInput includeCSS wellPanel actionButton
+#' @importFrom shinyjs useShinyjs
+#' @examples
+#' if (interactive()) {
+#'   app <- launchAMRDashboard()
+#'   shiny::runApp(app)
+#' }
+launchAMRDashboard <- function() {
+
 # Bug choices
 bug_choices <- c(
   "Enterococcus faecium" = "Efa",
@@ -5,7 +27,10 @@ bug_choices <- c(
   "Klebsiella pneumoniae" = "Kpn",
   "Acinetobacter baumannii" = "Aba",
   "Pseudomonas aeruginosa" = "Pae",
-  "Enterobacter spp." = "Esp."
+  "Enterobacter spp." = "Esp.",
+  "Escherichia coli" = "Eco",
+  "Campylobacter jejuni" = "Cje",
+  "Staphylococcus epidermidis" = "Sep"
 )
 
 # ESKAPE bugs (sorted in ESKAPE order)
@@ -21,7 +46,7 @@ eskape_bugs <- c(
 # UI
 ui <- tagList(
   shinyjs::useShinyjs(),
-  tags$head(includeCSS(system.file("app/www/style.css", package = "amR_shiny"))),
+  tags$head(includeCSS(system.file("app/www/style.css", package = "amRshiny"))),
   tags$head(
     tags$style(HTML("
                       .innerbox {
@@ -111,11 +136,11 @@ ui <- tagList(
       )
     ),
     # other tabs
-    source(system.file("R/modules/metadataUI.R", package = "amR_shiny"))$value,
-    source(system.file("R/modules/modelPerfUI.R", package = "amR_shiny"))$value,
-    source(system.file("R/modules/featureImportanceUI.R", package = "amR_shiny"))$value,
-    source(system.file("R/modules/crossModelComparisonUI.R", package = "amR_shiny"))$value,
-    source(system.file("R/modules/queryDataUI.R", package = "amR_shiny"))$value
+    metadataUI(),
+    modelPerfUI(),
+    featureImportanceUI(),
+    crossModelComparisonUI(),
+    queryDataUI()
   ),
   tags$footer(
     class = "footer",
@@ -928,5 +953,7 @@ server <- function(input, output, session) {
     )
   })
 }
-## Run the application
-shinyApp(ui = ui, server = server)
+
+# Return the Shiny application object
+shiny::shinyApp(ui = ui, server = server)
+}

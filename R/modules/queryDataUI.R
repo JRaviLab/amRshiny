@@ -1,3 +1,7 @@
+#' Query Data UI Tab
+#' @return A tabPanel for querying and downloading data
+#' @keywords internal
+queryDataUI <- function() {
 tabPanel(
   title = "Query Data",
   icon = icon("table", lib = "font-awesome"),
@@ -94,3 +98,4 @@ tabPanel(
     )
   )
 )
+}
