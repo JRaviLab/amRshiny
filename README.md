@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# NewShinyPackage
+# amR_shiny
 
 <!-- badges: start -->
 
@@ -12,97 +12,217 @@ status](https://www.r-pkg.org/badges/version/NewShinyPackage)](https://CRAN.R-pr
 [![R-CMD-check](https://github.com/JRaviLab/NewShinyPackage/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JRaviLab/NewShinyPackage/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-The goal of NewShinyPackage is to … \< *your awesome package description
-here!* \>
+**amR_shiny** is an interactive Shiny dashboard for exploring
+antimicrobial resistance (AMR) data and machine learning model results.
 
-## GitHub Setup
+Part of the **AMR package suite**: - **amR_data**: Data (and metadata)
+preparation from BV-BRC - **amR_ml**: ML modeling and analysis -
+**amR_shiny**: Interactive visualization (this package)
 
-### Repository
+## Features
 
-Initial Repository Configuration:
-
-- Enable Git: `usethis::use_git()`
-- Configure Remote:
-  `usethis::use_github(organisation = "JRaviLab", private = TRUE, protocol = "https")`
-- Contributor Code of Conduct:
-  `usethis::use_code_of_conduct(contact = "janani.ravi@cuanschutz.edu")`
-
-### GitHub Actions
-
-These functions will enable common package development GitHub Actions is
-desired:
-
-- R CMD Check (multiplatform):
-  `usethis::use_github_action("check_standard")`
-- Build Pkgdown: `use_github_action("pkgdown")`
-- lint code: `use_github_action("lint")`
-- style code: `use_github_action("style")`
-
-Example GitHub Actions workflows have been incorporated into this
-template. Modify workflows in `.github/workflows/` or delete if these
-are not required.
-
-## Development
-
-Some initial guidance on developing a Shiny Application can be found in
-the top level `dev` folder. Step through the included .R files,
-beginning with `01_start.R`
-
-- new function: `usethis::use_r("hello")`
-- new shiny module: `golem::add_module()`
-- add package dependency: `usethis::use_package("rlang")`
-- render documentation/update NAMESPACE: `devtools::document()`
-- load changes without install: `devtools::load_all()`
-- Local R CMD Check: `devtools::check()`
-- Test App: `NewShinyPackage::run_app()`
+- **Metadata exploration**: Geographic distribution, temporal trends,
+  host analysis
+- **Model performance**: Compare ML models across species, drugs, and
+  molecular scales (genes, proteins, domains, structures)
+- **Feature importance**: Identify key predictive features with
+  interactive heatmaps
+- **Cross-model analysis**: Compare models trained on different
+  stratifications (country, year)
+- **Publication-quality exports**: Download plots and tables
+- **Modular design**: Extensible UI components
 
 ## Installation
 
-You can install the development version of NewShinyPackage like so:
+### Current (development version)
+
+The package is currently available via GitHub and will be submitted to
+Bioconductor.
 
 ``` r
-# GitHub
-devtools::install_github("JRaviLab/NewShinyPackage", auth_token = "<PersonalAccessToken>")
-# If Bioconductor Dependencies
-BiocManager::install("JRaviLab/NewShinyPackage", auth_token = "<PersonalAccessToken>")
+# Install BiocManager if needed
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+# Install Bioconductor dependencies
+BiocManager::install("ComplexHeatmap")
+
+# Install amR_shiny from GitHub
+if (!requireNamespace("devtools", quietly = TRUE))
+    install.packages("devtools")
+
+devtools::install_github("JRaviLab/amR_shiny")
 ```
 
-## Example
+### Future (Bioconductor release)
 
-This is a basic example which shows you how to solve a common problem:
+Once submitted to Bioconductor, installation will be:
 
 ``` r
-library(NewShinyPackage)
-## basic example code
+if (!requireNamespace("BiocManager", quietly = TRUE))
+    install.packages("BiocManager")
+
+BiocManager::install("amR_shiny")
 ```
 
-What is special about using `README.Rmd` instead of just `README.md`?
-You can include R chunks like so:
+### Optional dependencies
 
 ``` r
-summary(cars)
-#>      speed           dist       
-#>  Min.   : 4.0   Min.   :  2.00  
-#>  1st Qu.:12.0   1st Qu.: 26.00  
-#>  Median :15.0   Median : 36.00  
-#>  Mean   :15.4   Mean   : 42.98  
-#>  3rd Qu.:19.0   3rd Qu.: 56.00  
-#>  Max.   :25.0   Max.   :120.00
+# For Sankey diagrams (if available for your R version)
+install.packages("sankeyD3")
+
+# For enhanced data processing
+BiocManager::install("arrow")
 ```
 
-You’ll still need to render `README.Rmd` regularly, to keep `README.md`
-up-to-date. `devtools::build_readme()` is handy for this.
+## Quick start
 
-You can also embed plots, for example:
+``` r
+library(amR_shiny)
 
-<img src="man/figures/README-pressure-1.png" width="100%" />
+# Launch the dashboard
+launch_dashboard()
+```
 
-In that case, don’t forget to commit and push the resulting figure
-files, so they display on GitHub and CRAN.
+The dashboard will open in your default web browser.
 
-## Code of Conduct
+## Usage
 
-Please note that the NewShinyPackage project is released with a
-[Contributor Code of
-Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html).
-By contributing to this project, you agree to abide by its terms.
+### Dashboard navigation
+
+The dashboard includes several tabs:
+
+1.  **Home**: Overview and project information
+2.  **Metadata**: Explore geographic, temporal, and host metadata
+    - Interactive maps and treemaps
+    - Temporal trends
+    - Host distribution
+3.  **Model performance**: Compare ML model metrics
+    - Filter by species, drug, molecular scale
+    - View confusion matrices
+    - Compare performance across models
+4.  **Feature importance**: Analyze predictive features
+    - Top features by importance
+    - Cross-species/drug comparisons
+    - Heatmaps and bar plots
+5.  **Cross-model comparison**: Compare models across stratifications
+    - Country-based models
+    - Year-based models
+    - Performance and feature consistency
+6.  **Query data**: Custom data queries
+    - Filter by multiple criteria
+    - Export filtered results
+
+### Example: Exploring model performance
+
+``` r
+launch_dashboard()
+
+# In the dashboard:
+# 1. Navigate to "Model Performance" tab
+# 2. Select species: "Campylobacter jejuni"
+# 3. Select drug: "ciprofloxacin"
+# 4. Select molecular scale: "genes"
+# 5. View performance metrics and confusion matrix
+```
+
+### Data requirements
+
+The dashboard works with pre-computed data files located in
+`inst/app/data/`:
+
+- `amr_filtered_tbls.db`: DuckDB database with AMR data
+- `all_performances.tsv`: Model performance metrics
+- `drug_class_map.tsv`: Drug classification mapping
+- `metadata/`: Species-specific metadata files
+
+To use your own data, structure files following the same schema.
+
+## Data Schema
+
+### Performance metrics
+
+Required columns: - `bug`: Species code - `antibiotic`: Drug name -
+`scale`: Molecular scale (gene, protein, domain, struct) - `type`: Count
+or binary features - `bal_acc`: Balanced accuracy - `f1`: F1 score -
+`nmcc`: Normalized Matthews correlation coefficient - Additional columns
+for other metrics
+
+### Metadata files
+
+Location: `inst/app/data/metadata/{species}.parquet`
+
+Required columns: - `genome_id`: Unique genome identifier -
+`genome.isolation_country`: Country of isolation -
+`genome.collection_year`: Collection year - `genome.host_name`: Host
+organism - Additional metadata columns as needed
+
+## Development
+
+### Package structure
+
+    amR_shiny/
+    ├── R/
+    │   └── launch_dashboard.R    # Main launch function
+    ├── inst/
+    │   └── app/
+    │       ├── app.R             # Main Shiny app
+    │       ├── utils.R           # Utility functions
+    │       ├── modules/          # UI modules
+    │       ├── data/             # Dashboard data files
+    │       └── www/              # Static assets (CSS, images)
+    ├── man/                      # Documentation
+    └── DESCRIPTION
+
+## Citation
+
+If you use `amR_shiny` in your research, please cite:
+
+    Boyer E, Lesiyon R, Mayer D, Brenner E, Ghosh A, Vang C, Ravi J. (2025).
+    amR_shiny: Interactive dashboard for AMR data and model visualization.
+    R package version 0.99.0.
+    https://github.com/JRaviLab/amR_shiny
+
+## For Bioconductor submission
+
+This package is being prepared for Bioconductor submission. It includes:
+
+- **biocViews**: GUI, MicrobialGenomics, Pathogen, Visualization
+- **Bioconductor dependencies**: ComplexHeatmap
+- **R version requirement**: R \>= 4.1.0
+- **Documentation**: Comprehensive function documentation with examples
+- **Data**: Pre-computed AMR model results included in `inst/app/data/`
+
+## Contributing
+
+We welcome contributions! Please see our [Contributing
+Guidelines](CONTRIBUTING.md) for details.
+
+### Reporting Issues
+
+Report bugs and request features at:
+<https://github.com/JRaviLab/amR_shiny/issues>
+
+## Related projects
+
+- [amR_data](https://github.com/JRaviLab/amR_data): Data preparation
+  pipeline
+- [amR_ml](https://github.com/JRaviLab/amR_ml): ML modeling framework
+- [BV-BRC](https://www.bv-brc.org/): Bacterial and Viral Bioinformatics
+  Resource Center
+
+## Code of conduct
+
+Please note that the amR_shiny project is released with a [Contributor
+Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
+you agree to abide by its terms.
+
+## License
+
+BSD 3-Clause License. See [LICENSE](LICENSE) for details.
+
+## Contact
+
+**Corresponding author**: Janani Ravi (<janani.ravi@cuanschutz.edu>)
+
+**JRaviLab**: <https://jravilab.github.io>
