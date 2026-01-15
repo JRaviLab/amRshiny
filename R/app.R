@@ -1,23 +1,3 @@
-library(shiny)
-library(shinydashboard)
-library(shinydashboardPlus)
-library(magrittr)
-library(dplyr)
-library(ggplot2)
-library(sankeyD3)
-library(here)
-library(DBI)
-library(duckdb)
-library(plotly)
-library(ggridges)
-library(ComplexHeatmap)
-library(bslib)
-library(DT)
-library(shinyjs)
-
-## source functions
-setwd(here())
-source(system.file("R/utils.R", package = "amR_shiny"))
 
 # Bug choices
 bug_choices <- c(
@@ -141,7 +121,7 @@ ui <- tagList(
   tags$footer(
     class = "footer",
     tags$div(
-      "© JRaviLab 2025 | ",
+      "© JRaviLab 2026 | ",
       tags$a(href = "https://jravilab.github.io", "jravilab.github.io"),
       " | ",
       tags$a(href = "https://twitter.com/jravilab", "@jravilab"),

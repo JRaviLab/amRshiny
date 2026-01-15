@@ -1,4 +1,4 @@
-Package: amR_shiny
+Package: amRshiny
 Title: Interactive dashboard for AMR data and model visualization | pkg 3 of 3-pkg amR suite
 Version: 0.99.0
 Authors@R: c(
@@ -48,7 +48,6 @@ Suggests:
     ComplexHeatmap,
     knitr,
     rmarkdown,
-    sankeyD3,
     testthat (>= 3.0.0)
 VignetteBuilder: knitr
 biocViews:

@@ -6,7 +6,7 @@
 #' @export
 launch_amr_dashboard <- function() {
   # Locate the app directory within the package
-  app_dir <- system.file("app", package = "amR_shiny")
+  app_dir <- system.file("app", package = "amRshiny")
 
   # If the app directory is not found, stop with an error message
   if (app_dir == "" || !dir.exists(app_dir)) {
