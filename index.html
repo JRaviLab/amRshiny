@@ -75,101 +75,262 @@
       </header><div class="row">
   <div class="contents col-md-9">
 <div class="section level1">
-<div class="page-header"><h1 id="newshinypackage">NewShinyPackage<a class="anchor" aria-label="anchor" href="#newshinypackage"></a>
+<div class="page-header"><h1 id="amr_shiny">amR_shiny<a class="anchor" aria-label="anchor" href="#amr_shiny"></a>
 </h1></div>
 <!-- badges: start -->
 
-<p>The goal of NewShinyPackage is to … &lt; <em>your awesome package description here!</em> &gt;</p>
+<p><strong>amR_shiny</strong> is an interactive Shiny dashboard for exploring antimicrobial resistance (AMR) data and machine learning model results.</p>
+<p>Part of the <strong>AMR package suite</strong>: - <strong>amR_data</strong>: Data (and metadata) preparation from BV-BRC - <strong>amR_ml</strong>: ML modeling and analysis - <strong>amR_shiny</strong>: Interactive visualization (this package)</p>
 <div class="section level2">
-<h2 id="github-setup">GitHub Setup<a class="anchor" aria-label="anchor" href="#github-setup"></a>
+<h2 id="features">Features<a class="anchor" aria-label="anchor" href="#features"></a>
 </h2>
-<div class="section level3">
-<h3 id="repository">Repository<a class="anchor" aria-label="anchor" href="#repository"></a>
-</h3>
-<p>Initial Repository Configuration:</p>
 <ul>
-<li>Enable Git: <code>usethis::use_git()</code>
-</li>
-<li>Configure Remote: <code>usethis::use_github(organisation = "JRaviLab", private = TRUE, protocol = "https")</code>
-</li>
-<li>Contributor Code of Conduct: <code>usethis::use_code_of_conduct(contact = "janani.ravi@cuanschutz.edu")</code>
-</li>
-</ul>
-</div>
-<div class="section level3">
-<h3 id="github-actions">GitHub Actions<a class="anchor" aria-label="anchor" href="#github-actions"></a>
-</h3>
-<p>These functions will enable common package development GitHub Actions is desired:</p>
-<ul>
-<li>R CMD Check (multiplatform): <code>usethis::use_github_action("check_standard")</code>
-</li>
-<li>Build Pkgdown: <code>use_github_action("pkgdown")</code>
-</li>
-<li>lint code: <code>use_github_action("lint")</code>
-</li>
-<li>style code: <code>use_github_action("style")</code>
-</li>
-</ul>
-<p>Example GitHub Actions workflows have been incorporated into this template. Modify workflows in <code>.github/workflows/</code> or delete if these are not required.</p>
-</div>
-</div>
-<div class="section level2">
-<h2 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
-</h2>
-<p>Some initial guidance on developing a Shiny Application can be found in the top level <code>dev</code> folder. Step through the included .R files, beginning with <code>01_start.R</code></p>
-<ul>
-<li>new function: <code>usethis::use_r("hello")</code>
-</li>
-<li>new shiny module: <code>golem::add_module()</code>
-</li>
-<li>add package dependency: <code>usethis::use_package("rlang")</code>
-</li>
-<li>render documentation/update NAMESPACE: <code>devtools::document()</code>
-</li>
-<li>load changes without install: <code>devtools::load_all()</code>
-</li>
-<li>Local R CMD Check: <code>devtools::check()</code>
-</li>
-<li>Test App: <code>NewShinyPackage::run_app()</code>
-</li>
+<li>
+<strong>Metadata exploration</strong>: Geographic distribution, temporal trends, host analysis</li>
+<li>
+<strong>Model performance</strong>: Compare ML models across species, drugs, and molecular scales (genes, proteins, domains, structures)</li>
+<li>
+<strong>Feature importance</strong>: Identify key predictive features with interactive heatmaps</li>
+<li>
+<strong>Cross-model analysis</strong>: Compare models trained on different stratifications (country, year)</li>
+<li>
+<strong>Publication-quality exports</strong>: Download plots and tables</li>
+<li>
+<strong>Modular design</strong>: Extensible UI components</li>
 </ul>
 </div>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of NewShinyPackage like so:</p>
+<div class="section level3">
+<h3 id="current-development-version">Current (development version)<a class="anchor" aria-label="anchor" href="#current-development-version"></a>
+</h3>
+<p>The package is currently available via GitHub and will be submitted to Bioconductor.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># GitHub</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JRaviLab/NewShinyPackage"</span>, auth_token <span class="op">=</span> <span class="st">"&lt;PersonalAccessToken&gt;"</span><span class="op">)</span></span>
-<span><span class="co"># If Bioconductor Dependencies</span></span>
-<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"JRaviLab/NewShinyPackage"</span>, auth_token <span class="op">=</span> <span class="st">"&lt;PersonalAccessToken&gt;"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="co"># Install BiocManager if needed</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Install Bioconductor dependencies</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"ComplexHeatmap"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Install amR_shiny from GitHub</span></span>
+<span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"devtools"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"devtools"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"JRaviLab/amR_shiny"</span><span class="op">)</span></span></code></pre></div>
 </div>
-<div class="section level2">
-<h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
-</h2>
-<p>This is a basic example which shows you how to solve a common problem:</p>
+<div class="section level3">
+<h3 id="future-bioconductor-release">Future (Bioconductor release)<a class="anchor" aria-label="anchor" href="#future-bioconductor-release"></a>
+</h3>
+<p>Once submitted to Bioconductor, installation will be:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">NewShinyPackage</span><span class="op">)</span></span>
-<span><span class="co">## basic example code</span></span></code></pre></div>
-<p>What is special about using <code>README.Rmd</code> instead of just <code>README.md</code>? You can include R chunks like so:</p>
+<code class="sourceCode R"><span><span class="kw">if</span> <span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/ns-load.html" class="external-link">requireNamespace</a></span><span class="op">(</span><span class="st">"BiocManager"</span>, quietly <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span></span>
+<span>    <span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"BiocManager"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"amR_shiny"</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="optional-dependencies">Optional dependencies<a class="anchor" aria-label="anchor" href="#optional-dependencies"></a>
+</h3>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/base/summary.html" class="external-link">summary</a></span><span class="op">(</span><span class="va">cars</span><span class="op">)</span></span>
-<span><span class="co">#&gt;      speed           dist       </span></span>
-<span><span class="co">#&gt;  Min.   : 4.0   Min.   :  2.00  </span></span>
-<span><span class="co">#&gt;  1st Qu.:12.0   1st Qu.: 26.00  </span></span>
-<span><span class="co">#&gt;  Median :15.0   Median : 36.00  </span></span>
-<span><span class="co">#&gt;  Mean   :15.4   Mean   : 42.98  </span></span>
-<span><span class="co">#&gt;  3rd Qu.:19.0   3rd Qu.: 56.00  </span></span>
-<span><span class="co">#&gt;  Max.   :25.0   Max.   :120.00</span></span></code></pre></div>
-<p>You’ll still need to render <code>README.Rmd</code> regularly, to keep <code>README.md</code> up-to-date. <code>devtools::build_readme()</code> is handy for this.</p>
-<p>You can also embed plots, for example:</p>
-<p><img src="reference/figures/README-pressure-1.png" width="100%"></p>
-<p>In that case, don’t forget to commit and push the resulting figure files, so they display on GitHub and CRAN.</p>
+<code class="sourceCode R"><span><span class="co"># For Sankey diagrams (if available for your R version)</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"sankeyD3"</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># For enhanced data processing</span></span>
+<span><span class="fu">BiocManager</span><span class="fu">::</span><span class="fu">install</span><span class="op">(</span><span class="st">"arrow"</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 <div class="section level2">
-<h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+<h2 id="quick-start">Quick start<a class="anchor" aria-label="anchor" href="#quick-start"></a>
 </h2>
-<p>Please note that the NewShinyPackage project is released with a <a href="https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html" class="external-link">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">amR_shiny</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Launch the dashboard</span></span>
+<span><span class="fu">launch_dashboard</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>The dashboard will open in your default web browser.</p>
+</div>
+<div class="section level2">
+<h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
+</h2>
+<div class="section level3">
+<h3 id="dashboard-navigation">Dashboard navigation<a class="anchor" aria-label="anchor" href="#dashboard-navigation"></a>
+</h3>
+<p>The dashboard includes several tabs:</p>
+<ol style="list-style-type: decimal">
+<li>
+<strong>Home</strong>: Overview and project information</li>
+<li>
+<strong>Metadata</strong>: Explore geographic, temporal, and host metadata
+<ul>
+<li>Interactive maps and treemaps</li>
+<li>Temporal trends</li>
+<li>Host distribution</li>
+</ul>
+</li>
+<li>
+<strong>Model performance</strong>: Compare ML model metrics
+<ul>
+<li>Filter by species, drug, molecular scale</li>
+<li>View confusion matrices</li>
+<li>Compare performance across models</li>
+</ul>
+</li>
+<li>
+<strong>Feature importance</strong>: Analyze predictive features
+<ul>
+<li>Top features by importance</li>
+<li>Cross-species/drug comparisons</li>
+<li>Heatmaps and bar plots</li>
+</ul>
+</li>
+<li>
+<strong>Cross-model comparison</strong>: Compare models across stratifications
+<ul>
+<li>Country-based models</li>
+<li>Year-based models</li>
+<li>Performance and feature consistency</li>
+</ul>
+</li>
+<li>
+<strong>Query data</strong>: Custom data queries
+<ul>
+<li>Filter by multiple criteria</li>
+<li>Export filtered results</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section level3">
+<h3 id="example-exploring-model-performance">Example: Exploring model performance<a class="anchor" aria-label="anchor" href="#example-exploring-model-performance"></a>
+</h3>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">launch_dashboard</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># In the dashboard:</span></span>
+<span><span class="co"># 1. Navigate to "Model Performance" tab</span></span>
+<span><span class="co"># 2. Select species: "Campylobacter jejuni"</span></span>
+<span><span class="co"># 3. Select drug: "ciprofloxacin"</span></span>
+<span><span class="co"># 4. Select molecular scale: "genes"</span></span>
+<span><span class="co"># 5. View performance metrics and confusion matrix</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="data-requirements">Data requirements<a class="anchor" aria-label="anchor" href="#data-requirements"></a>
+</h3>
+<p>The dashboard works with pre-computed data files located in <code>inst/app/data/</code>:</p>
+<ul>
+<li>
+<code>amr_filtered_tbls.db</code>: DuckDB database with AMR data</li>
+<li>
+<code>all_performances.tsv</code>: Model performance metrics</li>
+<li>
+<code>drug_class_map.tsv</code>: Drug classification mapping</li>
+<li>
+<code>metadata/</code>: Species-specific metadata files</li>
+</ul>
+<p>To use your own data, structure files following the same schema.</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="data-schema">Data Schema<a class="anchor" aria-label="anchor" href="#data-schema"></a>
+</h2>
+<div class="section level3">
+<h3 id="performance-metrics">Performance metrics<a class="anchor" aria-label="anchor" href="#performance-metrics"></a>
+</h3>
+<p>Required columns: - <code>bug</code>: Species code - <code>antibiotic</code>: Drug name - <code>scale</code>: Molecular scale (gene, protein, domain, struct) - <code>type</code>: Count or binary features - <code>bal_acc</code>: Balanced accuracy - <code>f1</code>: F1 score - <code>nmcc</code>: Normalized Matthews correlation coefficient - Additional columns for other metrics</p>
+</div>
+<div class="section level3">
+<h3 id="metadata-files">Metadata files<a class="anchor" aria-label="anchor" href="#metadata-files"></a>
+</h3>
+<p>Location: <code>inst/app/data/metadata/{species}.parquet</code></p>
+<p>Required columns: - <code>genome_id</code>: Unique genome identifier - <code>genome.isolation_country</code>: Country of isolation - <code>genome.collection_year</code>: Collection year - <code>genome.host_name</code>: Host organism - Additional metadata columns as needed</p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="development">Development<a class="anchor" aria-label="anchor" href="#development"></a>
+</h2>
+<div class="section level3">
+<h3 id="package-structure">Package structure<a class="anchor" aria-label="anchor" href="#package-structure"></a>
+</h3>
+<div class="sourceCode" id="cb6"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>amR_shiny<span class="sc">/</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>├── R<span class="sc">/</span></span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>│   └── launch_dashboard.R    <span class="co"># Main launch function</span></span>
+<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a>├── inst<span class="sc">/</span></span>
+<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a>│   └── app<span class="sc">/</span></span>
+<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a>│       ├── app.R             <span class="co"># Main Shiny app</span></span>
+<span id="cb6-7"><a href="#cb6-7" tabindex="-1"></a>│       ├── utils.R           <span class="co"># Utility functions</span></span>
+<span id="cb6-8"><a href="#cb6-8" tabindex="-1"></a>│       ├── modules<span class="sc">/</span>          <span class="co"># UI modules</span></span>
+<span id="cb6-9"><a href="#cb6-9" tabindex="-1"></a>│       ├── data<span class="sc">/</span>             <span class="co"># Dashboard data files</span></span>
+<span id="cb6-10"><a href="#cb6-10" tabindex="-1"></a>│       └── www<span class="sc">/</span>              <span class="co"># Static assets (CSS, images)</span></span>
+<span id="cb6-11"><a href="#cb6-11" tabindex="-1"></a>├── man<span class="sc">/</span>                      <span class="co"># Documentation</span></span>
+<span id="cb6-12"><a href="#cb6-12" tabindex="-1"></a>└── DESCRIPTION</span></code></pre></div>
+</div>
+</div>
+<div class="section level2">
+<h2 id="citation">Citation<a class="anchor" aria-label="anchor" href="#citation"></a>
+</h2>
+<p>If you use <code>amR_shiny</code> in your research, please cite:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>Boyer E, Lesiyon R, Mayer D, Brenner E, Ghosh A, Vang C, Ravi <span class="fu">J.</span> (<span class="dv">2025</span>).</span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>amR_shiny<span class="sc">:</span> Interactive dashboard <span class="cf">for</span> AMR data and model visualization.</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a>R package version <span class="dv">0</span>.<span class="dv">99</span>.<span class="fl">0.</span></span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a>https<span class="sc">:</span><span class="er">//</span>github.com<span class="sc">/</span>JRaviLab<span class="sc">/</span>amR_shiny</span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="for-bioconductor-submission">For Bioconductor submission<a class="anchor" aria-label="anchor" href="#for-bioconductor-submission"></a>
+</h2>
+<p>This package is being prepared for Bioconductor submission. It includes:</p>
+<ul>
+<li>
+<strong>biocViews</strong>: GUI, MicrobialGenomics, Pathogen, Visualization</li>
+<li>
+<strong>Bioconductor dependencies</strong>: ComplexHeatmap</li>
+<li>
+<strong>R version requirement</strong>: R &gt;= 4.1.0</li>
+<li>
+<strong>Documentation</strong>: Comprehensive function documentation with examples</li>
+<li>
+<strong>Data</strong>: Pre-computed AMR model results included in <code>inst/app/data/</code>
+</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="contributing">Contributing<a class="anchor" aria-label="anchor" href="#contributing"></a>
+</h2>
+<p>We welcome contributions! Please see our <a href="CONTRIBUTING.html">Contributing Guidelines</a> for details.</p>
+<div class="section level3">
+<h3 id="reporting-issues">Reporting Issues<a class="anchor" aria-label="anchor" href="#reporting-issues"></a>
+</h3>
+<p>Report bugs and request features at: <a href="https://github.com/JRaviLab/amR_shiny/issues" class="external-link uri">https://github.com/JRaviLab/amR_shiny/issues</a></p>
+</div>
+</div>
+<div class="section level2">
+<h2 id="related-projects">Related projects<a class="anchor" aria-label="anchor" href="#related-projects"></a>
+</h2>
+<ul>
+<li>
+<a href="https://github.com/JRaviLab/amR_data" class="external-link">amR_data</a>: Data preparation pipeline</li>
+<li>
+<a href="https://github.com/JRaviLab/amR_ml" class="external-link">amR_ml</a>: ML modeling framework</li>
+<li>
+<a href="https://www.bv-brc.org/" class="external-link">BV-BRC</a>: Bacterial and Viral Bioinformatics Resource Center</li>
+</ul>
+</div>
+<div class="section level2">
+<h2 id="code-of-conduct">Code of conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
+</h2>
+<p>Please note that the amR_shiny project is released with a <a href="CODE_OF_CONDUCT.html">Contributor Code of Conduct</a>. By contributing to this project, you agree to abide by its terms.</p>
+</div>
+<div class="section level2">
+<h2 id="license">License<a class="anchor" aria-label="anchor" href="#license"></a>
+</h2>
+<p>BSD 3-Clause License. See <a href="LICENSE">LICENSE</a> for details.</p>
+</div>
+<div class="section level2">
+<h2 id="contact">Contact<a class="anchor" aria-label="anchor" href="#contact"></a>
+</h2>
+<p><strong>Corresponding author</strong>: Janani Ravi (<a href="mailto:janani.ravi@cuanschutz.edu" class="email">janani.ravi@cuanschutz.edu</a>)</p>
+<p><strong>JRaviLab</strong>: <a href="https://jravilab.github.io" class="external-link uri">https://jravilab.github.io</a></p>
 </div>
 </div>
   </div>
