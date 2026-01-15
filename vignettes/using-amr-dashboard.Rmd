@@ -1,0 +1,40 @@
+---
+title: "Using the AMR Dashboard"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using the AMR Dashboard}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+## Running the dashboard
+
+Install the package, then launch the app:
+
+```{r, eval=FALSE}
+devtools::install()
+library(amRshiny)
+launchAMRDashboard
+```
+
+Once the app opens, you should see the AMR Dashboard in your browser.
+
+```{r, echo=FALSE, out.width="100%"}
+knitr::include_graphics("figures/dashboard-home.png")
+```
+## Using the dashboard
+
+The dashboard is organized into tabs. Each tab shows a different view of the AMR data 
+(e.g., Metdata summaries, Model Performance, or Bug/Drug feature comparisons). 
+Use the filters on each page to update the corresponding plots accordingly.
+
+Common filters include:
+- Bug/Species
+- Drug or Drug class
+- Model scale (i.e. genes, domains, proteins)
+- Data type (i.e. binary, count)
+
+**Example workflow:**  
+Select the Model holdouts tab -> Select *Staphylococcus aureus* in the Bug dropdown menu → 
+Select *lincosamides* from the Drug/Drug class dropdown menu → 
+review the Model performance and Top features summary plots.
