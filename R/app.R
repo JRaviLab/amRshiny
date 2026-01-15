@@ -1,4 +1,3 @@
-
 # Bug choices
 bug_choices <- c(
   "Enterococcus faecium" = "Efa",
