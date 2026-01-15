@@ -1,5 +1,5 @@
 Package: amR_shiny
-Title: Interactive Dashboard for AMR Data and Model Visualization
+Title: Interactive dashboard for AMR data and model visualization | pkg 3 of 3-pkg amR suite
 Version: 0.99.0
 Authors@R: c(
     person("Janani", "Ravi", , "janani.ravi@cuanschutz.edu", role = c("aut", "cre"),
@@ -8,6 +8,7 @@ Authors@R: c(
     person("David", "Mayer", , "david.mayer@cuanschutz.edu", role = "ctb"),
     person("Raymond", "Lesiyon", , "raymond.lesiyon@cuanschutz.edu", role = "ctb"),
     person("Abhirupa", "Ghosh", , "abhirupa.ghosh@cuanschutz.edu", role = "ctb"),
+    person("Evan", "Brenner", , "evan.brenner@cuanschutz.edu", role = "ctb"),
     person("Charmie", "Vang", , "charmie.vang@cuanschutz.edu", role = "ctb")
   )
 Description: Interactive Shiny dashboard for exploring antimicrobial resistance
@@ -47,10 +48,11 @@ Suggests:
     ComplexHeatmap,
     knitr,
     rmarkdown,
+    sankeyD3,
     testthat (>= 3.0.0)
-    sankeyD3
 VignetteBuilder: knitr
 biocViews:
+    AMR,
     GUI,
     MicrobialGenomics,
     Pathogen,
