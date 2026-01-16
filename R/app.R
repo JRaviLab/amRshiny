@@ -443,32 +443,6 @@ launchAMRDashboard <- function() {
       })
     })
 
-    ## rendering plots
-    observe({
-      if (
-        is.null(input$bug_search) &&
-          is.null(input$amr_drug_search) &&
-          is.null(input$amr_drug_class_search)
-      ) {
-        return(
-          shiny::wellPanel(
-            h4("Please select a bug and drug/drug class to display the Sankey plot.")
-          )
-        )
-      }
-
-      output$sankey_all_metadata_plot <- networkD3::renderSankeyNetwork({
-        data <- genome_data()
-        amr_drugs <- amrDrugsRec()
-
-        if (!is.null(amr_drugs) && length(amr_drugs) > 0) {
-          data <- data %>%
-            dplyr::filter(genome_drug.antibiotic %in% amr_drugs)
-        }
-        makeSankeyPlot(data)
-      })
-    })
-
     ## making the data availability plot
     observe({
       req(input$bug_metadata_id)
