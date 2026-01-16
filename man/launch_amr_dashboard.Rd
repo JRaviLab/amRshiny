@@ -2,11 +2,11 @@
 % Please edit documentation in R/dashboard_launcher.R
 \name{launch_amr_dashboard}
 \alias{launch_amr_dashboard}
-\title{Launch the AMR Dashboard}
+\title{Launch the AMR Shiny dashboard}
 \usage{
 launch_amr_dashboard()
 }
 \description{
-This function launches the AMR Shiny Dashboard from the 'inst/app/' directory
+This function launches the AMR Shiny dashboard from the 'inst/app/' directory
 of the installed package.
 }

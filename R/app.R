@@ -5,13 +5,9 @@
 #'
 #' @return A Shiny application object
 #' @export
-#' @importFrom shiny shinyApp tagList tags navbarPage tabPanel fluidPage
-#' @importFrom shiny fluidRow column icon h2 h3 h4 br uiOutput plotOutput
-#' @importFrom shiny reactiveVal reactive observe observeEvent req
-#' @importFrom shiny renderUI renderPlot updateSelectInput isolate
-#' @importFrom shiny selectInput radioButtons downloadHandler
-#' @importFrom shiny conditionalPanel mainPanel tabsetPanel sliderInput
-#' @importFrom shiny updateSelectizeInput includeCSS wellPanel actionButton
+#' @import shiny
+#' @importFrom magrittr %>%
+#' @importFrom utils head write.csv
 #' @importFrom shinyjs useShinyjs
 #' @examples
 #' if (interactive()) {

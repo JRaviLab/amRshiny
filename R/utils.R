@@ -356,7 +356,8 @@ loadAMRMetadata <- function(spp_name) {
 
 loadDrugClassMap <- function() {
   cwd <- getwd()
-  drug_class_map_fp <- file.path(cwd, "data", "drug_class_map.tsv")
+  # drug_class_map_fp <- file.path(cwd, "data", "drug_class_map.tsv")
+  drug_class_map_fp <- system.file("extdata", "drug_class_map.tsv", package = "amRshiny")
   message(stringr::str_glue("loadDrugClassMap(): Looking for TSV at: {drug_class_map_fp}"))
   drug_class_map_df <- readr::read_tsv(
     here(drug_class_map_fp),
@@ -369,7 +370,7 @@ loadDrugClassMap <- function() {
 
 loadMLResults <- function() {
   cwd <- getwd()
-  ml_results_fp <- file.path(cwd, "data", "All_Performances.tsv")
+  ml_results_fp <- system.file("extdata", "All_Performances.tsv", package = "amRshiny")
   # ml_results_fp <- here::here("shinyapp", "data", "performance_metrics", "performance_metrics.parquet")
   message(stringr::str_glue("loadMLResults(): Looking for DB at: {ml_results_fp}"))
   return(readr::read_tsv(ml_results_fp, show_col_types = FALSE))
@@ -1427,7 +1428,7 @@ makeFeatureImportTable <- function(feature_import_table) {
     dplyr::mutate(
       dplyr::across(where(is.numeric), ~ formatC(.x, format = "e", digits = 3))
     ) |>
-    dplyr::mutate(ARG_name = stringr::str_replace_all(string = ARG_name, pattern = "non-ARG", "—")) |>
+    dplyr::mutate(ARG_name = stringr::str_replace_all(string = ARG_name, pattern = "non-ARG", "-")) |>
     # Reorder for display: preferred columns first, then everything else
     dplyr::select(dplyr::all_of(existing), dplyr::everything())
 
