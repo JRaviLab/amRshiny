@@ -68,9 +68,6 @@ BiocManager::install("amR_shiny")
 ### Optional dependencies
 
 ``` r
-# For Sankey diagrams (if available for your R version)
-install.packages("sankeyD3")
-
 # For enhanced data processing
 BiocManager::install("arrow")
 ```
