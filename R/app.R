@@ -6,6 +6,8 @@
 #' @return A Shiny application object
 #' @export
 #' @import shiny
+#' @importFrom magrittr %>%
+#' @importFrom utils head write.csv
 #' @importFrom shinyjs useShinyjs
 #' @examples
 #' if (interactive()) {
