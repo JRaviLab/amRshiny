@@ -5,8 +5,8 @@
 #'
 #' @return A Shiny application object
 #' @export
-#' @import shiny 
-#' @importFrom shinyjs useShinyjs 
+#' @import shiny
+#' @importFrom shinyjs useShinyjs
 #' @examples
 #' if (interactive()) {
 #'   app <- launchAMRDashboard()
