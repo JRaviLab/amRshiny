@@ -352,7 +352,7 @@ launchAMRDashboard <- function() {
         sort()
       if (input$drug_class_ml_perf_id != "all") {
         # load drug maps
-        drug_within_class_vec <- readr::read_csv(here::here("shinyapp", "data", "drug_cleanup.csv")) %>%
+        drug_within_class_vec <- readr::read_csv(here::here("inst", "extdata", "drug_cleanup.csv")) %>%
           dplyr::select(predicted_drug, drug_classes) %>%
           dplyr::mutate(drug_classes = stringr::str_replace_all(drug_classes, pattern = " |-", "_")) %>%
           dplyr::filter(drug_classes %in% input$drug_class_ml_perf_id) %>%
@@ -439,7 +439,7 @@ launchAMRDashboard <- function() {
         metadata <- purrr::map_dfr(
           .x = input$bug_metadata_id,
           .f = function(x) {
-            fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
+            fp <- here::here("inst", "extdata", "metadata.parquet"))
             if (file.exists(fp)) {
               arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
             } else {
@@ -485,7 +485,7 @@ launchAMRDashboard <- function() {
         metadata <- purrr::map_dfr(
           .x = input$bug_metadata_id,
           .f = function(x) {
-            fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
+            fp <- here::here("inst", "extdata", "metadata.parquet"))
             if (file.exists(fp)) {
               arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
             } else {
@@ -501,7 +501,7 @@ launchAMRDashboard <- function() {
       data <- purrr::map_dfr(
         .x = input$bug_metadata_id,
         .f = function(x) {
-          fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
+          fp <- here::here("inst", "extdata", "metadata.parquet"))
           print(fp)
           if (file.exists(fp)) {
             arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
@@ -540,7 +540,7 @@ launchAMRDashboard <- function() {
       data <- purrr::map_dfr(
         .x = input$bug_metadata_id,
         .f = function(x) {
-          fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
+          fp <- here::here("inst", "extdata", "metadata.parquet"))
           if (file.exists(fp)) {
             arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
           } else {
@@ -581,7 +581,7 @@ launchAMRDashboard <- function() {
       data <- purrr::map_dfr(
         .x = input$bug_metadata_id,
         .f = function(x) {
-          fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
+          fp <- here::here("inst", "extdata", "metadata.parquet"))
           if (file.exists(fp)) {
             arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
           } else {
@@ -615,7 +615,7 @@ launchAMRDashboard <- function() {
       data <- purrr::map_dfr(
         .x = input$bug_metadata_id,
         .f = function(x) {
-          fp <- here::here("shinyapp", "data", "Metadata", stringr::str_glue("{x}_metadata.parquet"))
+          fp <- here::here("inst", "extdata", "metadata.parquet"))
           if (file.exists(fp)) {
             arrow::read_parquet(fp) |> dplyr::mutate(species = input$bug_metadata_id)
           } else {
