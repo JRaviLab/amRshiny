@@ -42,7 +42,8 @@ launchAMRDashboard <- function() {
     "Enterobacter spp." = "Esp.",
     "Escherichia coli" = "Eco",
     "Campylobacter jejuni" = "Cje",
-    "Staphylococcus epidermidis" = "Sep"
+    "Staphylococcus epidermidis" = "Sep",
+    "Streptococcus pneumoniae" = "Spn"
   )
 
   # UI
