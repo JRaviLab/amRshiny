@@ -38,6 +38,7 @@ Imports:
     glue,
     grid,
     here,
+    magrittr,
     networkD3,
     plotly,
     purrr,
