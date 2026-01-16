@@ -1428,7 +1428,7 @@ makeFeatureImportTable <- function(feature_import_table) {
     dplyr::mutate(
       dplyr::across(where(is.numeric), ~ formatC(.x, format = "e", digits = 3))
     ) |>
-    dplyr::mutate(ARG_name = stringr::str_replace_all(string = ARG_name, pattern = "non-ARG", "—")) |>
+    dplyr::mutate(ARG_name = stringr::str_replace_all(string = ARG_name, pattern = "non-ARG", "-")) |>
     # Reorder for display: preferred columns first, then everything else
     dplyr::select(dplyr::all_of(existing), dplyr::everything())
 
