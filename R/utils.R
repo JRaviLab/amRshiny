@@ -929,7 +929,7 @@ makeFeatureImportancePlot <- function(bug, amr_drug, model_scale, data_type_, to
   # normalize selected bug to remove any trailing dot (so "Esp."-> "Esp")
   bug_norm <- normalize_species(bug)
 
-  top_features_df <- arrow::read_parquet("data/top_features/top_features.parquet") %>%
+  top_features_df <- arrow::read_parquet(top_features_path) %>%
     dplyr::mutate(species = normalize_species(species)) %>%
     dplyr::filter(species %in% bug_norm) |>
     dplyr::filter(drug_or_class_name %in% amr_drug) %>%

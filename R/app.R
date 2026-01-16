@@ -229,7 +229,15 @@ launchAMRDashboard <- function() {
       # use reactive normalized selection
       bn <- bug_norm_input()
 
-      drug_or_class_name_vec <- arrow::read_parquet("data/top_features/top_features.parquet") |>
+      top_features_path <- system.file(
+        "extdata/top_features.parquet",
+        package = "amRshiny"
+      )
+      if (top_features_path == "") {
+        stop("Missing extdata file: top_features.parquet")
+      }
+
+      drug_or_class_name_vec <- arrow::read_parquet(top_features_path) |>
         dplyr::filter(normalize_species(species) %in% bn) |>
         dplyr::filter(feature_type %in% input$bug_drug_comp_model_scale) |>
         dplyr::filter(data_type %in% input$data_type) |>
@@ -259,7 +267,7 @@ launchAMRDashboard <- function() {
       # normalize selection for the across-drug observer
       bn <- normalize_species(input$bug_search_amr_across_drug)
 
-      drug_or_class_name_vec <- arrow::read_parquet("data/top_features/top_features.parquet") |>
+      drug_or_class_name_vec <- arrow::read_parquet(top_features_path) |>
         dplyr::filter(normalize_species(species) %in% bn) |> # <-- was _across_bug
         dplyr::filter(feature_type %in% input$bug_drug_comp_model_scale) |>
         dplyr::filter(data_type %in% input$data_type) |>
@@ -294,7 +302,7 @@ launchAMRDashboard <- function() {
 
     # Update the model performance tables
     observeEvent(input$bug_ml_perf_id, {
-      data <- readr::read_tsv(here::here("shinyapp", "data", "performance_metrics", "all_metrics.tsv")) %>%
+      data <- readr::read_tsv(here::here("inst", "extdata", "all_metrics.tsv")) %>%
         dplyr::filter(species %in% input$bug_ml_perf_id)
       # get drug classes;
       drug_class_vec <- pull(dplyr::filter(data, drug_level == "drug_class"), drug_or_drug_class) %>%
@@ -337,7 +345,7 @@ launchAMRDashboard <- function() {
 
     observeEvent(input$drug_class_ml_perf_id, {
       req(input$drug_class_ml_perf_id)
-      data <- readr::read_tsv(here::here("shinyapp", "data", "performance_metrics", "all_metrics.tsv")) %>%
+      data <- readr::read_tsv(here::here("inst", "extdata", "all_metrics.tsv")) %>%
         dplyr::filter(species %in% input$bug_ml_perf_id)
       drug_vec <- pull(dplyr::filter(data, drug_level == "drug"), drug_or_drug_class) %>%
         unique() %>%
