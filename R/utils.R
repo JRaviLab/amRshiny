@@ -22,7 +22,7 @@
 #' @importFrom ComplexHeatmap Heatmap draw
 #' @importFrom circlize colorRamp2
 #' @importFrom grid gpar unit
-#' @importFrom DT datatable dataTableOutput renderDataTable
+#' @importFrom DT datatable
 #' @importFrom glue glue
 #' @importFrom stats setNames
 #' @importFrom utils packageVersion
@@ -252,9 +252,6 @@ getTopFeatures <- function(top_features_dir, pattern) {
 }
 
 combinePerformanceMetrics <- function() {
-  library(arrow)
-  library(dplyr)
-
   # Define the paths to the individual performance_metrics.parquet files
   country_metrics_path <- here::here("shinyapp", "data", "country_models", "performance_metrics.parquet")
   cross_country_metrics_path <- here::here("shinyapp", "data", "cross_models", "performance_metrics.parquet")
@@ -540,8 +537,10 @@ makeDatAvailabilityPlot <- function(data) {
 }
 
 makeGeoChloroPlot <- function(data) {
-  library(countrycode)
-  data$iso3 <- countrycode(data$genome.isolation_country, origin = "country.name", destination = "iso3c")
+  if (!requireNamespace("countrycode", quietly = TRUE)) {
+    stop("Package 'countrycode' is required for this function. Install it with install.packages('countrycode').")
+  }
+  data$iso3 <- countrycode::countrycode(data$genome.isolation_country, origin = "country.name", destination = "iso3c")
   plot_ly(
     data = data,
     type = "choropleth",
@@ -701,9 +700,6 @@ makeModelPerformancePlot <- function(bug, model_scale, data_type, metrics, amr_d
     facet_col = "model_colors",
     selected_drug = ""
   ) {
-    # Load required libraries
-    library(tidyverse)
-
     # Ensure the metrics_df is a data frame
     if (!is.data.frame(metrics_df)) {
       stop("metrics_df must be a data frame")

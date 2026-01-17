@@ -11,6 +11,14 @@ Authors@R: c(
     person("Evan", "Brenner", , "evan.brenner@cuanschutz.edu", role = "ctb"),
     person("Charmie", "Vang", , "charmie.vang@cuanschutz.edu", role = "ctb")
   )
+Author: Janani Ravi [aut, cre] (<https://orcid.org/0000-0001-7443-925X>),
+    Emily Boyer [ctb],
+    David Mayer [ctb],
+    Raymond Lesiyon [ctb],
+    Abhirupa Ghosh [ctb],
+    Evan Brenner [ctb],
+    Charmie Vang [ctb]
+Maintainer: Janani Ravi <janani.ravi@cuanschutz.edu>
 Description: Interactive Shiny dashboard for exploring antimicrobial resistance
     (AMR) data and machine learning model results from the AMR package suite.
     Provides intuitive visualization of metadata (e.g., geographic, temporal, host),
@@ -20,7 +28,6 @@ Description: Interactive Shiny dashboard for exploring antimicrobial resistance
     with pre-computed data files or integrate with amR_data and amR_ml packages.
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
-LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Depends:
@@ -29,7 +36,6 @@ Imports:
     arrow,
     circlize,
     ComplexHeatmap,
-    countrycode,
     DBI,
     dplyr,
     DT,
@@ -39,7 +45,6 @@ Imports:
     grid,
     here,
     magrittr,
-    networkD3,
     plotly,
     purrr,
     readr,
@@ -52,7 +57,9 @@ Imports:
     tibble,
     tidyr
 Suggests:
+    countrycode,
     knitr,
+    networkD3,
     rmarkdown,
     spelling,
     testthat (>= 3.0.0)

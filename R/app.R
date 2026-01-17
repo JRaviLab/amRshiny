@@ -140,7 +140,7 @@ launchAMRDashboard <- function() {
     tags$footer(
       class = "footer",
       tags$div(
-        "© JRaviLab 2026 | ",
+        "(c) JRaviLab 2026 | ",
         tags$a(href = "https://jravilab.github.io", "jravilab.github.io"),
         " | ",
         tags$a(href = "https://twitter.com/jravilab", "@jravilab"),
@@ -251,7 +251,7 @@ launchAMRDashboard <- function() {
     })
 
 
-    # For drug/drug class (across drug) — FIX bug input and filter by scale/data type
+    # For drug/drug class (across drug) | FIX bug input and filter by scale/data type
     observeEvent(c(input$bug_search_amr_across_drug, input$across_drug_id, input$bug_drug_comp_model_scale, input$data_type), {
       req(input$bug_search_amr_across_drug)
       message("Across drug feature comparison: ")
@@ -318,7 +318,7 @@ launchAMRDashboard <- function() {
                    # Build choices filtered to the selected 3-letter species code
                    choices <- getHoldoutsDrugChoices(bug = input$bug_holdouts_id)
 
-                   # Keep the user’s current selection if still valid; otherwise pick first
+                   # Keep the user's current selection if still valid; otherwise pick first
                    prev <- isolate(input$holdouts_drug)
                    sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
 

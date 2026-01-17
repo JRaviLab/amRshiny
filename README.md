@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# amR_shiny
+# amRshiny
 
 <!-- badges: start -->
 
@@ -15,9 +15,12 @@ status](https://www.r-pkg.org/badges/version/NewShinyPackage)](https://CRAN.R-pr
 **amR_shiny** is an interactive Shiny dashboard for exploring
 antimicrobial resistance (AMR) data and machine learning model results.
 
-Part of the **AMR package suite**: - **amR_data**: Data (and metadata)
-preparation from BV-BRC - **amR_ml**: ML modeling and analysis -
-**amR_shiny**: Interactive visualization (this package)
+Part of the **AMR package suite**,
+[JRaviLab/amR](https://github.com/jravilab/amR):
+
+- **amR_data**: Data (and metadata) preparation from BV-BRC
+- **amR_ml**: ML modeling and analysis
+- **amR_shiny**: Interactive visualization (this package)
 
 ## Features
 
@@ -173,12 +176,12 @@ organism - Additional metadata columns as needed
 
 ## Citation
 
-If you use `amR_shiny` in your research, please cite:
+If you use `amRshiny` in your research, please cite:
 
-    Boyer E, Lesiyon R, Mayer D, Brenner E, Ghosh A, Vang C, Ravi J. (2025).
-    amR_shiny: Interactive dashboard for AMR data and model visualization.
+    Brenner E, Ghosh A, Wolfe E, Boyer E, Vang C, Lesiyon R, Mayer D, Ravi J. (2026).
+    amR: an R package suite to predict antimicrobial resistance in bacterial pathogens.
     R package version 0.99.0.
-    https://github.com/JRaviLab/amR_shiny
+    https://github.com/JRaviLab/amR
 
 ## For Bioconductor submission
 

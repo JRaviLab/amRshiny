@@ -11,3 +11,5 @@ dev_history.R
 $run_dev.*
 ^.here$
 create_shiny_pkg.Rmd
+^\.\.Rcheck$
+^\.Rhistory$
