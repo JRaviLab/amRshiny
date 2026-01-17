@@ -113,11 +113,6 @@ launchAMRDashboard <- function() {
           h2("amR: an R package suite to predict antimicrobial resistance in bacterial pathogens"),
           tags$p(
             tags$strong("Authors: "),
-            "Abhirupa Ghosh¹,#, Evan P Brenner¹,#, Charmie K Vang¹,#, Ethan P Wolfe¹,#, Emily Boyer¹, Raymond L Lesiyon¹, Keenan R Manpearl¹, Vignesh Sridhar², Joseph T Burke², Jacob D Krol¹, Jill MR Bilodeaux¹, Janani Ravi¹,*."
-          ),
-          tags$p(
-            "¹Department of Biomedical Informatics, Center for Health Artificial Intelligence, University of Colorado Anschutz, Aurora, CO, USA; ",
-            "²Department of Pathobiology and Diagnostic Investigation, Michigan State University, East Lansing, MI, USA. ",
             "Evan P Brenner,#, Abhirupa Ghosh,#, Ethan P Wolfe, Emily A Boyer, Charmie K Vang, Raymond L Lesiyon, David Mayer, Janani Ravi*."
           ),
           tags$p(
