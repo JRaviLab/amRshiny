@@ -10,3 +10,4 @@ dev_history.R
 ^dev$
 $run_dev.*
 ^.here$
+create_shiny_pkg.Rmd

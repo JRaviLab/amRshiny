@@ -110,23 +110,23 @@ launchAMRDashboard <- function() {
         title = icon("home", class = "home-tab-icon"),
         value = "home",
         fluidPage(
-          h2("From sequence to signature: Machine learning uncovers multiscale feature landscapes that predict AMR across ESKAPE pathogens"),
+          h2("amR: an R package suite to predict antimicrobial resistance in bacterial pathogens"),
           tags$p(
             tags$strong("Authors: "),
-            "Abhirupa Ghosh¹,#, Evan P Brenner¹,#, Charmie K Vang¹,#, Ethan P Wolfe¹,#, Emily Boyer¹, Raymond L Lesiyon¹, Keenan R Manpearl¹, Vignesh Sridhar², Joseph T Burke², Jacob D Krol¹, Jill MR Bilodeaux¹, Janani Ravi¹,*."
+            "Evan P Brenner,#, Abhirupa Ghosh,#, Ethan P Wolfe, Emily A Boyer, Charmie K Vang, Raymond L Lesiyon, David Mayer, Janani Ravi*."
           ),
           tags$p(
-            "¹Department of Biomedical Informatics, Center for Health Artificial Intelligence, University of Colorado Anschutz, Aurora, CO, USA; ",
-            "²Department of Pathobiology and Diagnostic Investigation, Michigan State University, East Lansing, MI, USA. ",
+            "Department of Biomedical Informatics, Center for Health Artificial Intelligence, University of Colorado Anschutz, Aurora, CO, USA",
             tags$span(style = "font-style: italic", "#Co-primary, contributed equally. *Corresponding author: janani.ravi@cuanschutz.edu")
           ),
           br(),
           h4("Abstract"),
-          tags$p("Since the clinical introduction of antibiotics in the 1940s, antimicrobial resistance (AMR) has become an increasingly dire threat to global public health. Pathogens acquire AMR much faster than we discover new drugs (antibiotics), warranting innovative methods to better understand its molecular underpinnings. Traditional approaches for detecting AMR in novel bacterial strains are time-consuming and labor-intensive. However, advances in sequencing technology offer a plethora of bacterial genome data, and computational approaches like machine learning (ML) provide an optimistic scope for in silico AMR prediction."),
-          tags$p("Here, we introduce a comprehensive multiscale ML approach to predict AMR phenotypes and identify AMR molecular features associated with a single drug or drug family, stratified by time and geographical locations. As a case study, we focus on a subset of the World Health Organization's Bacterial Priority Pathogens, the frequently drug-resistant and nosocomial ESKAPE pathogens: Enterococcus faecium, Staphylococcus aureus, Klebsiella pneumoniae, Acinetobacter baumannii, Pseudomonas aeruginosa, and Enterobacter species."),
-          tags$p("We started with sequenced genomes with lab-derived AMR phenotypes, constructed pangenomes, clustered gene and protein sequences, and extracted protein domains to generate pangenomic features across molecular scales. To uncover the molecular mechanisms behind drug-/drug class-specific resistance, we trained logistic regression ML models on our datasets. These yielded ranked lists of AMR-associated genes, proteins, and domains. In addition to recapitulating known AMR features, our models identified novel candidates for experimental validation. The models were performant across molecular scales, data types, and drugs while achieving a median normalized Matthews correlation coefficient of 0.89."),
-          tags$p("Prediction performance showed resilience even when evaluated on geographical and temporal holdouts. We also evaluated model generalizability and cross-resistance across the drug-/drug class-specific models cross-tested on other available drug-/drug class genomes. Finally, we uncovered multiple drug class resistance features using multiclass and multilabel models."),
-          tags$p("Our holistic approach promises reliable prediction of existing and developing resistance in newly sequenced pathogen genomes, while pinpointing the mechanistic molecular contributors of AMR. All our models and results are available at our interactive web app, https://jravilab.org/amr."),
+          tags$strong("Motivation: "),
+          tags$p("Identifying antimicrobial resistance (AMR) in bacterial pathogens is critical for diagnostics and treatment, but resistance is a complex trait arising from diverse mechanisms spanning multiple molecular scales. Existing computational approaches often function as black boxes and rarely explore cross-species or multi-drug patterns. We developed amR, an integrated R package suite providing a complete framework from bacterial genome sequences to interpretable AMR predictions, enabling identification of resistance mechanisms across species and drugs."),
+          tags$strong("Results: "),
+          tags$p("The amR suite consists of three modular packages. amRdata interfaces with BV-BRC to download and process bacterial genomes with paired antimicrobial susceptibility testing data, constructs species-specific pangenomes, and extracts features at four molecular scales: gene/protein clusters, protein domains, and structural variants. All data are stored in efficient Parquet and DuckDB formats. amRml trains interpretable logistic regression machine learning models per species-drug combination, generating ranked features by importance and comprehensive performance metrics (balanced accuracy, F1, MCC). Models identify known resistance determinants (e.g., gyrA mutations for fluoroquinolones, mecA for beta-lactams) alongside poorly characterized features representing potential novel mechanisms. amRshiny provides an interactive Shiny dashboard to explore isolate metadata distributions, compare model performance across species and drugs, visualize top predictive AMR features, and analyze cross-model patterns (including features specific to geographic/temporal strata). The suite has been applied to ESKAPE pathogens, achieving balanced accuracies above 0.80. With thousands of genomes, multi-scale features, and interpretable models, amR provides the first comprehensive programmatic framework and R package for AMR research."),
+          tags$strong("Availability and implementation: "),
+          tags$p("https://github.com/JRaviLab/amR"),
           tags$hr(),
         )
       ),
@@ -193,9 +193,9 @@ launchAMRDashboard <- function() {
     output$ml_drug_toggle_ui <- renderUI({
       # For example: only allow selection among the *other two* categories
       choices <- switch(input$ml_drug_toggle_top,
-        "bug" = c("Drug Class" = "class", "Drug" = "drug"),
-        "class" = c("Bug" = "bug", "Drug" = "drug"),
-        "drug" = c("Bug" = "bug", "Drug Class" = "class")
+                        "bug" = c("Drug Class" = "class", "Drug" = "drug"),
+                        "class" = c("Bug" = "bug", "Drug" = "drug"),
+                        "drug" = c("Bug" = "bug", "Drug Class" = "class")
       )
 
       radioButtons(
@@ -312,26 +312,26 @@ launchAMRDashboard <- function() {
     # model holdouts filtering
 
     observeEvent(input$bug_holdouts_id,
-      {
-        req(input$bug_holdouts_id)
+                 {
+                   req(input$bug_holdouts_id)
 
-        # Build choices filtered to the selected 3-letter species code
-        choices <- getHoldoutsDrugChoices(bug = input$bug_holdouts_id)
+                   # Build choices filtered to the selected 3-letter species code
+                   choices <- getHoldoutsDrugChoices(bug = input$bug_holdouts_id)
 
-        # Keep the user’s current selection if still valid; otherwise pick first
-        prev <- isolate(input$holdouts_drug)
-        sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
+                   # Keep the user’s current selection if still valid; otherwise pick first
+                   prev <- isolate(input$holdouts_drug)
+                   sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
 
-        # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
-        updateSelectizeInput(
-          session,
-          inputId  = "holdouts_drug",
-          choices  = choices,
-          selected = sel,
-          server   = TRUE
-        )
-      },
-      ignoreInit = FALSE
+                   # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
+                   updateSelectizeInput(
+                     session,
+                     inputId  = "holdouts_drug",
+                     choices  = choices,
+                     selected = sel,
+                     server   = TRUE
+                   )
+                 },
+                 ignoreInit = FALSE
     ) # run once on app load so it populates immediately
 
 
@@ -440,32 +440,6 @@ launchAMRDashboard <- function() {
           }
         )
         makeQuickStats(metadata)
-      })
-    })
-
-    ## rendering plots
-    observe({
-      if (
-        is.null(input$bug_search) &&
-          is.null(input$amr_drug_search) &&
-          is.null(input$amr_drug_class_search)
-      ) {
-        return(
-          shiny::wellPanel(
-            h4("Please select a bug and drug/drug class to display the Sankey plot.")
-          )
-        )
-      }
-
-      output$sankey_all_metadata_plot <- networkD3::renderSankeyNetwork({
-        data <- genome_data()
-        amr_drugs <- amrDrugsRec()
-
-        if (!is.null(amr_drugs) && length(amr_drugs) > 0) {
-          data <- data %>%
-            dplyr::filter(genome_drug.antibiotic %in% amr_drugs)
-        }
-        makeSankeyPlot(data)
       })
     })
 
@@ -800,23 +774,23 @@ launchAMRDashboard <- function() {
 
     # model comparisons;
     observeEvent(input$bug_cross_model_comparison_id,
-      {
-        bug <- input$bug_cross_model_comparison_id
+                 {
+                   bug <- input$bug_cross_model_comparison_id
 
-        # Gather all Drug/Drug class options across holdout sources for this bug
-        drugs_vec <- getHoldoutsDrugChoices(bug)
+                   # Gather all Drug/Drug class options across holdout sources for this bug
+                   drugs_vec <- getHoldoutsDrugChoices(bug)
 
-        # Initial default = "lincosamides" if present, else first option (users can still change it)
-        sel <- if ("lincosamides" %in% drugs_vec) "lincosamides" else if (length(drugs_vec)) drugs_vec[1] else NULL
+                   # Initial default = "lincosamides" if present, else first option (users can still change it)
+                   sel <- if ("lincosamides" %in% drugs_vec) "lincosamides" else if (length(drugs_vec)) drugs_vec[1] else NULL
 
-        updateSelectInput(
-          session,
-          inputId = "drug_cross_model_comparison_id",
-          choices = drugs_vec,
-          selected = sel
-        )
-      },
-      ignoreInit = FALSE
+                   updateSelectInput(
+                     session,
+                     inputId = "drug_cross_model_comparison_id",
+                     choices = drugs_vec,
+                     selected = sel
+                   )
+                 },
+                 ignoreInit = FALSE
     )
 
     observe({
