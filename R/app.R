@@ -121,10 +121,6 @@ launchAMRDashboard <- function() {
           ),
           br(),
           h4("Abstract"),
-          tags$p("Since the clinical introduction of antibiotics in the 1940s, antimicrobial resistance (AMR) has become an increasingly dire threat to global public health. Pathogens acquire AMR much faster than we discover new drugs (antibiotics), warranting innovative methods to better understand its molecular underpinnings. Traditional approaches for detecting AMR in novel bacterial strains are time-consuming and labor-intensive. However, advances in sequencing technology offer a plethora of bacterial genome data, and computational approaches like machine learning (ML) provide an optimistic scope for in silico AMR prediction."),
-          tags$p("Here, we introduce a comprehensive multiscale ML approach to predict AMR phenotypes and identify AMR molecular features associated with a single drug or drug family, stratified by time and geographical locations. As a case study, we focus on a subset of the World Health Organization's Bacterial Priority Pathogens, the frequently drug-resistant and nosocomial ESKAPE pathogens: Enterococcus faecium, Staphylococcus aureus, Klebsiella pneumoniae, Acinetobacter baumannii, Pseudomonas aeruginosa, and Enterobacter species."),
-          tags$p("We started with sequenced genomes with lab-derived AMR phenotypes, constructed pangenomes, clustered gene and protein sequences, and extracted protein domains to generate pangenomic features across molecular scales. To uncover the molecular mechanisms behind drug-/drug class-specific resistance, we trained logistic regression ML models on our datasets. These yielded ranked lists of AMR-associated genes, proteins, and domains. In addition to recapitulating known AMR features, our models identified novel candidates for experimental validation. The models were performant across molecular scales, data types, and drugs while achieving a median normalized Matthews correlation coefficient of 0.89."),
-          tags$p("Prediction performance showed resilience even when evaluated on geographical and temporal holdouts. We also evaluated model generalizability and cross-resistance across the drug-/drug class-specific models cross-tested on other available drug-/drug class genomes. Finally, we uncovered multiple drug class resistance features using multiclass and multilabel models."),
           tags$strong("Motivation: "),
           tags$p("Identifying antimicrobial resistance (AMR) in bacterial pathogens is critical for diagnostics and treatment, but resistance is a complex trait arising from diverse mechanisms spanning multiple molecular scales. Existing computational approaches often function as black boxes and rarely explore cross-species or multi-drug patterns. We developed amR, an integrated R package suite providing a complete framework from bacterial genome sequences to interpretable AMR predictions, enabling identification of resistance mechanisms across species and drugs."),
           tags$strong("Results: "),
@@ -197,9 +193,9 @@ launchAMRDashboard <- function() {
     output$ml_drug_toggle_ui <- renderUI({
       # For example: only allow selection among the *other two* categories
       choices <- switch(input$ml_drug_toggle_top,
-        "bug" = c("Drug Class" = "class", "Drug" = "drug"),
-        "class" = c("Bug" = "bug", "Drug" = "drug"),
-        "drug" = c("Bug" = "bug", "Drug Class" = "class")
+                        "bug" = c("Drug Class" = "class", "Drug" = "drug"),
+                        "class" = c("Bug" = "bug", "Drug" = "drug"),
+                        "drug" = c("Bug" = "bug", "Drug Class" = "class")
       )
 
       radioButtons(
@@ -316,26 +312,26 @@ launchAMRDashboard <- function() {
     # model holdouts filtering
 
     observeEvent(input$bug_holdouts_id,
-      {
-        req(input$bug_holdouts_id)
+                 {
+                   req(input$bug_holdouts_id)
 
-        # Build choices filtered to the selected 3-letter species code
-        choices <- getHoldoutsDrugChoices(bug = input$bug_holdouts_id)
+                   # Build choices filtered to the selected 3-letter species code
+                   choices <- getHoldoutsDrugChoices(bug = input$bug_holdouts_id)
 
-        # Keep the user’s current selection if still valid; otherwise pick first
-        prev <- isolate(input$holdouts_drug)
-        sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
+                   # Keep the user’s current selection if still valid; otherwise pick first
+                   prev <- isolate(input$holdouts_drug)
+                   sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
 
-        # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
-        updateSelectizeInput(
-          session,
-          inputId  = "holdouts_drug",
-          choices  = choices,
-          selected = sel,
-          server   = TRUE
-        )
-      },
-      ignoreInit = FALSE
+                   # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
+                   updateSelectizeInput(
+                     session,
+                     inputId  = "holdouts_drug",
+                     choices  = choices,
+                     selected = sel,
+                     server   = TRUE
+                   )
+                 },
+                 ignoreInit = FALSE
     ) # run once on app load so it populates immediately
 
 
@@ -778,23 +774,23 @@ launchAMRDashboard <- function() {
 
     # model comparisons;
     observeEvent(input$bug_cross_model_comparison_id,
-      {
-        bug <- input$bug_cross_model_comparison_id
+                 {
+                   bug <- input$bug_cross_model_comparison_id
 
-        # Gather all Drug/Drug class options across holdout sources for this bug
-        drugs_vec <- getHoldoutsDrugChoices(bug)
+                   # Gather all Drug/Drug class options across holdout sources for this bug
+                   drugs_vec <- getHoldoutsDrugChoices(bug)
 
-        # Initial default = "lincosamides" if present, else first option (users can still change it)
-        sel <- if ("lincosamides" %in% drugs_vec) "lincosamides" else if (length(drugs_vec)) drugs_vec[1] else NULL
+                   # Initial default = "lincosamides" if present, else first option (users can still change it)
+                   sel <- if ("lincosamides" %in% drugs_vec) "lincosamides" else if (length(drugs_vec)) drugs_vec[1] else NULL
 
-        updateSelectInput(
-          session,
-          inputId = "drug_cross_model_comparison_id",
-          choices = drugs_vec,
-          selected = sel
-        )
-      },
-      ignoreInit = FALSE
+                   updateSelectInput(
+                     session,
+                     inputId = "drug_cross_model_comparison_id",
+                     choices = drugs_vec,
+                     selected = sel
+                   )
+                 },
+                 ignoreInit = FALSE
     )
 
     observe({
