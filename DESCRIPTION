@@ -11,13 +11,6 @@ Authors@R: c(
     person("Evan", "Brenner", , "evan.brenner@cuanschutz.edu", role = "ctb"),
     person("Charmie", "Vang", , "charmie.vang@cuanschutz.edu", role = "ctb")
   )
-Author: Janani Ravi [aut, cre] (<https://orcid.org/0000-0001-7443-925X>),
-    Emily Boyer [ctb],
-    David Mayer [ctb],
-    Raymond Lesiyon [ctb],
-    Abhirupa Ghosh [ctb],
-    Evan Brenner [ctb],
-    Charmie Vang [ctb]
 Maintainer: Janani Ravi <janani.ravi@cuanschutz.edu>
 Description: Interactive Shiny dashboard for exploring antimicrobial resistance
     (AMR) data and machine learning model results from the AMR package suite.
@@ -31,7 +24,7 @@ Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.3
 Depends:
-    R (>= 4.1.0)
+    R (>= 4.5.0)
 Imports:
     arrow,
     circlize,
