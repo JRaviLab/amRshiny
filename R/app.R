@@ -35,7 +35,11 @@ launchAMRDashboard <- function() {
     "Klebsiella pneumoniae" = "Kpn",
     "Acinetobacter baumannii" = "Aba",
     "Pseudomonas aeruginosa" = "Pae",
-    "Enterobacter spp." = "Esp."
+    "Enterobacter spp." = "Esp.",
+    "Escherichia coli" = "Eco",
+    "Campylobacter jejuni" = "Cje",
+    "Staphylococcus epidermidis" = "Sep",
+    "Streptococcus pneumoniae" = "Spn"
   )
 
   # UI
