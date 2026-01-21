@@ -12,15 +12,15 @@ status](https://www.r-pkg.org/badges/version/NewShinyPackage)](https://CRAN.R-pr
 [![R-CMD-check](https://github.com/JRaviLab/NewShinyPackage/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JRaviLab/NewShinyPackage/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
-**amR_shiny** is an interactive Shiny dashboard for exploring
+**amRshiny** is an interactive Shiny dashboard for exploring
 antimicrobial resistance (AMR) data and machine learning model results.
 
 Part of the **AMR package suite**,
 [JRaviLab/amR](https://github.com/jravilab/amR):
 
-- **amR_data**: Data (and metadata) preparation from BV-BRC
-- **amR_ml**: ML modeling and analysis
-- **amR_shiny**: Interactive visualization (this package)
+- **amRdata**: Data (and metadata) preparation from BV-BRC
+- **amRml**: ML modeling and analysis
+- **amRshiny**: Interactive visualization (this package)
 
 ## Features
 
@@ -50,11 +50,11 @@ if (!requireNamespace("BiocManager", quietly = TRUE))
 # Install Bioconductor dependencies
 BiocManager::install("ComplexHeatmap")
 
-# Install amR_shiny from GitHub
+# Install amRshiny from GitHub
 if (!requireNamespace("devtools", quietly = TRUE))
     install.packages("devtools")
 
-devtools::install_github("JRaviLab/amR_shiny")
+devtools::install_github("JRaviLab/amRshiny")
 ```
 
 ### Future (Bioconductor release)
@@ -65,7 +65,7 @@ Once submitted to Bioconductor, installation will be:
 if (!requireNamespace("BiocManager", quietly = TRUE))
     install.packages("BiocManager")
 
-BiocManager::install("amR_shiny")
+BiocManager::install("amRshiny")
 ```
 
 ### Optional dependencies
@@ -78,7 +78,7 @@ BiocManager::install("arrow")
 ## Quick start
 
 ``` r
-library(amR_shiny)
+library(amRshiny)
 
 # Launch the dashboard
 launch_dashboard()
@@ -161,7 +161,7 @@ organism - Additional metadata columns as needed
 
 ### Package structure
 
-    amR_shiny/
+    amRshiny/
     ├── R/
     │   └── launch_dashboard.R    # Main launch function
     ├── inst/
@@ -201,19 +201,19 @@ Guidelines](CONTRIBUTING.md) for details.
 ### Reporting Issues
 
 Report bugs and request features at:
-<https://github.com/JRaviLab/amR_shiny/issues>
+<https://github.com/JRaviLab/amRshiny/issues>
 
 ## Related projects
 
-- [amR_data](https://github.com/JRaviLab/amR_data): Data preparation
+- [amRdata](https://github.com/JRaviLab/amRdata): Data preparation
   pipeline
-- [amR_ml](https://github.com/JRaviLab/amR_ml): ML modeling framework
+- [amRml](https://github.com/JRaviLab/amRml): ML modeling framework
 - [BV-BRC](https://www.bv-brc.org/): Bacterial and Viral Bioinformatics
   Resource Center
 
 ## Code of conduct
 
-Please note that the amR_shiny project is released with a [Contributor
+Please note that the amRshiny project is released with a [Contributor
 Code of Conduct](CODE_OF_CONDUCT.md). By contributing to this project,
 you agree to abide by its terms.
 
