@@ -18,7 +18,7 @@ Description: Interactive Shiny dashboard for exploring antimicrobial resistance
     model performance comparisons across species, drugs, and molecular scales,
     important features, and cross-model analyses. Includes modular UI
     components and publication-quality plot export. Can operate independently
-    with pre-computed data files or integrate with amR_data and amR_ml packages.
+    with pre-computed data files or integrate with amRdata and amRml packages.
 License: BSD_3_clause + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -63,5 +63,5 @@ biocViews:
     MicrobialGenomics,
     Pathogen,
     Visualization
-URL: https://github.com/jravilab/amR_shiny
-BugReports: https://github.com/jravilab/amR_shiny/issues
+URL: https://github.com/jravilab/amRshiny
+BugReports: https://github.com/jravilab/amRshiny/issues
