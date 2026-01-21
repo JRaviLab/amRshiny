@@ -212,7 +212,7 @@ Report bugs and request features at: https://github.com/JRaviLab/amRshiny/issues
 
 ## Related projects
 
-- [amRdata](https://github.com/JRaviLab/amRdata): Data preparation pipeline
+- [amRdata](https://github.com/JRaviLab/amRdata): Data preparation for AMR prediction
 - [amRml](https://github.com/JRaviLab/amRml): ML modeling framework
 - [BV-BRC](https://www.bv-brc.org/): Bacterial and Viral Bioinformatics Resource Center
 
