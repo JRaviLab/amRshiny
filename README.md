@@ -7,15 +7,12 @@
 
 [![Lifecycle:
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
-[![CRAN
-status](https://www.r-pkg.org/badges/version/NewShinyPackage)](https://CRAN.R-project.org/package=NewShinyPackage)
-[![R-CMD-check](https://github.com/JRaviLab/NewShinyPackage/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/JRaviLab/NewShinyPackage/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 **amRshiny** is an interactive Shiny dashboard for exploring
 antimicrobial resistance (AMR) data and machine learning model results.
 
-Part of the **AMR package suite**,
+This is the final package in the **AMR package suite**,
 [JRaviLab/amR](https://github.com/jravilab/amR):
 
 - **amRdata**: Data (and metadata) preparation from BV-BRC
@@ -55,24 +52,6 @@ if (!requireNamespace("devtools", quietly = TRUE))
     install.packages("devtools")
 
 devtools::install_github("JRaviLab/amRshiny")
-```
-
-### Future (Bioconductor release)
-
-Once submitted to Bioconductor, installation will be:
-
-``` r
-if (!requireNamespace("BiocManager", quietly = TRUE))
-    install.packages("BiocManager")
-
-BiocManager::install("amRshiny")
-```
-
-### Optional dependencies
-
-``` r
-# For enhanced data processing
-BiocManager::install("arrow")
 ```
 
 ## Quick start
@@ -116,12 +95,12 @@ The dashboard includes several tabs:
 ### Example: Exploring model performance
 
 ``` r
-launch_dashboard()
+launchAMRDashboard()
 
 # In the dashboard:
 # 1. Navigate to "Model Performance" tab
-# 2. Select species: "Campylobacter jejuni"
-# 3. Select drug: "ciprofloxacin"
+# 2. Select species: "Shigella flexneri"
+# 3. Select drug: "ampicillin"
 # 4. Select molecular scale: "genes"
 # 5. View performance metrics and confusion matrix
 ```
@@ -205,8 +184,8 @@ Report bugs and request features at:
 
 ## Related projects
 
-- [amRdata](https://github.com/JRaviLab/amRdata): Data preparation
-  pipeline
+- [amRdata](https://github.com/JRaviLab/amRdata): Data preparation for
+  AMR prediction
 - [amRml](https://github.com/JRaviLab/amRml): ML modeling framework
 - [BV-BRC](https://www.bv-brc.org/): Bacterial and Viral Bioinformatics
   Resource Center

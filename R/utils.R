@@ -1,7 +1,8 @@
 #' @importFrom shinydashboard box tabBox
 #' @importFrom dplyr filter mutate select group_by summarize ungroup arrange
 #' @importFrom dplyr pull distinct left_join bind_rows slice_max slice_head
-#' @importFrom dplyr collect desc n c_across all_of rowwise
+#' @importFrom dplyr collect desc n c_across all_of rowwise case_when join_by
+#' @importFrom dplyr count summarise where
 #' @importFrom ggplot2 ggplot aes geom_col geom_line geom_point geom_boxplot
 #' @importFrom ggplot2 theme_bw theme_minimal theme element_text labs
 #' @importFrom ggplot2 scale_fill_brewer scale_color_brewer coord_cartesian
