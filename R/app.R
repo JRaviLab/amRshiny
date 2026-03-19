@@ -197,9 +197,9 @@ launchAMRDashboard <- function() {
     output$ml_drug_toggle_ui <- renderUI({
       # For example: only allow selection among the *other two* categories
       choices <- switch(input$ml_drug_toggle_top,
-                        "bug" = c("Drug Class" = "class", "Drug" = "drug"),
-                        "class" = c("Bug" = "bug", "Drug" = "drug"),
-                        "drug" = c("Bug" = "bug", "Drug Class" = "class")
+        "bug" = c("Drug Class" = "class", "Drug" = "drug"),
+        "class" = c("Bug" = "bug", "Drug" = "drug"),
+        "drug" = c("Bug" = "bug", "Drug Class" = "class")
       )
 
       radioButtons(
@@ -316,26 +316,26 @@ launchAMRDashboard <- function() {
     # model holdouts filtering
 
     observeEvent(input$bug_holdouts_id,
-                 {
-                   req(input$bug_holdouts_id)
+      {
+        req(input$bug_holdouts_id)
 
-                   # Build choices filtered to the selected 3-letter species code
-                   choices <- getHoldoutsDrugChoices(bug = input$bug_holdouts_id)
+        # Build choices filtered to the selected 3-letter species code
+        choices <- getHoldoutsDrugChoices(bug = input$bug_holdouts_id)
 
-                   # Keep the user's current selection if still valid; otherwise pick first
-                   prev <- isolate(input$holdouts_drug)
-                   sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
+        # Keep the user's current selection if still valid; otherwise pick first
+        prev <- isolate(input$holdouts_drug)
+        sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
 
-                   # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
-                   updateSelectizeInput(
-                     session,
-                     inputId  = "holdouts_drug",
-                     choices  = choices,
-                     selected = sel,
-                     server   = TRUE
-                   )
-                 },
-                 ignoreInit = FALSE
+        # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
+        updateSelectizeInput(
+          session,
+          inputId  = "holdouts_drug",
+          choices  = choices,
+          selected = sel,
+          server   = TRUE
+        )
+      },
+      ignoreInit = FALSE
     ) # run once on app load so it populates immediately
 
 
@@ -778,23 +778,23 @@ launchAMRDashboard <- function() {
 
     # model comparisons;
     observeEvent(input$bug_cross_model_comparison_id,
-                 {
-                   bug <- input$bug_cross_model_comparison_id
+      {
+        bug <- input$bug_cross_model_comparison_id
 
-                   # Gather all Drug/Drug class options across holdout sources for this bug
-                   drugs_vec <- getHoldoutsDrugChoices(bug)
+        # Gather all Drug/Drug class options across holdout sources for this bug
+        drugs_vec <- getHoldoutsDrugChoices(bug)
 
-                   # Initial default = "lincosamides" if present, else first option (users can still change it)
-                   sel <- if ("lincosamides" %in% drugs_vec) "lincosamides" else if (length(drugs_vec)) drugs_vec[1] else NULL
+        # Initial default = "lincosamides" if present, else first option (users can still change it)
+        sel <- if ("lincosamides" %in% drugs_vec) "lincosamides" else if (length(drugs_vec)) drugs_vec[1] else NULL
 
-                   updateSelectInput(
-                     session,
-                     inputId = "drug_cross_model_comparison_id",
-                     choices = drugs_vec,
-                     selected = sel
-                   )
-                 },
-                 ignoreInit = FALSE
+        updateSelectInput(
+          session,
+          inputId = "drug_cross_model_comparison_id",
+          choices = drugs_vec,
+          selected = sel
+        )
+      },
+      ignoreInit = FALSE
     )
 
     observe({
