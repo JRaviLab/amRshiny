@@ -3,12 +3,10 @@
 # Declaring them here silences R CMD check notes about "no visible binding"
 
 utils::globalVariables(c(
-
   # Column names used across the package
   "ARG_name",
   "COG_name",
   "Gene",
-
   "Importance",
   "Variable",
   "accession",
@@ -44,6 +42,6 @@ utils::globalVariables(c(
   "trained_country",
   "trained_year",
 
- # data.table operator
- ":="
+  # data.table operator
+  ":="
 ))

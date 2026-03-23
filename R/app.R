@@ -168,18 +168,22 @@ launchAMRDashboard <- function(results_root = NULL) {
 
     ## Render species selector ui
     output$results_species_selector_ui <- renderUI({
-      if (is.null(results_root) || !nzchar(results_root)) return(NULL)
+      if (is.null(results_root) || !nzchar(results_root)) {
+        return(NULL)
+      }
 
       choices <- listAmRmlSpeciesFolders(results_root)
       if (!length(choices)) {
-        return(div(class = "note-box",
-                   paste("No amRml species folders found under:", results_root)))
+        return(div(
+          class = "note-box",
+          paste("No amRml species folders found under:", results_root)
+        ))
       }
 
       selectizeInput(
         inputId = "results_species_dirs",
         label = "Select species result folders",
-        choices = choices,          # label=foldername, value=full path
+        choices = choices, # label=foldername, value=full path
         selected = unname(choices), # default select all
         multiple = TRUE,
         options = list(plugins = list("remove_button"), placeholder = "Select species...")
@@ -219,8 +223,12 @@ launchAMRDashboard <- function(results_root = NULL) {
     # values = 3-letter species code (e.g. "Sfl")
     available_species <- reactive({
       df <- queryData()
-      if (is.null(df) || !nrow(df)) return(character(0))
-      if (!all(c("species", "species_label") %in% names(df))) return(character(0))
+      if (is.null(df) || !nrow(df)) {
+        return(character(0))
+      }
+      if (!all(c("species", "species_label") %in% names(df))) {
+        return(character(0))
+      }
       pairs <- df %>%
         dplyr::filter(!(.data$species %in% c("cross", "MDR"))) %>%
         dplyr::distinct(.data$species, .data$species_label)
@@ -258,11 +266,14 @@ launchAMRDashboard <- function(results_root = NULL) {
       sel <- if (length(choices)) choices[[1]] else NULL
 
       updateSelectizeInput(session, "bug_ml_perf_id",
-                           choices = choices, selected = choices)  # multi-select: all by default
+        choices = choices, selected = choices
+      ) # multi-select: all by default
       updateSelectizeInput(session, "bug_search_amr_across_bug",
-                           choices = choices, selected = choices)
+        choices = choices, selected = choices
+      )
       updateSelectizeInput(session, "bug_search_amr_across_drug",
-                           choices = choices, selected = sel)
+        choices = choices, selected = sel
+      )
     })
 
     # Update metadata bug selector from metadata parquets (not ML perf data)
@@ -270,14 +281,17 @@ launchAMRDashboard <- function(results_root = NULL) {
       choices <- available_metadata_species()
       sel <- if (length(choices)) choices[[1]] else NULL
       updateSelectizeInput(session, "bug_metadata_id",
-                           choices = choices, selected = sel)
+        choices = choices, selected = sel
+      )
     })
 
     # Reactive: filtered top features for the feature importance plots/tables
     # (replaces the reactiveFileReader anti-pattern that wrote/read temp TSVs)
     filtered_top_features <- reactive({
       tf <- topFeatures()
-      if (is.null(tf) || !nrow(tf)) return(tibble::tibble())
+      if (is.null(tf) || !nrow(tf)) {
+        return(tibble::tibble())
+      }
       tf %>%
         dplyr::filter(is.na(.data$strat_label) | !nzchar(.data$strat_label)) %>%
         dplyr::filter(!isTRUE(.data$cross_test))
@@ -299,9 +313,9 @@ launchAMRDashboard <- function(results_root = NULL) {
     output$ml_drug_toggle_ui <- renderUI({
       # For example: only allow selection among the *other two* categories
       choices <- switch(input$ml_drug_toggle_top,
-                        "bug" = c("Drug Class" = "class", "Drug" = "drug"),
-                        "class" = c("Bug" = "bug", "Drug" = "drug"),
-                        "drug" = c("Bug" = "bug", "Drug Class" = "class")
+        "bug" = c("Drug Class" = "class", "Drug" = "drug"),
+        "class" = c("Bug" = "bug", "Drug" = "drug"),
+        "drug" = c("Bug" = "bug", "Drug Class" = "class")
       )
 
       radioButtons(
@@ -343,14 +357,18 @@ launchAMRDashboard <- function(results_root = NULL) {
       if (identical(input$across_bug_id, "drug")) {
         drugs_vec <- base_tf |>
           dplyr::filter(.data$drug_label == "drug") |>
-          dplyr::pull(.data$drug_or_class) |> unique() |> sort()
+          dplyr::pull(.data$drug_or_class) |>
+          unique() |>
+          sort()
         sel <- intersect("GEN", drugs_vec)
         if (!length(sel)) sel <- head(drugs_vec, 1)
         updateSelectInput(session, "amr_drug_ml_across_bug", choices = drugs_vec, selected = sel)
       } else {
         drugs_class_vec <- base_tf |>
           dplyr::filter(.data$drug_label == "drug_class") |>
-          dplyr::pull(.data$drug_or_class) |> unique() |> sort()
+          dplyr::pull(.data$drug_or_class) |>
+          unique() |>
+          sort()
         sel <- head(drugs_class_vec, 1)
         updateSelectInput(session, "amr_drug_class_ml_across_bug", choices = drugs_class_vec, selected = sel)
       }
@@ -373,7 +391,9 @@ launchAMRDashboard <- function(results_root = NULL) {
       if (identical(input$across_drug_id, "drug")) {
         drugs_vec <- base_tf |>
           dplyr::filter(.data$drug_label == "drug") |>
-          dplyr::pull(.data$drug_or_class) |> unique() |> sort()
+          dplyr::pull(.data$drug_or_class) |>
+          unique() |>
+          sort()
         prev <- isolate(input$amr_drug_ml_across_drug)
         sel <- prev[prev %in% drugs_vec]
         if (!length(sel)) {
@@ -385,7 +405,9 @@ launchAMRDashboard <- function(results_root = NULL) {
       } else {
         drugs_class_vec <- base_tf |>
           dplyr::filter(.data$drug_label == "drug_class") |>
-          dplyr::pull(.data$drug_or_class) |> unique() |> sort()
+          dplyr::pull(.data$drug_or_class) |>
+          unique() |>
+          sort()
         prev <- isolate(input$amr_drug_class_ml_across_drug)
         sel <- prev[prev %in% drugs_class_vec]
         if (!length(sel)) {
@@ -405,7 +427,8 @@ launchAMRDashboard <- function(results_root = NULL) {
       drug_class_vec <- data %>%
         dplyr::filter(.data$drug_label == "drug_class") %>%
         dplyr::pull(.data$drug_or_class) %>%
-        unique() %>% sort()
+        unique() %>%
+        sort()
 
       sel <- if ("AMG" %in% drug_class_vec) "AMG" else if (length(drug_class_vec)) drug_class_vec[1] else "all"
       updateSelectInput(
@@ -418,26 +441,26 @@ launchAMRDashboard <- function(results_root = NULL) {
     # model holdouts filtering
 
     observeEvent(input$bug_holdouts_id,
-                 {
-                   req(input$bug_holdouts_id)
+      {
+        req(input$bug_holdouts_id)
 
-                   # Build choices filtered to the selected 3-letter species code
-                   choices <- getHoldoutsDrugChoices(perf_data = queryData(), bug = input$bug_holdouts_id)
+        # Build choices filtered to the selected 3-letter species code
+        choices <- getHoldoutsDrugChoices(perf_data = queryData(), bug = input$bug_holdouts_id)
 
-                   # Keep the user's current selection if still valid; otherwise pick first
-                   prev <- isolate(input$holdouts_drug)
-                   sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
+        # Keep the user's current selection if still valid; otherwise pick first
+        prev <- isolate(input$holdouts_drug)
+        sel <- if (!is.null(prev) && prev %in% choices) prev else if (length(choices)) choices[[1]] else NULL
 
-                   # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
-                   updateSelectizeInput(
-                     session,
-                     inputId  = "holdouts_drug",
-                     choices  = choices,
-                     selected = sel,
-                     server   = TRUE
-                   )
-                 },
-                 ignoreInit = FALSE
+        # Update the dropdown (use updateSelectizeInput if your UI uses selectize=TRUE)
+        updateSelectizeInput(
+          session,
+          inputId  = "holdouts_drug",
+          choices  = choices,
+          selected = sel,
+          server   = TRUE
+        )
+      },
+      ignoreInit = FALSE
     ) # run once on app load so it populates immediately
 
 
@@ -449,7 +472,8 @@ launchAMRDashboard <- function(results_root = NULL) {
       drug_vec <- base_data %>%
         dplyr::filter(.data$drug_label == "drug") %>%
         dplyr::pull(.data$drug_or_class) %>%
-        unique() %>% sort()
+        unique() %>%
+        sort()
 
       if (input$drug_class_ml_perf_id != "all") {
         # Use metadata to map class abbreviation -> drug abbreviations
@@ -461,7 +485,8 @@ launchAMRDashboard <- function(results_root = NULL) {
         if (nrow(meta) && all(c("class_abbr", "drug_abbr") %in% names(meta))) {
           drugs_in_class <- meta %>%
             dplyr::filter(.data$class_abbr %in% input$drug_class_ml_perf_id) %>%
-            dplyr::pull(.data$drug_abbr) %>% unique()
+            dplyr::pull(.data$drug_abbr) %>%
+            unique()
           drug_vec <- intersect(drug_vec, drugs_in_class)
         }
         updateSelectInput(
@@ -735,7 +760,9 @@ launchAMRDashboard <- function(results_root = NULL) {
 
     observe({
       output$across_bug_feature_importance_plot <- renderPlot({
-        if (is.null(input$across_bug_id)) return(NULL)
+        if (is.null(input$across_bug_id)) {
+          return(NULL)
+        }
         amr_drug <- if (input$across_bug_id == "drug") {
           input$amr_drug_ml_across_bug
         } else {
@@ -756,7 +783,9 @@ launchAMRDashboard <- function(results_root = NULL) {
 
     observe({
       output$across_drug_feature_importance_plot <- renderPlot({
-        if (is.null(input$across_drug_id)) return(NULL)
+        if (is.null(input$across_drug_id)) {
+          return(NULL)
+        }
         amr_drug <- if (input$across_drug_id == "drug") {
           input$amr_drug_ml_across_drug
         } else {
@@ -792,7 +821,9 @@ launchAMRDashboard <- function(results_root = NULL) {
         tf <- filtered_top_features() %>%
           dplyr::filter(normalize_species(.data$species) %in% normalize_species(input$bug_ml_perf_id)) %>%
           dplyr::filter(.data$drug_or_class %in% input$amr_drug_ml_across_bug)
-        if (!nrow(tf)) return(NULL)
+        if (!nrow(tf)) {
+          return(NULL)
+        }
         makeFeatureImportTable(tf)
       })
     })
@@ -807,7 +838,9 @@ launchAMRDashboard <- function(results_root = NULL) {
       tf <- filtered_top_features() %>%
         dplyr::filter(normalize_species(.data$species) %in% normalize_species(input$bug_search_amr_across_bug)) %>%
         dplyr::filter(.data$drug_or_class %in% amr_drug)
-      if (!nrow(tf)) return(NULL)
+      if (!nrow(tf)) {
+        return(NULL)
+      }
       makeFeatureImportTable(tf)
     })
 
@@ -820,7 +853,9 @@ launchAMRDashboard <- function(results_root = NULL) {
       tf <- filtered_top_features() %>%
         dplyr::filter(normalize_species(.data$species) %in% normalize_species(input$bug_search_amr_across_drug)) %>%
         dplyr::filter(.data$drug_or_class %in% amr_drug)
-      if (!nrow(tf)) return(NULL)
+      if (!nrow(tf)) {
+        return(NULL)
+      }
       makeFeatureImportTable(tf)
     })
 
@@ -832,25 +867,27 @@ launchAMRDashboard <- function(results_root = NULL) {
         dplyr::filter(.data$drug_or_class %in% input$drug_cross_model_comparison_id) %>%
         dplyr::filter(.data$strat_label == strat) %>%
         dplyr::filter(!isTRUE(.data$cross_test))
-      if (!nrow(tf)) return(NULL)
+      if (!nrow(tf)) {
+        return(NULL)
+      }
       makeFeatureImportTable(tf)
     })
 
     # model comparisons;
     observeEvent(input$bug_cross_model_comparison_id,
-                 {
-                   # Gather Drug/Drug class options for stratified holdout models for this bug
-                   drugs_vec <- getHoldoutsDrugChoices(perf_data = queryData(), bug = input$bug_cross_model_comparison_id)
+      {
+        # Gather Drug/Drug class options for stratified holdout models for this bug
+        drugs_vec <- getHoldoutsDrugChoices(perf_data = queryData(), bug = input$bug_cross_model_comparison_id)
 
-                   sel <- if (length(drugs_vec)) drugs_vec[1] else NULL
-                   updateSelectInput(
-                     session,
-                     inputId = "drug_cross_model_comparison_id",
-                     choices = drugs_vec,
-                     selected = sel
-                   )
-                 },
-                 ignoreInit = FALSE
+        sel <- if (length(drugs_vec)) drugs_vec[1] else NULL
+        updateSelectInput(
+          session,
+          inputId = "drug_cross_model_comparison_id",
+          choices = drugs_vec,
+          selected = sel
+        )
+      },
+      ignoreInit = FALSE
     )
 
     observe({
@@ -977,4 +1014,3 @@ launchAMRDashboard <- function(results_root = NULL) {
   # Return the Shiny application object
   shiny::shinyApp(ui = ui, server = server)
 }
-

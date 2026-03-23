@@ -61,10 +61,14 @@ getHoldoutsDrugChoices <- function(perf_data, bug = NULL) {
     df <- dplyr::filter(df, .data$species %in% bug_norm)
   }
 
-  if (!nrow(df)) return(character(0))
+  if (!nrow(df)) {
+    return(character(0))
+  }
 
   x <- as.character(df$drug_or_class)
-  x[!is.na(x) & nzchar(trimws(x))] |> unique() |> sort()
+  x[!is.na(x) & nzchar(trimws(x))] |>
+    unique() |>
+    sort()
 }
 
 
@@ -121,9 +125,9 @@ getTopFeatures <- function(top_features_dir, pattern) {
 
   # Exclude files with double underscores
   valid_files <- file_list[!grepl("country__", basename(file_list)) &
-                             !(grepl("trimethoprim", basename(file_list)) &
-                                 grepl("sulfonamides", basename(file_list)) &
-                                 grepl("derivatives", basename(file_list)))]
+    !(grepl("trimethoprim", basename(file_list)) &
+      grepl("sulfonamides", basename(file_list)) &
+      grepl("derivatives", basename(file_list)))]
 
   # load drugs names;
   df <- lapply(X = valid_files, FUN = function(x) {
@@ -413,33 +417,33 @@ makeQuickStats <- function(data) { # , drug_class_df, spp_name, amr_drugs) {
     summary_paragraph,
     fluidRow(
       column(2, quickStatBox("# isolate-drug-AMR_phenotype combo", total_genomes,
-                             bg_color = "#000000", text_color = "white"
+        bg_color = "#000000", text_color = "white"
       )),
       column(2, quickStatBox("# unique genomes", total_uniques_genomes,
-                             bg_color = "#56B4E9", text_color = "black"
+        bg_color = "#56B4E9", text_color = "black"
       )),
       column(2, quickStatBox("# resistant isolates", n_genomes_resistant,
-                             bg_color = "#009E73", text_color = "black"
+        bg_color = "#009E73", text_color = "black"
       )),
       column(2, quickStatBox("# susceptible isolates", n_genomes_susceptible,
-                             bg_color = "#F0E442", text_color = "black"
+        bg_color = "#F0E442", text_color = "black"
       )),
       column(2, quickStatBox("# drugs", paste(n_amr_drugs, collapse = ", "),
-                             bg_color = "#0072B2"
+        bg_color = "#0072B2"
       ), text_color = "white"),
       column(2, quickStatBox("# drug classes", paste(n_amr_drug_class, collapse = ", "),
-                             bg_color = "#D55E00", text_color = "white"
+        bg_color = "#D55E00", text_color = "white"
       )),
     ),
     fluidRow(
       column(4, quickStatBox("Top 5 drugs", paste(top_n_drugs, collapse = "\n"),
-                             bg_color = "#CC79A7", , text_color = "black"
+        bg_color = "#CC79A7", , text_color = "black"
       )),
       column(4, quickStatBox("Top 5 drug classes", paste(top_n_drugs_class, collapse = "\n"),
-                             bg_color = "#999999", text_color = "black"
+        bg_color = "#999999", text_color = "black"
       )),
       column(4, quickStatBox("Top countries", paste(top_n_countries, collapse = "\n"),
-                             bg_color = "#E69F00", text_color = "white"
+        bg_color = "#E69F00", text_color = "white"
       ))
     )
   )
@@ -635,11 +639,13 @@ makeIsolationSourcesPlot <- function(data) {
 #   species, feature_type (scale), feature_subtype (data type),
 #   drug_or_class (drug/class abbrev), drug_label ("drug"/"drug_class"), nmcc/bal_acc/f1
 makeModelPerformancePlot <- function(
-    data, bug, model_scale, data_type, metrics,
-    amr_drug_class, amr_drug) {
-
+  data, bug, model_scale, data_type, metrics,
+  amr_drug_class, amr_drug
+) {
   if (is.null(data) || !is.data.frame(data) || !nrow(data)) {
-    return(ggplot() + labs(title = "No data available") + theme_bw())
+    return(ggplot() +
+      labs(title = "No data available") +
+      theme_bw())
   }
 
   # Filter to baseline models (strat_label is NA = no country/year stratification)
@@ -651,7 +657,7 @@ makeModelPerformancePlot <- function(
 
   # Filter by drug class or drug if not "all"
   if (!is.null(amr_drug_class) && length(amr_drug_class) > 0 &&
-      !identical(amr_drug_class, "all")) {
+    !identical(amr_drug_class, "all")) {
     df <- df %>%
       dplyr::filter(
         (.data$drug_label == "drug_class" & .data$drug_or_class %in% amr_drug_class) |
@@ -660,7 +666,9 @@ makeModelPerformancePlot <- function(
   }
 
   if (!nrow(df)) {
-    return(ggplot() + labs(title = "No data for current selection") + theme_bw())
+    return(ggplot() +
+      labs(title = "No data for current selection") +
+      theme_bw())
   }
 
   # Normalize species and set ESKAPE factor order
@@ -718,10 +726,10 @@ makeModelPerformancePlot <- function(
 # Annotation join is attempted from results_root/Annotated/ or extdata/Annotated/;
 # if no annotated files found, Variable name is used directly as feature label.
 makeFeatureImportancePlot <- function(
-    data, bug, amr_drug, model_scale, data_type_,
-    top_n_features, feature_importance_tabset,
-    annotated_dir = NULL) {
-
+  data, bug, amr_drug, model_scale, data_type_,
+  top_n_features, feature_importance_tabset,
+  annotated_dir = NULL
+) {
   if (is.null(data) || !is.data.frame(data) || !nrow(data)) {
     return(NULL)
   }
@@ -754,7 +762,9 @@ makeFeatureImportancePlot <- function(
     dplyr::filter(.data$feature_subtype %in% data_type_) %>%
     dplyr::filter(is.na(.data$strat_label) | !nzchar(.data$strat_label))
 
-  if (!nrow(top_features_df)) return(NULL)
+  if (!nrow(top_features_df)) {
+    return(NULL)
+  }
 
   # group column: across_bug groups by species; across_drug by drug_or_class
   group_column <- dplyr::case_when(
@@ -791,13 +801,13 @@ makeFeatureImportancePlot <- function(
     })
 
     join_by_expr <- switch(paste(group_column, scale, sep = "_"),
-                           "species_protein" = join_by(Variable == "proteinID", "species" == "species"),
-                           "species_domain" = join_by(Variable == "PfamID", "species" == "species"),
-                           "species_gene" = join_by(Variable == "Gene", "species" == "species"),
-                           "drug_or_class_protein" = join_by(Variable == "proteinID"),
-                           "drug_or_class_domain" = join_by(Variable == "PfamID"),
-                           "drug_or_class_gene" = join_by(Variable == "Gene"),
-                           NULL
+      "species_protein" = join_by(Variable == "proteinID", "species" == "species"),
+      "species_domain" = join_by(Variable == "PfamID", "species" == "species"),
+      "species_gene" = join_by(Variable == "Gene", "species" == "species"),
+      "drug_or_class_protein" = join_by(Variable == "proteinID"),
+      "drug_or_class_domain" = join_by(Variable == "PfamID"),
+      "drug_or_class_gene" = join_by(Variable == "Gene"),
+      NULL
     )
 
     if (scale == "protein") {
@@ -827,7 +837,9 @@ makeFeatureImportancePlot <- function(
     top_features_df <- top_features_df %>%
       dplyr::mutate(COG_name = .data$Variable)
   }
-  if (!nrow(top_features_df)) return(NULL)
+  if (!nrow(top_features_df)) {
+    return(NULL)
+  }
 
   # Aggregate: max importance per group x COG
   top_features_df <- top_features_df %>%
@@ -851,7 +863,9 @@ makeFeatureImportancePlot <- function(
       dplyr::ungroup()
   }
 
-  if (!nrow(top_features_df)) return(NULL)
+  if (!nrow(top_features_df)) {
+    return(NULL)
+  }
 
   # Build wide matrix
   if (feature_importance_tabset == "across_bug") {
@@ -861,7 +875,9 @@ makeFeatureImportancePlot <- function(
       tidyr::pivot_wider(names_from = "species", values_from = "Importance")
 
     group_cols <- setdiff(colnames(vi_wider), "COG_name")
-    if (!length(group_cols)) return(NULL)
+    if (!length(group_cols)) {
+      return(NULL)
+    }
 
     vi_wider <- vi_wider %>%
       dplyr::rowwise() %>%
@@ -893,7 +909,9 @@ makeFeatureImportancePlot <- function(
       tidyr::pivot_wider(names_from = "drug_or_class", values_from = "Importance")
 
     group_cols <- setdiff(colnames(vi_wider), "COG_name")
-    if (!length(group_cols)) return(NULL)
+    if (!length(group_cols)) {
+      return(NULL)
+    }
 
     vi_wider <- vi_wider %>%
       dplyr::rowwise() %>%
@@ -910,7 +928,9 @@ makeFeatureImportancePlot <- function(
       as.matrix()
   }
 
-  if (!exists("vi_mat") || !length(vi_mat)) return(NULL)
+  if (!exists("vi_mat") || !length(vi_mat)) {
+    return(NULL)
+  }
 
   max_val <- max(vi_mat, na.rm = TRUE)
   min_val <- min(vi_mat, na.rm = TRUE)
@@ -943,9 +963,9 @@ makeFeatureImportancePlot <- function(
 #   strat_label   → "country" or "year"
 #   strat_value   → trained-on country/year
 makeCrossModelFeatureImportancePlot <- function(
-    top_data, bug, drug, cross_model, top_n_features,
-    annotated_dir = NULL) {
-
+  top_data, bug, drug, cross_model, top_n_features,
+  annotated_dir = NULL
+) {
   if (is.null(top_data) || !is.data.frame(top_data) || !nrow(top_data)) {
     return(NULL)
   }
@@ -956,7 +976,7 @@ makeCrossModelFeatureImportancePlot <- function(
   )
 
   strat <- if (cross_model == "country") "country" else "year"
-  strat_col <- "strat_value"  # trained-on value in new schema
+  strat_col <- "strat_value" # trained-on value in new schema
 
   features_df <- top_data %>%
     dplyr::filter(.data$species %in% bug) %>%
@@ -964,7 +984,9 @@ makeCrossModelFeatureImportancePlot <- function(
     dplyr::filter(.data$strat_label == strat) %>%
     dplyr::filter(!.data$cross_test)
 
-  if (!nrow(features_df)) return(NULL)
+  if (!nrow(features_df)) {
+    return(NULL)
+  }
 
   if (!identical(top_n_features, "all")) {
     features_df <- features_df %>%
@@ -981,7 +1003,9 @@ makeCrossModelFeatureImportancePlot <- function(
       values_fn = mean
     )
 
-  if (!nrow(vi_wider)) return(NULL)
+  if (!nrow(vi_wider)) {
+    return(NULL)
+  }
 
   vi_mat <- vi_wider %>%
     tibble::column_to_rownames("Variable") %>%
@@ -990,7 +1014,9 @@ makeCrossModelFeatureImportancePlot <- function(
   # column-wise min-max normalisation
   vi_mat <- apply(vi_mat, 2, function(x) {
     rng <- range(x, na.rm = TRUE)
-    if (diff(rng) == 0) return(x)
+    if (diff(rng) == 0) {
+      return(x)
+    }
     (x - rng[1]) / diff(rng)
   })
 
@@ -1036,7 +1062,9 @@ makeCrossModelPerformancePlot <- function(perf_data, bug, drug, cross_model) {
     dplyr::filter(.data$drug_or_class %in% drug) %>%
     dplyr::filter(.data$strat_label == strat)
 
-  if (!nrow(df)) return(NULL)
+  if (!nrow(df)) {
+    return(NULL)
+  }
 
   # For self-evaluation rows (strat_value_test is NA), set tested = trained
   df <- df %>%
@@ -1059,7 +1087,9 @@ makeCrossModelPerformancePlot <- function(perf_data, bug, drug, cross_model) {
     tibble::column_to_rownames("strat_value_test") %>%
     as.matrix()
 
-  if (!length(models_performance)) return(NULL)
+  if (!length(models_performance)) {
+    return(NULL)
+  }
 
   min_val <- min(models_performance, na.rm = TRUE)
   max_val <- max(models_performance, na.rm = TRUE)
@@ -1178,10 +1208,14 @@ makeFeatureImportTable <- function(feature_import_table) {
 # values = full path to the species subdirectory.
 listAmRmlSpeciesFolders <- function(results_root, verbose = TRUE) {
   rr <- .normalize_results_root(results_root)
-  if (is.null(rr) || !dir.exists(rr)) return(character(0))
+  if (is.null(rr) || !dir.exists(rr)) {
+    return(character(0))
+  }
 
   subdirs <- list.dirs(rr, full.names = TRUE, recursive = FALSE)
-  if (!length(subdirs)) return(character(0))
+  if (!length(subdirs)) {
+    return(character(0))
+  }
 
   # Keep subdirs that contain at least one baseline *_ML_perf.parquet file
   has_perf <- vapply(subdirs, function(d) {
@@ -1190,7 +1224,9 @@ listAmRmlSpeciesFolders <- function(results_root, verbose = TRUE) {
   }, logical(1))
 
   ok <- subdirs[has_perf]
-  if (!length(ok)) return(character(0))
+  if (!length(ok)) {
+    return(character(0))
+  }
   setNames(ok, basename(ok))
 }
 
@@ -1200,7 +1236,9 @@ listAmRmlSpeciesFolders <- function(results_root, verbose = TRUE) {
 .load_one_species_perf <- function(species_dir, verbose = TRUE) {
   fps <- list.files(species_dir, pattern = "_ML_perf\\.parquet$", full.names = TRUE)
   fps <- fps[!grepl("_MDR_ML_perf\\.parquet$", fps)]
-  if (!length(fps)) return(tibble::tibble())
+  if (!length(fps)) {
+    return(tibble::tibble())
+  }
   df <- dplyr::bind_rows(lapply(fps, .read_parquet_safe, verbose = verbose))
   if (nrow(df)) df$species_label <- basename(species_dir)
   df
@@ -1210,7 +1248,9 @@ listAmRmlSpeciesFolders <- function(results_root, verbose = TRUE) {
 .load_one_species_top <- function(species_dir, verbose = TRUE) {
   fps <- list.files(species_dir, pattern = "_ML_top_features\\.parquet$", full.names = TRUE)
   fps <- fps[!grepl("_MDR_ML_top_features\\.parquet$", fps)]
-  if (!length(fps)) return(tibble::tibble())
+  if (!length(fps)) {
+    return(tibble::tibble())
+  }
   df <- dplyr::bind_rows(lapply(fps, .read_parquet_safe, verbose = verbose))
   if (nrow(df)) df$species_label <- basename(species_dir)
   df
@@ -1234,7 +1274,9 @@ loadMLResults <- function(results_root = NULL, species_dirs = NULL, verbose = TR
 
   # Demo fallback: scan extdata subdirectories recursively for *_ML_perf.parquet
   extdata <- system.file("extdata", package = "amRshiny")
-  if (!nzchar(extdata)) return(tibble::tibble())
+  if (!nzchar(extdata)) {
+    return(tibble::tibble())
+  }
   subdirs <- list.dirs(extdata, full.names = TRUE, recursive = FALSE)
   if (isTRUE(verbose)) message("loadMLResults(): using packaged demo parquets")
   dplyr::bind_rows(lapply(subdirs, .load_one_species_perf, verbose = verbose))
@@ -1254,7 +1296,9 @@ loadTopFeat <- function(results_root = NULL, species_dirs = NULL, verbose = TRUE
 
   # Demo fallback: scan extdata subdirectories for *_ML_top_features.parquet
   extdata <- system.file("extdata", package = "amRshiny")
-  if (!nzchar(extdata)) return(tibble::tibble())
+  if (!nzchar(extdata)) {
+    return(tibble::tibble())
+  }
   subdirs <- list.dirs(extdata, full.names = TRUE, recursive = FALSE)
   if (isTRUE(verbose)) message("loadTopFeat(): using packaged demo parquets")
   dplyr::bind_rows(lapply(subdirs, .load_one_species_top, verbose = verbose))
@@ -1272,7 +1316,9 @@ get_metadata_path <- function(species_code, results_root = NULL) {
     subdirs <- list.dirs(results_root, full.names = TRUE, recursive = FALSE)
     for (d in subdirs) {
       fp <- file.path(d, fname)
-      if (file.exists(fp)) return(fp)
+      if (file.exists(fp)) {
+        return(fp)
+      }
     }
   }
 
@@ -1282,7 +1328,9 @@ get_metadata_path <- function(species_code, results_root = NULL) {
     subdirs <- list.dirs(extdata, full.names = TRUE, recursive = FALSE)
     for (d in subdirs) {
       fp <- file.path(d, fname)
-      if (file.exists(fp)) return(fp)
+      if (file.exists(fp)) {
+        return(fp)
+      }
     }
   }
   NULL
