@@ -51,10 +51,10 @@ devtools::install_github("JRaviLab/amRshiny")
 library(amRshiny)
 
 # Launch with built-in Shigella flexneri demo data
-launch_dashboard()
+launchAMRdashboard()
 
 # Launch with your own amRml output
-launch_dashboard(results_root = "/path/to/your/amRml/results")
+launchAMRdashboard(results_root = "/path/to/your/amRml/results")
 ```
 
 The dashboard will open in your default web browser. Species dropdowns will populate automatically from whichever data is loaded.
