@@ -53,6 +53,7 @@ Suggests:
     countrycode,
     knitr,
     networkD3,
+    processx,
     rmarkdown,
     spelling,
     testthat (>= 3.0.0)
