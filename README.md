@@ -109,7 +109,7 @@ results/
 
 - The **subdirectory name** (e.g. `Shigella_flexneri`) is used as the display label throughout the dashboard.
 - The **species code** (e.g. `Sfl`) inside each parquet is used for internal filtering.
-- Pass `results_root = "/path/to/results"` to `launch_dashboard()` to load your own data. Without this argument the dashboard loads the bundled demo data.
+- Pass `results_root = "/path/to/results"` to `launchAMRdashboard()` to load your own data. Without this argument the dashboard loads the bundled demo data.
 
 ## Data schema
 
