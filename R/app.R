@@ -104,7 +104,7 @@ launchAMRDashboard <- function(results_root = NULL) {
     navbarPage(
       id = "tabselected",
       selected = "home",
-      title = div("AMR"), #not clickable
+      title = div("AMR"), # not clickable
       # 2. Home icon tab (right of AMR dashboard)
       tabPanel(
         title = icon("home", class = "home-tab-icon"),
