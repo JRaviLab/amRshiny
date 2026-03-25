@@ -38,7 +38,7 @@ metadataUI <- function() {
               style = "text-align: center; font-family: 'Arial', sans-serif; font-size: 14px; margin-top: 30px; margin-bottom: 30px;",
               "Distribution of AMR phenotypes"
             ),
-            styledBox("resistance_vs_susceptible_ui")
+            plotly::plotlyOutput("resistance_vs_susceptible_plot", height = "400px")
           )
         ),
         column(
@@ -50,7 +50,7 @@ metadataUI <- function() {
               style = "text-align: center; font-family: 'Arial', sans-serif; font-size: 14px; margin-top: 30px; margin-bottom: 30px;",
               "Global distribution of resistant phenotypes"
             ),
-            styledBox("geo_isolate_plot_ui")
+            plotly::plotlyOutput("geo_isolate_plot", height = "400px")
           )
         )
       ),
@@ -61,10 +61,13 @@ metadataUI <- function() {
             class = "plot-container",
             div(
               class = "plot-header",
-              style = "text-align: center; font-family: 'Arial', sans-serif; font-size: 14px; margin-top: 10px; margin-bottom: 20px;",
+              style = paste0(
+                "text-align: center; font-family: 'Arial', sans-serif;",
+                " font-size: 14px; margin-top: 10px; margin-bottom: 20px;"
+              ),
               "Distribution of AMR phenotypes by year"
             ),
-            styledBox("r_s_across_time_ui")
+            plotly::plotlyOutput("r_s_across_time_plot", height = "400px")
           )
         ),
         column(
@@ -73,26 +76,21 @@ metadataUI <- function() {
             class = "plot-container",
             div(
               class = "plot-header",
-              style = "text-align: center; font-family: 'Arial', sans-serif; font-size: 14px; margin-top: 10px; margin-bottom: 30px;",
+              style = paste0(
+                "text-align: center; font-family: 'Arial', sans-serif;",
+                " font-size: 14px; margin-top: 10px; margin-bottom: 30px;"
+              ),
               "Distribution of genomes across isolation sources"
             ),
             tabBox(
               width = 12,
               tabPanel(
                 "Isolation sources",
-                styledBox("isolation_source_ui")
+                plotly::plotlyOutput("isolation_source_plot", height = "400px")
               ),
               tabPanel(
                 "Hosts",
-                div(
-                  class = "plot-container",
-                  div(
-                    class = "plot-header",
-                    style = "text-align: center; font-family: 'Arial', sans-serif; font-size: 14px; margin-top: 10px; margin-bottom: 0px;",
-                    "Distribution of genomes across hosts"
-                  ),
-                  styledBox("host_isolate_plot_ui")
-                )
+                plotly::plotlyOutput("host_isolate_plot", height = "400px")
               )
             )
           )

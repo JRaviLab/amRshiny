@@ -83,8 +83,23 @@ modelPerfUI <- function() {
                 width = 12,
                 div(
                   style = "height: 600px;",
-                  plotOutput("model_perfomance_plot", height = "100%")
+                  plotly::plotlyOutput("model_perfomance_plot", height = "100%")
                 )
+              )
+            )
+          ),
+          tabPanel(
+            "Performance overview",
+            fluidPage(
+              tags$p(
+                style = "color: #555; font-size: 10px; padding-top: 10px;",
+                "Baseline models only (non-stratified, non-cross-test). ",
+                "Left: nMCC distribution per species and molecular scale. ",
+                "Right: median nMCC by drug class across species, molecular scale, and data encoding."
+              ),
+              fluidRow(
+                column(4, plotly::plotlyOutput("nmcc_strip_plot", height = "560px")),
+                column(8, plotly::plotlyOutput("nmcc_heatmap",    height = "560px"))
               )
             )
           )

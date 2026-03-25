@@ -48,6 +48,65 @@ launchAMRDashboard <- function(results_root = NULL) {
     tags$head(includeCSS(system.file("app/www/style.css", package = "amRshiny"))),
     tags$head(
       tags$style(HTML("
+                      /* ── App header (title row) ── */
+                      .amr-app-header {
+                        background-color: #2b2b2b;
+                        padding: 14px 24px;
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        border-bottom: 1px solid #3a3a3a;
+                      }
+                      .amr-app-header-title {
+                        color: #ffffff;
+                        font-weight: bold;
+                        font-size: 26px;
+                        letter-spacing: 1.5px;
+                        font-family: sans-serif;
+                      }
+                      .amr-app-header-logo img {
+                        height: 60px;
+                        border-radius: 50%;
+                      }
+
+                      /* ── Navbar (tabs row) ── */
+                      .navbar {
+                        background-color: #1a1a1a !important;
+                        border: none !important;
+                        margin-bottom: 0 !important;
+                        min-height: 44px !important;
+                        border-radius: 0 !important;
+                      }
+                      .navbar-default {
+                        background-color: #1a1a1a !important;
+                        border-color: #1a1a1a !important;
+                      }
+                      /* hide the empty brand spacer */
+                      .navbar-brand {
+                        display: none !important;
+                      }
+                      .navbar-nav > li > a {
+                        color: #cccccc !important;
+                        font-size: 14px !important;
+                        padding: 13px 18px !important;
+                        transition: background-color 0.2s, color 0.2s;
+                      }
+                      .navbar-nav > li > a:hover {
+                        color: #ffffff !important;
+                        background-color: #333333 !important;
+                      }
+                      .navbar-nav > li.active > a,
+                      .navbar-nav > li.active > a:focus,
+                      .navbar-nav > li.active > a:hover {
+                        color: #ffffff !important;
+                        background-color: #2b2b2b !important;
+                        border-bottom: 3px solid #5b9bd5 !important;
+                      }
+                      /* icon-only home tab */
+                      .home-tab-icon {
+                        font-size: 16px;
+                      }
+
                       .innerbox {
                         /*border: 2px solid black;*/
                         box-shadow: 2px 2px 3px 3px #ccc;
@@ -101,23 +160,68 @@ launchAMRDashboard <- function(results_root = NULL) {
                       }
                     "))
     ),
+    # ── App header: title row (separate from nav tabs) ──
+    tags$div(
+      class = "amr-app-header",
+      tags$div(
+        class = "amr-app-header-title",
+        "amRviz"
+      ),
+      tags$div(
+        class = "amr-app-header-logo",
+        tags$img(src = "www/logo.png", onerror = "this.style.display='none'")
+      )
+    ),
     navbarPage(
       id = "tabselected",
       selected = "home",
-      title = div("AMR"), #not clickable
+      title = "",
       # 2. Home icon tab (right of AMR dashboard)
       tabPanel(
         title = icon("home", class = "home-tab-icon"),
         value = "home",
         fluidPage(
-          h2("amR: an R package suite to predict antimicrobial resistance in bacterial pathogens"),
+          style = "max-width: 960px; margin: 0 auto; padding: 24px 16px;",
+
+          # ── Overview & Features ──────────────────────────────────────
+          h3("Overview and Features",
+             style = "font-weight: bold; margin-bottom: 12px;"),
+          tags$p("amRviz allows users to:"),
+          tags$ul(
+            style = "line-height: 2; margin-bottom: 16px;",
+            tags$li("Explore AMR model performance across species, drugs, and drug classes."),
+            tags$li("Compare predictive performance across molecular feature scales (gene, protein, domain, structure)."),
+            tags$li("Identify key genomic features driving resistance predictions."),
+            tags$li("Analyze model generalization across geography and time."),
+            tags$li("Visualize and filter isolate metadata and model results interactively.")
+          ),
+          tags$p(
+            style = "margin-bottom: 28px;",
+            tags$em("amRviz is interactive, modular, and scalable for exploring AMR data and machine learning outputs.")
+          ),
+
+          # ── Workflow figure ──────────────────────────────────────────
+          div(
+            style = "text-align: center; margin-bottom: 32px;",
+            tags$img(
+              src = "www/amr_overview.png",
+              style = "max-width: 70%; border-radius: 6px; box-shadow: 0 2px 10px rgba(0,0,0,0.12);",
+              onerror = "this.style.display='none'"
+            )
+          ),
+
+          tags$hr(),
+
+          # ── Paper / Abstract ─────────────────────────────────────────
+          h2("amR: an R package suite to predict antimicrobial resistance in bacterial pathogens",
+             style = "font-size: 20px; margin-bottom: 12px;"),
           tags$p(
             tags$strong("Authors: "),
             "Evan P Brenner,#, Abhirupa Ghosh,#, Ethan P Wolfe, Emily A Boyer, Charmie K Vang, Raymond L Lesiyon, David Mayer, Janani Ravi*."
           ),
           tags$p(
             "Department of Biomedical Informatics, Center for Health Artificial Intelligence, University of Colorado Anschutz, Aurora, CO, USA",
-            tags$span(style = "font-style: italic", "#Co-primary, contributed equally. *Corresponding author: janani.ravi@cuanschutz.edu")
+            tags$span(style = "font-style: italic;", "#Co-primary, contributed equally. *Corresponding author: janani.ravi@cuanschutz.edu")
           ),
           br(),
           h4("Abstract"),
@@ -126,7 +230,7 @@ launchAMRDashboard <- function(results_root = NULL) {
           tags$strong("Results: "),
           tags$p("The amR suite consists of three modular packages. amRdata interfaces with BV-BRC to download and process bacterial genomes with paired antimicrobial susceptibility testing data, constructs species-specific pangenomes, and extracts features at four molecular scales: gene/protein clusters, protein domains, and structural variants. All data are stored in efficient Parquet and DuckDB formats. amRml trains interpretable logistic regression machine learning models per species-drug combination, generating ranked features by importance and comprehensive performance metrics (balanced accuracy, F1, MCC). Models identify known resistance determinants (e.g., gyrA mutations for fluoroquinolones, mecA for beta-lactams) alongside poorly characterized features representing potential novel mechanisms. amRshiny provides an interactive Shiny dashboard to explore isolate metadata distributions, compare model performance across species and drugs, visualize top predictive AMR features, and analyze cross-model patterns (including features specific to geographic/temporal strata). The suite has been applied to ESKAPE pathogens, achieving balanced accuracies above 0.80. With thousands of genomes, multi-scale features, and interpretable models, amR provides the first comprehensive programmatic framework and R package for AMR research."),
           tags$strong("Availability and implementation: "),
-          tags$p("https://github.com/JRaviLab/amR"),
+          tags$p(tags$a(href = "https://github.com/JRaviLab/amR", "https://github.com/JRaviLab/amR")),
           tags$hr(),
         )
       ),
@@ -328,13 +432,14 @@ launchAMRDashboard <- function(results_root = NULL) {
       drug_class_map(loadDrugClassMapRec())
     })
 
-    # clear the selected bug when the user changes the drug/drug class
+    # Refresh bug dropdown when the user toggles drug vs drug class
     observeEvent(input$across_bug_id, {
-      updateSelectInput(
+      choices <- available_species()
+      updateSelectizeInput(
         session,
         inputId = "bug_search_amr_across_bug",
-        choices = bug_choices,
-        selected = unname(bug_choices) # Default to ESKAPE bugs
+        choices = choices,
+        selected = choices
       )
     })
 
@@ -502,58 +607,6 @@ launchAMRDashboard <- function(results_root = NULL) {
     })
 
 
-    ## plot UI
-    output$geo_isolate_plot_ui <- renderUI({
-      fluidRow(
-        div(
-          box(
-            title = "",
-            width = 12,
-            plotly::plotlyOutput("geo_isolate_plot")
-          )
-        )
-      )
-    })
-
-    output$r_s_across_time_ui <- renderUI({
-      fluidRow(
-        box(
-          title = "", # "Resistance vs Susceptible across time",
-          width = 12,
-          plotOutput("r_s_across_time_plot")
-        )
-      )
-    })
-
-    output$host_isolate_plot_ui <- renderUI({
-      fluidRow(
-        box(
-          title = "", # "Host",
-          width = 12,
-          plotOutput("host_isolate_plot")
-        )
-      )
-    })
-
-    output$isolation_source_ui <- renderUI({
-      fluidRow(
-        box(
-          title = "", # "Isolation source",
-          width = 12,
-          plotOutput("isolation_source_plot")
-        )
-      )
-    })
-
-    output$resistance_vs_susceptible_ui <- renderUI({
-      fluidRow(
-        box(
-          title = "", # "Data availability",
-          width = 12,
-          plotOutput("resistance_vs_susceptible_plot")
-        )
-      )
-    })
 
     ## get a quick summary plot;
     observeEvent(input$bug_metadata_id, {
@@ -577,7 +630,7 @@ launchAMRDashboard <- function(results_root = NULL) {
     observe({
       req(input$bug_metadata_id)
 
-      output$resistance_vs_susceptible_plot <- renderPlot({
+      output$resistance_vs_susceptible_plot <- plotly::renderPlotly({
         metadata <- purrr::map_dfr(
           .x = input$bug_metadata_id,
           .f = function(x) {
@@ -631,7 +684,7 @@ launchAMRDashboard <- function(results_root = NULL) {
       makeGeoChloroPlot(data)
     })
 
-    output$r_s_across_time_plot <- renderPlot({
+    output$r_s_across_time_plot <- plotly::renderPlotly({
       data <- purrr::map_dfr(
         .x = input$bug_metadata_id,
         .f = function(x) {
@@ -672,7 +725,7 @@ launchAMRDashboard <- function(results_root = NULL) {
       makeTimeSeriesAMRPlot(data, input$amr_drug_search)
     })
 
-    output$host_isolate_plot <- renderPlot({
+    output$host_isolate_plot <- plotly::renderPlotly({
       data <- purrr::map_dfr(
         .x = input$bug_metadata_id,
         .f = function(x) {
@@ -706,7 +759,7 @@ launchAMRDashboard <- function(results_root = NULL) {
       makeHostIsolatePlot(data)
     })
 
-    output$isolation_source_plot <- renderPlot({
+    output$isolation_source_plot <- plotly::renderPlotly({
       data <- purrr::map_dfr(
         .x = input$bug_metadata_id,
         .f = function(x) {
@@ -742,7 +795,7 @@ launchAMRDashboard <- function(results_root = NULL) {
 
     ## ML Metrics
     # plotly::renderPlotly
-    output$model_perfomance_plot <- renderPlot({
+    output$model_perfomance_plot <- plotly::renderPlotly({
       makeModelPerformancePlot(
         queryData(),
         input$bug_ml_perf_id,
@@ -755,16 +808,14 @@ launchAMRDashboard <- function(results_root = NULL) {
     })
 
     observe({
-      output$across_bug_feature_importance_plot <- renderPlot({
-        if (is.null(input$across_bug_id)) {
-          return(NULL)
-        }
+      output$across_bug_feature_importance_plot <- plotly::renderPlotly({
+        if (is.null(input$across_bug_id)) return(NULL)
         amr_drug <- if (input$across_bug_id == "drug") {
           input$amr_drug_ml_across_bug
         } else {
           input$amr_drug_class_ml_across_bug
         }
-        ht <- makeFeatureImportancePlot(
+        makeFeatureImportancePlot(
           topFeatures(),
           input$bug_search_amr_across_bug,
           amr_drug,
@@ -773,21 +824,18 @@ launchAMRDashboard <- function(results_root = NULL) {
           input$top_n_features,
           input$feature_importance_tabset
         )
-        draw(ht, heatmap_legend_side = "right")
       })
     })
 
     observe({
-      output$across_drug_feature_importance_plot <- renderPlot({
-        if (is.null(input$across_drug_id)) {
-          return(NULL)
-        }
+      output$across_drug_feature_importance_plot <- plotly::renderPlotly({
+        if (is.null(input$across_drug_id)) return(NULL)
         amr_drug <- if (input$across_drug_id == "drug") {
           input$amr_drug_ml_across_drug
         } else {
           input$amr_drug_class_ml_across_drug
         }
-        ht <- makeFeatureImportancePlot(
+        makeFeatureImportancePlot(
           topFeatures(),
           input$bug_search_amr_across_drug,
           amr_drug,
@@ -796,7 +844,6 @@ launchAMRDashboard <- function(results_root = NULL) {
           input$top_n_features,
           input$feature_importance_tabset
         )
-        draw(ht, heatmap_legend_side = "right")
       })
     })
 
@@ -811,6 +858,7 @@ launchAMRDashboard <- function(results_root = NULL) {
           input$top_n_features,
           input$feature_importance_tabset
         )
+        if (is.null(ht)) return(NULL)
         draw(ht, heatmap_legend_side = "right")
       })
       output$feature_importance_table <- DT::renderDataTable({
@@ -894,6 +942,7 @@ launchAMRDashboard <- function(results_root = NULL) {
           input$drug_cross_model_comparison_id,
           input$cross_model_comparison
         )
+        if (is.null(ht)) return(NULL)
         draw(ht, heatmap_legend_side = "left")
       })
       output$cross_model_feature_importance_plot <- renderPlot({
@@ -904,9 +953,18 @@ launchAMRDashboard <- function(results_root = NULL) {
           input$cross_model_comparison,
           input$cross_model_top_n_features
         )
+        if (is.null(ht)) return(NULL)
         draw(ht, heatmap_legend_side = "left")
       })
 
+
+      # nMCC Overview tab
+      output$nmcc_strip_plot <- plotly::renderPlotly({
+        makeNmccStripPlot(queryData())
+      })
+      output$nmcc_heatmap <- plotly::renderPlotly({
+        makeNmccHeatmap(queryData())
+      })
 
       # # Load performance metrics data
       # queryData <- reactiveVal(loadMLResults(results_root = results_root))
@@ -1006,6 +1064,12 @@ launchAMRDashboard <- function(results_root = NULL) {
       )
     })
   }
+
+  # Register inst/app/www/ so images/CSS are served correctly from a package
+  shiny::addResourcePath(
+    "www",
+    system.file("app/www", package = "amRshiny")
+  )
 
   # Return the Shiny application object
   shiny::shinyApp(ui = ui, server = server)

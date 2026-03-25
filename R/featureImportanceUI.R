@@ -97,7 +97,7 @@ featureImportanceUI <- function() {
               column(
                 width = 6,
                 style = "padding: 0; height: 600px; border: 1px solid lightgray;",
-                plotOutput("across_bug_feature_importance_plot", height = "100%", width = "100%")
+                plotly::plotlyOutput("across_bug_feature_importance_plot", height = "100%", width = "100%")
               ),
               column(
                 width = 6,
@@ -153,9 +153,9 @@ featureImportanceUI <- function() {
                 )
               ),
               column(
-                width = 6, style = "padding: 0;",
-                plotOutput("across_drug_feature_importance_plot", height = "100%"),
-                style = "padding: 0; height: 600px; border: 1px solid lightgray;"
+                width = 6,
+                style = "padding: 0; height: 600px; border: 1px solid lightgray;",
+                plotly::plotlyOutput("across_drug_feature_importance_plot", height = "100%")
               ),
               column(
                 width = 6,
