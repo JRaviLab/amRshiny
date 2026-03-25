@@ -99,7 +99,7 @@ modelPerfUI <- function() {
               ),
               fluidRow(
                 column(4, plotly::plotlyOutput("nmcc_strip_plot", height = "560px")),
-                column(8, plotly::plotlyOutput("nmcc_heatmap",    height = "560px"))
+                column(8, plotly::plotlyOutput("nmcc_heatmap", height = "560px"))
               )
             )
           )

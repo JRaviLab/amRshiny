@@ -185,7 +185,8 @@ launchAMRDashboard <- function(results_root = NULL) {
 
           # ── Overview & Features ──────────────────────────────────────
           h3("Overview and Features",
-             style = "font-weight: bold; margin-bottom: 12px;"),
+            style = "font-weight: bold; margin-bottom: 12px;"
+          ),
           tags$p("amRviz allows users to:"),
           tags$ul(
             style = "line-height: 2; margin-bottom: 16px;",
@@ -209,12 +210,12 @@ launchAMRDashboard <- function(results_root = NULL) {
               onerror = "this.style.display='none'"
             )
           ),
-
           tags$hr(),
 
           # ── Paper / Abstract ─────────────────────────────────────────
           h2("amR: an R package suite to predict antimicrobial resistance in bacterial pathogens",
-             style = "font-size: 20px; margin-bottom: 12px;"),
+            style = "font-size: 20px; margin-bottom: 12px;"
+          ),
           tags$p(
             tags$strong("Authors: "),
             "Evan P Brenner,#, Abhirupa Ghosh,#, Ethan P Wolfe, Emily A Boyer, Charmie K Vang, Raymond L Lesiyon, David Mayer, Janani Ravi*."
@@ -607,7 +608,6 @@ launchAMRDashboard <- function(results_root = NULL) {
     })
 
 
-
     ## get a quick summary plot;
     observeEvent(input$bug_metadata_id, {
       output$quick_metadata_stats <- renderUI({
@@ -809,7 +809,9 @@ launchAMRDashboard <- function(results_root = NULL) {
 
     observe({
       output$across_bug_feature_importance_plot <- plotly::renderPlotly({
-        if (is.null(input$across_bug_id)) return(NULL)
+        if (is.null(input$across_bug_id)) {
+          return(NULL)
+        }
         amr_drug <- if (input$across_bug_id == "drug") {
           input$amr_drug_ml_across_bug
         } else {
@@ -829,7 +831,9 @@ launchAMRDashboard <- function(results_root = NULL) {
 
     observe({
       output$across_drug_feature_importance_plot <- plotly::renderPlotly({
-        if (is.null(input$across_drug_id)) return(NULL)
+        if (is.null(input$across_drug_id)) {
+          return(NULL)
+        }
         amr_drug <- if (input$across_drug_id == "drug") {
           input$amr_drug_ml_across_drug
         } else {
@@ -858,7 +862,9 @@ launchAMRDashboard <- function(results_root = NULL) {
           input$top_n_features,
           input$feature_importance_tabset
         )
-        if (is.null(ht)) return(NULL)
+        if (is.null(ht)) {
+          return(NULL)
+        }
         draw(ht, heatmap_legend_side = "right")
       })
       output$feature_importance_table <- DT::renderDataTable({
@@ -942,7 +948,9 @@ launchAMRDashboard <- function(results_root = NULL) {
           input$drug_cross_model_comparison_id,
           input$cross_model_comparison
         )
-        if (is.null(ht)) return(NULL)
+        if (is.null(ht)) {
+          return(NULL)
+        }
         draw(ht, heatmap_legend_side = "left")
       })
       output$cross_model_feature_importance_plot <- renderPlot({
@@ -953,7 +961,9 @@ launchAMRDashboard <- function(results_root = NULL) {
           input$cross_model_comparison,
           input$cross_model_top_n_features
         )
-        if (is.null(ht)) return(NULL)
+        if (is.null(ht)) {
+          return(NULL)
+        }
         draw(ht, heatmap_legend_side = "left")
       })
 

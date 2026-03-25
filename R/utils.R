@@ -385,15 +385,15 @@ quickStatBox <- function(title, value, icon_name, bg_color, text_color = "white"
 makeQuickStats <- function(data) {
   df <- data
 
-  total_records   <- nrow(df)
-  total_genomes   <- length(unique(df$genome_drug.genome_id))
-  n_drugs         <- length(unique(df$genome_drug.antibiotic))
-  n_drug_classes  <- length(unique(df$drug_class[!is.na(df$drug_class)]))
+  total_records <- nrow(df)
+  total_genomes <- length(unique(df$genome_drug.genome_id))
+  n_drugs <- length(unique(df$genome_drug.antibiotic))
+  n_drug_classes <- length(unique(df$drug_class[!is.na(df$drug_class)]))
 
   pheno_tbl <- df[df$genome_drug.resistant_phenotype %in% c("Resistant", "Susceptible"), ] |>
     (\(x) table(x$genome_drug.resistant_phenotype))() |>
     as.data.frame()
-  n_resistant   <- if ("Resistant"   %in% pheno_tbl$Var1) pheno_tbl[pheno_tbl$Var1 == "Resistant",   "Freq"] else 0
+  n_resistant <- if ("Resistant" %in% pheno_tbl$Var1) pheno_tbl[pheno_tbl$Var1 == "Resistant", "Freq"] else 0
   n_susceptible <- if ("Susceptible" %in% pheno_tbl$Var1) pheno_tbl[pheno_tbl$Var1 == "Susceptible", "Freq"] else 0
 
   top_drugs <- df %>%
@@ -410,9 +410,11 @@ makeQuickStats <- function(data) {
     dplyr::pull(.data$drug_class)
 
   top_countries <- df %>%
-    dplyr::filter(!is.na(.data$genome.isolation_country),
-                  .data$genome.isolation_country != "",
-                  !grepl("^NA$", .data$genome.isolation_country)) %>%
+    dplyr::filter(
+      !is.na(.data$genome.isolation_country),
+      .data$genome.isolation_country != "",
+      !grepl("^NA$", .data$genome.isolation_country)
+    ) %>%
     dplyr::count(.data$genome.isolation_country, name = "n") %>%
     dplyr::arrange(dplyr::desc(.data$n)) %>%
     dplyr::slice_head(n = 5) %>%
@@ -425,32 +427,38 @@ makeQuickStats <- function(data) {
       paste("Data summary for", stringr::str_to_sentence(spp_label[1]))
     ),
     fluidRow(
-      column(4, quickStatBox("Isolate-drug records",  total_records,   "database",    "#2C3E50")),
-      column(4, quickStatBox("Unique genomes",         total_genomes,   "dna",         "#2980B9")),
-      column(4, quickStatBox("Drugs tested",           n_drugs,         "pills",       "#8E44AD"))
+      column(4, quickStatBox("Isolate-drug records", total_records, "database", "#2C3E50")),
+      column(4, quickStatBox("Unique genomes", total_genomes, "dna", "#2980B9")),
+      column(4, quickStatBox("Drugs tested", n_drugs, "pills", "#8E44AD"))
     ),
     fluidRow(
-      column(4, quickStatBox("Resistant isolates",    n_resistant,     "virus",       "#C0392B")),
-      column(4, quickStatBox("Susceptible isolates",  n_susceptible,   "shield-halved", "#27AE60")),
-      column(4, quickStatBox("Drug classes",          n_drug_classes,  "layer-group", "#D35400"))
+      column(4, quickStatBox("Resistant isolates", n_resistant, "virus", "#C0392B")),
+      column(4, quickStatBox("Susceptible isolates", n_susceptible, "shield-halved", "#27AE60")),
+      column(4, quickStatBox("Drug classes", n_drug_classes, "layer-group", "#D35400"))
     ),
     fluidRow(
       column(4, quickStatBox(
         "Top 5 drugs",
-        tags$span(style = "font-size:11px; line-height:1.5;",
-          HTML(paste(top_drugs, collapse = "<br/>"))),
+        tags$span(
+          style = "font-size:11px; line-height:1.5;",
+          HTML(paste(top_drugs, collapse = "<br/>"))
+        ),
         "star", "#16A085"
       )),
       column(4, quickStatBox(
         "Top 5 drug classes",
-        tags$span(style = "font-size:11px; line-height:1.5;",
-          HTML(paste(top_classes, collapse = "<br/>"))),
+        tags$span(
+          style = "font-size:11px; line-height:1.5;",
+          HTML(paste(top_classes, collapse = "<br/>"))
+        ),
         "list", "#7F8C8D"
       )),
       column(4, quickStatBox(
         "Top 5 countries",
-        tags$span(style = "font-size:11px; line-height:1.5;",
-          HTML(paste(top_countries, collapse = "<br/>"))),
+        tags$span(
+          style = "font-size:11px; line-height:1.5;",
+          HTML(paste(top_countries, collapse = "<br/>"))
+        ),
         "globe", "#F39C12"
       ))
     )
@@ -465,8 +473,8 @@ makeDatAvailabilityPlot <- function(data) {
   g <- ggplot2::ggplot(
     data,
     ggplot2::aes(
-      x    = .data$genome_drug.antibiotic,
-      y    = .data$n,
+      x = .data$genome_drug.antibiotic,
+      y = .data$n,
       fill = .data$genome_drug.resistant_phenotype,
       text = paste0(
         "Drug: ", .data$genome_drug.antibiotic,
@@ -534,11 +542,11 @@ makeTimeSeriesAMRPlot <- function(data, amr_drug) {
   g <- ggplot2::ggplot(
     data,
     ggplot2::aes(
-      x      = .data$genome.collection_year,
-      y      = .data$n,
+      x = .data$genome.collection_year,
+      y = .data$n,
       colour = .data$genome_drug.resistant_phenotype,
-      group  = .data$genome_drug.resistant_phenotype,
-      text   = paste0(
+      group = .data$genome_drug.resistant_phenotype,
+      text = paste0(
         "Year: ", .data$genome.collection_year,
         "<br>Phenotype: ", .data$genome_drug.resistant_phenotype,
         "<br>Count: ", .data$n
@@ -578,8 +586,8 @@ makeHostIsolatePlot <- function(data) {
   g <- ggplot2::ggplot(
     host_df,
     ggplot2::aes(
-      x    = .data$genome_drug.antibiotic,
-      y    = .data$n,
+      x = .data$genome_drug.antibiotic,
+      y = .data$n,
       fill = .data$genome.host_common_name,
       text = paste0(
         "Drug: ", .data$genome_drug.antibiotic,
@@ -978,12 +986,12 @@ makeFeatureImportancePlot <- function(
 
   # Build plotly heatmap (features = rows, groups = columns)
   plotly::plot_ly(
-    x         = colnames(vi_mat),
-    y         = rownames(vi_mat),
-    z         = vi_mat,
-    type      = "heatmap",
+    x = colnames(vi_mat),
+    y = rownames(vi_mat),
+    z = vi_mat,
+    type = "heatmap",
     colorscale = list(c(0, "lightgreen"), c(1, "darkgreen")),
-    colorbar  = list(title = "Importance"),
+    colorbar = list(title = "Importance"),
     hovertemplate = paste0(
       "<b>Feature:</b> %{y}<br>",
       "<b>Group:</b> %{x}<br>",
@@ -1383,11 +1391,15 @@ get_metadata_path <- function(species_code, results_root = NULL) {
 # Shared helper: filter perf data to baseline (non-stratified, non-cross) rows
 # and attach a species_display column from species_label (or species code).
 .prep_nmcc_data <- function(data) {
-  if (is.null(data) || !is.data.frame(data) || !nrow(data)) return(NULL)
+  if (is.null(data) || !is.data.frame(data) || !nrow(data)) {
+    return(NULL)
+  }
   df <- data %>%
     dplyr::filter(is.na(.data$strat_label) | !nzchar(.data$strat_label)) %>%
     dplyr::filter(!.data$cross_test, !is.na(.data$nmcc))
-  if (!nrow(df)) return(NULL)
+  if (!nrow(df)) {
+    return(NULL)
+  }
   if ("species_label" %in% names(df)) {
     df <- df %>%
       dplyr::mutate(species_display = gsub("_", " ", .data$species_label))
@@ -1432,11 +1444,11 @@ makeNmccStripPlot <- function(data) {
   g <- ggplot2::ggplot(
     df,
     ggplot2::aes(
-      x     = .data$species_display,
-      y     = .data$nmcc,
+      x = .data$species_display,
+      y = .data$nmcc,
       color = .data$scale_label,
-      fill  = .data$scale_label,
-      text  = paste0(
+      fill = .data$scale_label,
+      text = paste0(
         "Drug/class: ", .data$drug_or_class,
         "\nnMCC: ", round(.data$nmcc, 3),
         "\nEncoding: ", .data$feature_subtype
@@ -1453,10 +1465,10 @@ makeNmccStripPlot <- function(data) {
     ggplot2::labs(x = NULL, y = "nMCC") +
     ggplot2::theme_minimal(base_size = 12) +
     ggplot2::theme(
-      legend.position  = "none",
-      strip.placement  = "outside",
+      legend.position = "none",
+      strip.placement = "outside",
       strip.text.y.left = ggplot2::element_text(angle = 0, hjust = 1),
-      panel.spacing    = ggplot2::unit(0.3, "lines")
+      panel.spacing = ggplot2::unit(0.3, "lines")
     )
 
   plotly::ggplotly(g, tooltip = "text") %>%
@@ -1482,7 +1494,7 @@ makeNmccHeatmap <- function(data) {
     dplyr::count(.data$drug_or_class) %>%
     dplyr::arrange(dplyr::desc(.data$n)) %>%
     dplyr::pull(.data$drug_or_class)
-  drug_order_rev <- rev(drug_order)  # ggplot y reversed so top row = first
+  drug_order_rev <- rev(drug_order) # ggplot y reversed so top row = first
 
   df <- df %>%
     dplyr::mutate(drug_or_class = factor(.data$drug_or_class, levels = drug_order_rev))
@@ -1496,8 +1508,8 @@ makeNmccHeatmap <- function(data) {
   g1 <- ggplot2::ggplot(
     spp_summ,
     ggplot2::aes(
-      x    = .data$species_display,
-      y    = .data$drug_or_class,
+      x = .data$species_display,
+      y = .data$drug_or_class,
       fill = .data$med_nmcc,
       text = paste0(
         "Species: ", .data$species_display,
@@ -1508,14 +1520,14 @@ makeNmccHeatmap <- function(data) {
   ) +
     ggplot2::geom_tile(color = "white") +
     ggplot2::scale_fill_gradient(
-      low  = "white", high = "black",
+      low = "white", high = "black",
       limits = c(0.5, 1.0), name = "nMCC", na.value = "white"
     ) +
     ggplot2::labs(x = NULL, y = "Drug class", title = "Species") +
     ggplot2::theme_minimal(base_size = 11) +
     ggplot2::theme(
-      plot.title   = ggplot2::element_text(hjust = 0.5, size = 12),
-      axis.text.x  = ggplot2::element_text(angle = 40, hjust = 1),
+      plot.title = ggplot2::element_text(hjust = 0.5, size = 12),
+      axis.text.x = ggplot2::element_text(angle = 40, hjust = 1),
       legend.position = "bottom"
     )
 
@@ -1541,8 +1553,8 @@ makeNmccHeatmap <- function(data) {
   g2 <- ggplot2::ggplot(
     sc_summ,
     ggplot2::aes(
-      x    = .data$scale_label,
-      y    = .data$drug_or_class,
+      x = .data$scale_label,
+      y = .data$drug_or_class,
       fill = .data$scale_label,
       text = paste0(
         "Scale: ", .data$scale_label,
@@ -1568,8 +1580,8 @@ makeNmccHeatmap <- function(data) {
     dplyr::group_by(.data$drug_or_class, .data$feature_subtype) %>%
     dplyr::summarise(med_nmcc = median(.data$nmcc, na.rm = TRUE), .groups = "drop") %>%
     dplyr::mutate(
-      drug_or_class   = factor(.data$drug_or_class, levels = drug_order_rev),
-      subtype_label   = dplyr::case_when(
+      drug_or_class = factor(.data$drug_or_class, levels = drug_order_rev),
+      subtype_label = dplyr::case_when(
         .data$feature_subtype == "binary" ~ "Binary",
         .data$feature_subtype == "counts" ~ "Counts",
         TRUE ~ .data$feature_subtype
@@ -1579,8 +1591,8 @@ makeNmccHeatmap <- function(data) {
   g3 <- ggplot2::ggplot(
     st_summ,
     ggplot2::aes(
-      x    = .data$subtype_label,
-      y    = .data$drug_or_class,
+      x = .data$subtype_label,
+      y = .data$drug_or_class,
       fill = .data$subtype_label,
       text = paste0(
         "Encoding: ", .data$subtype_label,
