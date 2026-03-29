@@ -6,6 +6,11 @@
 \usage{
 launchAMRDashboard(results_root = NULL)
 }
+\arguments{
+\item{results_root}{File path to the root directory containing amRml model
+output results. If \code{NULL} (default), the application will attempt to
+use example data bundled with the package, where available.}
+}
 \value{
 A Shiny application object
 }

@@ -3,6 +3,10 @@
 #' Creates and returns a Shiny application for exploring antimicrobial
 #' resistance data and machine learning model results.
 #'
+#' @param results_root File path to the root directory containing amRml model
+#'        output results. If `NULL` (default), the application will attempt to
+#'        use example data bundled with the package, where available.
+#'
 #' @return A Shiny application object
 #' @export
 #' @import shiny
