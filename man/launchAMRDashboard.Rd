@@ -4,7 +4,7 @@
 \alias{launchAMRDashboard}
 \title{AMR Shiny dashboard application}
 \usage{
-launchAMRDashboard()
+launchAMRDashboard(results_root = NULL)
 }
 \value{
 A Shiny application object
